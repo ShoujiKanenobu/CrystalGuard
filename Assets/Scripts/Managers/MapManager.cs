@@ -19,7 +19,7 @@ public class MapManager : MonoBehaviour
     [SerializeField]
     private List<TileData> datas;
 
-    private Dictionary<Vector2, BulletTowerController> towerPlacements = new Dictionary<Vector2, BulletTowerController>();
+    private Dictionary<Vector2, TowerBase> towerPlacements = new Dictionary<Vector2, TowerBase>();
     private List<Vector3Int> lastingHighlights = new List<Vector3Int>();
     private List<Vector3Int> nonLastingHighlight = new List<Vector3Int>();
 
@@ -144,7 +144,7 @@ public class MapManager : MonoBehaviour
         return dataFromTiles[map.GetTile(pos)].isBuildable;
     }
 
-    public void PlaceTower(Vector2 pos, BulletTowerController tower)
+    public void PlaceTower(Vector2 pos, TowerBase tower)
     {
         towerPlacements.Add(pos, tower);
     }

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5055404657345447368
+--- !u!1 &3039867462006579259
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,8 +8,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2378609118846267379}
-  - component: {fileID: 2397422286706285371}
+  - component: {fileID: 7300495704126280489}
+  - component: {fileID: 2051196569554583972}
   m_Layer: 0
   m_Name: StarPosition
   m_TagString: Untagged
@@ -17,13 +17,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2378609118846267379
+--- !u!4 &7300495704126280489
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5055404657345447368}
+  m_GameObject: {fileID: 3039867462006579259}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -0.24999999, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -32,13 +32,13 @@ Transform:
   m_Father: {fileID: 4092415280517480795}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2397422286706285371
+--- !u!114 &2051196569554583972
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5055404657345447368}
+  m_GameObject: {fileID: 3039867462006579259}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2d63644f9d1a57046a8da08324a39fd0, type: 3}
@@ -61,7 +61,7 @@ GameObject:
   - component: {fileID: 533321530562121489}
   - component: {fileID: 8662026469214650490}
   m_Layer: 0
-  m_Name: Rock Tower
+  m_Name: Fire Tower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -79,7 +79,7 @@ Transform:
   m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2378609118846267379}
+  - {fileID: 7300495704126280489}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -125,7 +125,7 @@ SpriteRenderer:
   m_SortingLayer: 3
   m_SortingOrder: 3
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.5660378, g: 0.3893191, b: 0.16820933, a: 1}
+  m_Color: {r: 0.8867924, g: 0.4825295, b: 0.43921322, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -148,9 +148,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data:
-  - {fileID: 11400000, guid: 03f29496e04ebe9458bb9720483c5830, type: 2}
-  - {fileID: 11400000, guid: d0d6bc109f786c64188ba6a3ce76c6d5, type: 2}
-  - {fileID: 11400000, guid: 0ed512399ce0ce94999141e5168c2bf4, type: 2}
+  - {fileID: 11400000, guid: e452631fe96d3fc4bb9bf481f12175fe, type: 2}
+  - {fileID: 11400000, guid: 4731306ccf27bfb41a5f006864f3ea21, type: 2}
+  - {fileID: 11400000, guid: 0bc8680cda8754340b6715836b69ca60, type: 2}
 --- !u!120 &533321530562121489
 LineRenderer:
   serializedVersion: 2
@@ -172,7 +172,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 7fc41f720430d864a927cd8df5dadbcb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

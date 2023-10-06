@@ -28,3 +28,6 @@ MonoBehaviour:
   - item: {fileID: 6253202821482886739, guid: 75a46d14dccc73a44959f031db974d03, type: 3}
     itemImage: {fileID: 21300146, guid: 01842c69a0801d74382f6f4ed41ec4bf, type: 3}
     weight: 300
+  - item: {fileID: 6253202821482886739, guid: 04e12cb2b3c4dd14bbaa228fd9fdeb82, type: 3}
+    itemImage: {fileID: 21300154, guid: 01842c69a0801d74382f6f4ed41ec4bf, type: 3}
+    weight: 300

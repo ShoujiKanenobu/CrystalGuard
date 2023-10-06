@@ -3,60 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-[RequireComponent(typeof(LineRenderer))]
-[RequireComponent(typeof(TowerStarUIController))]
-public class BulletTowerController : MonoBehaviour
-{
-    public int level { get; private set; }
-    string typing;
 
-    public List<BulletTowerData> data;
-    private TowerStarUIController levelHandler;
+
+public class BulletTowerController : TowerBase
+{    
     private EnemyMovementController target;
-
-    private float nextAttack;
-
-    public void FindTargetInRange()
-    {
-        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, data[level - 1].range);
-
-        if(target != null)
-        {
-            if (!hits.Contains(target.GetComponent<Collider2D>()))
-            {
-                target = null;
-            }
-        }
-        foreach (Collider2D hit in hits)
-        {
-            if (hit.TryGetComponent<EnemyMovementController>(out EnemyMovementController enemy))
-            {
-                if (target == null)
-                    target = enemy;
-                else
-                {
-                    if(target.distanceTraveled < enemy.distanceTraveled)
-                    {
-                        target = enemy;
-                    }
-                }
-            }
-        }
-    }
-
-    private void Start()
-    {
-        levelHandler = GetComponent<TowerStarUIController>();
-        
-
-        nextAttack = 0;
-        typing = gameObject.name;
-        level = 1;
-
-        
-        levelHandler.CheckStars(level);
-        this.GetComponent<SpriteRenderer>().color = data[0].towerColor;
-    }
 
     // Update is called once per frame
     void FixedUpdate()
@@ -73,22 +24,33 @@ public class BulletTowerController : MonoBehaviour
                 nextAttack = Time.time + data[level - 1].attackspeed;
             }
         }
-        //Targeting Visualization
-        /*if(target != null)
-        {
-            Debug.DrawLine(transform.position, target.transform.position, Color.red);
-        }*/
     }
+    public void FindTargetInRange()
+    {
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, data[level - 1].range);
 
-    public string GetTowerType()
-    {
-        return typing + level;
-    }
-    public void increaseLevel()
-    {
-        if (level < 3)
-            level++;
-        levelHandler.CheckStars(level);
+        if (target != null)
+        {
+            if (!hits.Contains(target.GetComponent<Collider2D>()))
+            {
+                target = null;
+            }
+        }
+        foreach (Collider2D hit in hits)
+        {
+            if (hit.TryGetComponent<EnemyMovementController>(out EnemyMovementController enemy))
+            {
+                if (target == null)
+                    target = enemy;
+                else
+                {
+                    if (target.distanceTraveled < enemy.distanceTraveled)
+                    {
+                        target = enemy;
+                    }
+                }
+            }
+        }
     }
 
     private void Shoot()
@@ -111,7 +73,6 @@ public class BulletTowerController : MonoBehaviour
         tempBC.speed = data[level - 1].projSpeed;
         tempBC.damage = data[level - 1].damage;
         tempBC.target = target.gameObject;
-
         if (data[level - 1].debuff != null)
             tempBC.debuff = data[level - 1].debuff;
 

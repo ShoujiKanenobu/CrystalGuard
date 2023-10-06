@@ -10,11 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 4092415280517480795}
   - component: {fileID: 1828434861325183575}
-  - component: {fileID: 6255435538823917959}
   - component: {fileID: 533321530562121489}
   - component: {fileID: 8662026469214650490}
+  - component: {fileID: -2795359182648940780}
   m_Layer: 0
-  m_Name: Air Tower
+  m_Name: Nova Tower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -88,22 +88,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6255435538823917959
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6253202821482886739}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a934e85efc30be345983f6fd4c6e36a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  data:
-  - {fileID: 11400000, guid: bd8c887fe7fb39941b15977656932e14, type: 2}
-  - {fileID: 11400000, guid: b68237acbe3ea3e429f8c542d0882097, type: 2}
-  - {fileID: 11400000, guid: 8f774e40399e5354f9845b9432577dfb, type: 2}
 --- !u!120 &533321530562121489
 LineRenderer:
   serializedVersion: 2
@@ -319,6 +303,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   star: {fileID: 2178655110411980867, guid: 5c2ff63b5d01fcc4987140601ef097b6, type: 3}
+--- !u!114 &-2795359182648940780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6253202821482886739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 343bc7c7770b1254d8e01a18d889a871, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data:
+  - {fileID: 11400000, guid: be86343d4a2c7bc40a0ad8486699dcf5, type: 2}
+  - {fileID: 11400000, guid: cd3401d2ea7dd094995dd25b5a5ee030, type: 2}
+  - {fileID: 11400000, guid: b390968ffe6ae49408742f3f5960526a, type: 2}
 --- !u!1 &7345095666878135703
 GameObject:
   m_ObjectHideFlags: 0

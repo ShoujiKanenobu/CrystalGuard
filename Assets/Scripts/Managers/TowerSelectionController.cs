@@ -79,8 +79,8 @@ public class TowerSelectionController : MonoBehaviour
             previewObj.SetActive(true);
             previewObj.transform.position = boc.selectedTile + new Vector3(0.5f, 0.5f, 0);
             //Yikes
-            previewObj.GetComponent<TowerRangeIndicator>().ShowRadius(currentItems[i].item.GetComponent<BulletTowerController>().data[0].range);
-            Color tempColor = currentItems[i].item.GetComponent<BulletTowerController>().data[0].towerColor;
+            previewObj.GetComponent<TowerRangeIndicator>().ShowRadius(currentItems[i].item.GetComponent<TowerBase>().data[0].range);
+            Color tempColor = currentItems[i].item.GetComponent<TowerBase>().data[0].towerColor;
             tempColor.a = 0.6f;
             previewObj.GetComponent<SpriteRenderer>().color = tempColor;
         }
@@ -98,9 +98,9 @@ public class TowerSelectionController : MonoBehaviour
             
         Vector3 towerGridPos = boc.selectedTile;
 
-        BulletTowerController temp = Instantiate(currentItems[i].item, 
+        TowerBase temp = Instantiate(currentItems[i].item, 
             towerGridPos + new Vector3(0.5f, 0.5f, 0), 
-            Quaternion.identity).GetComponent<BulletTowerController>();
+            Quaternion.identity).GetComponent<TowerBase>();
 
         MapManager.instance.PlaceTower(towerGridPos, temp);
 
