@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0d2973b20815e44e80f70f031b03c4d, type: 3}
+  m_Name: TowerWeights
+  m_EditorClassIdentifier: 
+  items:
+  - item: {fileID: 6253202821482886739, guid: 58ba61a7cc0ec6a4d9974c70f489064a, type: 3}
+    itemImage: {fileID: 21300006, guid: 01842c69a0801d74382f6f4ed41ec4bf, type: 3}
+    weight: 300
+  - item: {fileID: 6253202821482886739, guid: 46859fec5c0c2224cbf66957852f88ea, type: 3}
+    itemImage: {fileID: 21300010, guid: 01842c69a0801d74382f6f4ed41ec4bf, type: 3}
+    weight: 300
+  - item: {fileID: 6253202821482886739, guid: dc5a382c6bba4e2439a7049814458ebf, type: 3}
+    itemImage: {fileID: 21300112, guid: 01842c69a0801d74382f6f4ed41ec4bf, type: 3}
+    weight: 300
+  - item: {fileID: 6253202821482886739, guid: bd07fb9e64ee2b44194f10b8cb20805a, type: 3}
+    itemImage: {fileID: 21300130, guid: 01842c69a0801d74382f6f4ed41ec4bf, type: 3}
+    weight: 300
+  - item: {fileID: 6253202821482886739, guid: 75a46d14dccc73a44959f031db974d03, type: 3}
+    itemImage: {fileID: 21300146, guid: 01842c69a0801d74382f6f4ed41ec4bf, type: 3}
+    weight: 300
