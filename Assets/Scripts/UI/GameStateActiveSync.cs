@@ -5,11 +5,11 @@ using UnityEngine;
 public class GameStateActiveSync : MonoBehaviour
 {
     public GameObject target;
-    public GameState activeState;
+    public List<GameState> activeState = new List<GameState>();
 
     private void Update()
     {
-        if (GameManager.instance.state == activeState)
+        if (activeState.Contains(GameManager.instance.state))
             target.SetActive(true);
         else
             target.SetActive(false);

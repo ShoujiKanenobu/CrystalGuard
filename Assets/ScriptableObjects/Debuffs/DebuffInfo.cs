@@ -8,5 +8,6 @@ public class DebuffInfo : ScriptableObject
     public StatusType type;
     public float debuffValue;
     public float duration;
+    public string description;
     
 }

@@ -1,12 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class NovaTowerController : TowerBase
 {
+    [SerializeField]
+    private List<NovaTowerData> novaData = new List<NovaTowerData>();
+    public override List<TowerDataBase> data
+    {
+        get { return novaData.Cast<TowerDataBase>().ToList(); }
+    }
     private List<EnemyHealthController> targets = new List<EnemyHealthController>();
 
-    // Update is called once per frame
+    public void Start()
+    {
+        Init();
+        this.GetComponent<SpriteRenderer>().color = novaData[0].towerColor;
+    }
+
     void FixedUpdate()
     {
         if(FindTargetsInRange())
@@ -19,7 +31,7 @@ public class NovaTowerController : TowerBase
             if (Time.time > nextAttack && targets.Count != 0)
             {
                 Shoot();
-                nextAttack = Time.time + data[level - 1].attackspeed;
+                nextAttack = Time.time + novaData[level - 1].attackspeed;
             }
         }
     }
@@ -36,22 +48,22 @@ public class NovaTowerController : TowerBase
         }
         else
         {
-            temp = Instantiate(data[level - 1].projectile, transform.position, Quaternion.identity);
+            temp = Instantiate(novaData[level - 1].nova, transform.position, Quaternion.identity);
             NovaPool.instance.ExpandPool(temp);
         }
-        temp.GetComponent<SpriteRenderer>().color = data[level - 1].projColor;
+        temp.GetComponent<SpriteRenderer>().color = novaData[level - 1].novaColor;
         NovaController tempNC = temp.GetComponent<NovaController>();
-        tempNC.damage = data[level - 1].damage;
-        tempNC.expandRate = data[level - 1].projSpeed;
-        tempNC.range = data[level - 1].range;
-        if (data[level - 1].debuff != null)
-            tempNC.debuff = data[level - 1].debuff;
+        tempNC.damage = novaData[level - 1].damage;
+        tempNC.expandRate = novaData[level - 1].expandSpeed;
+        tempNC.range = novaData[level - 1].range;
+        if (novaData[level - 1].debuff != null)
+            tempNC.debuff = novaData[level - 1].debuff;
     }
 
     public bool FindTargetsInRange()
     {
         targets.Clear();
-        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, data[level - 1].range);
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, novaData[level - 1].range);
         if (hits.Length == 0)
             return false;
 

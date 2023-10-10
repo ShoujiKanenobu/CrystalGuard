@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI infoText;
     public TextMeshProUGUI livesText;
 
+    public TowerSelectionController tsc;
+
     private int Lives;
 
     public void Awake()
@@ -40,6 +42,11 @@ public class GameManager : MonoBehaviour
         state = g;
         if(!retainHighlights)
             MapManager.instance.ClearLastingTiles();
+
+        if (g == GameState.SelectedTower)
+            tsc.DisplayTowerAtPosition();
+        if (g == GameState.FreeHover)
+            tsc.ResetPreview();
 
         if (state == GameState.Reset)
         {

@@ -3,13 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-
-
 public class BulletTowerController : TowerBase
 {    
+    [SerializeField]
+    private List<BulletTowerData> bulletData = new List<BulletTowerData>();
+
+    public override List<TowerDataBase> data
+    {
+        get { return bulletData.Cast<TowerDataBase>().ToList(); }
+    }
+
     private EnemyMovementController target;
 
-    // Update is called once per frame
+    public void Start()
+    {
+        Init();
+        this.GetComponent<SpriteRenderer>().color = bulletData[0].towerColor;
+    }
+
     void FixedUpdate()
     {
         HandleAttackTime();
@@ -21,13 +32,13 @@ public class BulletTowerController : TowerBase
             if (Time.time > nextAttack && target != null)
             {
                 Shoot();
-                nextAttack = Time.time + data[level - 1].attackspeed;
+                nextAttack = Time.time + bulletData[level - 1].attackspeed;
             }
         }
     }
     public void FindTargetInRange()
     {
-        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, data[level - 1].range);
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, bulletData[level - 1].range);
 
         if (target != null)
         {
@@ -64,17 +75,17 @@ public class BulletTowerController : TowerBase
         }
         else
         {
-            temp = Instantiate(data[level - 1].projectile, transform.position, Quaternion.identity);
+            temp = Instantiate((bulletData[level - 1]).projectile, transform.position, Quaternion.identity);
             BulletPool.instance.ExpandPool(temp);
         }
 
-        temp.GetComponent<SpriteRenderer>().color = data[level - 1].projColor;
+        temp.GetComponent<SpriteRenderer>().color = bulletData[level - 1].projColor;
         BulletController tempBC = temp.GetComponent<BulletController>();
-        tempBC.speed = data[level - 1].projSpeed;
-        tempBC.damage = data[level - 1].damage;
+        tempBC.speed = bulletData[level - 1].projSpeed;
+        tempBC.damage = bulletData[level - 1].damage;
         tempBC.target = target.gameObject;
-        if (data[level - 1].debuff != null)
-            tempBC.debuff = data[level - 1].debuff;
+        if (bulletData[level - 1].debuff != null)
+            tempBC.debuff = bulletData[level - 1].debuff;
 
     }
 

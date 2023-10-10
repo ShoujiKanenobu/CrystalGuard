@@ -69,6 +69,11 @@ public class MapManager : MonoBehaviour
         HighlightMouseHover();
     }
 
+    public TowerBase GetTowerAtMousePositionGrid()
+    {
+        return towerPlacements[(Vector2Int)MousePositionGrid];
+    }
+
     public void ResetLevel()
     {
         foreach(var x in towerPlacements)

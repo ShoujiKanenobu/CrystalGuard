@@ -5,16 +5,20 @@ using Sirenix.OdinInspector;
 public class CanvasBugFix : MonoBehaviour
 {
     public Vector3 pos;
-    private RectTransform rect;
 
     void Start()
     {
-        rect = GetComponent<RectTransform>();
         SetPos();
     }
 
     public void SetPos()
     {
-        rect.anchoredPosition = pos;
+        GetComponent<RectTransform>().anchoredPosition = pos;
+    }
+
+    [Button]
+    public void GrabPosition()
+    {
+        pos = GetComponent<RectTransform>().anchoredPosition;
     }
 }

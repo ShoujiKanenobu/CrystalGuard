@@ -4,18 +4,17 @@ using UnityEngine;
 
 [RequireComponent(typeof(LineRenderer))]
 [RequireComponent(typeof(TowerStarUIController))]
-public class TowerBase : MonoBehaviour
+public abstract class TowerBase : MonoBehaviour
 {
+    public abstract List<TowerDataBase> data { get; }
     public int level { get; private set; }
     private string typing;
 
-    public List<BulletTowerData> data;
     protected TowerStarUIController levelHandler;
 
     protected float nextAttack;
 
-    // Start is called before the first frame update
-    void Start()
+    protected void Init()
     {
         levelHandler = GetComponent<TowerStarUIController>();
 
@@ -26,15 +25,7 @@ public class TowerBase : MonoBehaviour
 
 
         levelHandler.CheckStars(level);
-        this.GetComponent<SpriteRenderer>().color = data[0].towerColor;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public string GetTowerType()
     {
         return typing + level;

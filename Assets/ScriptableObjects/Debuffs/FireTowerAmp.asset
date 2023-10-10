@@ -15,3 +15,4 @@ MonoBehaviour:
   type: 2
   debuffValue: 1
   duration: 1
+  description: 'Scorched: Causes hit enemies to take 1 additional damage per hit.'

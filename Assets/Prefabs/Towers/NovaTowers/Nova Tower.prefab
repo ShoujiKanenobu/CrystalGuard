@@ -315,10 +315,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 343bc7c7770b1254d8e01a18d889a871, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data:
-  - {fileID: 11400000, guid: be86343d4a2c7bc40a0ad8486699dcf5, type: 2}
-  - {fileID: 11400000, guid: cd3401d2ea7dd094995dd25b5a5ee030, type: 2}
-  - {fileID: 11400000, guid: b390968ffe6ae49408742f3f5960526a, type: 2}
+  novaData:
+  - {fileID: 11400000, guid: 00d64ff4bb99a524ba28d6a0009be298, type: 2}
+  - {fileID: 11400000, guid: 145c1eebb4350b24ca948e2b4e167254, type: 2}
+  - {fileID: 11400000, guid: 42a6885802615e6419907e3c580d4b38, type: 2}
 --- !u!1 &7345095666878135703
 GameObject:
   m_ObjectHideFlags: 0
