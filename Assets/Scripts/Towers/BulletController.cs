@@ -13,7 +13,6 @@ public class BulletController : MonoBehaviour
     public DebuffInfo debuff;
     public void Update()
     {
-        Vector3 targetPos;
         if (target != null)
         {
             lastKnownPos = target.transform.position;
@@ -21,6 +20,7 @@ public class BulletController : MonoBehaviour
                 target = null;
         }
 
+        Vector3 targetPos;
         targetPos = lastKnownPos;
 
         if (Vector3.Distance(transform.position, targetPos) < minHitDistance)

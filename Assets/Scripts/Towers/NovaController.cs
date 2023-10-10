@@ -35,10 +35,11 @@ public class NovaController : MonoBehaviour
             hit.gameObject.TryGetComponent<EnemyHealthController>(out EnemyHealthController temp);
             if (temp != null)
             {
-                temp.TakeDamage(damage);
-                alreadyHit.Add(hit);
                 if (debuff != null)
                     hit.gameObject.GetComponent<EnemyStatusController>().ApplyStatusEffect(debuff);
+                temp.TakeDamage(damage);
+                alreadyHit.Add(hit);
+                
             }
         }
     }
