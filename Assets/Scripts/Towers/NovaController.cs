@@ -8,7 +8,7 @@ public class NovaController : MonoBehaviour
     public int damage;
     public DebuffInfo debuff;
     public float range;
-
+    public float rotationSpeed;
     private List<Collider2D> alreadyHit = new List<Collider2D>();
 
 
@@ -22,7 +22,7 @@ public class NovaController : MonoBehaviour
     void FixedUpdate()
     {
         transform.localScale += new Vector3(expandRate * Time.deltaTime, expandRate * Time.deltaTime, expandRate * Time.deltaTime);
-
+        transform.Rotate(new Vector3(0, 0, rotationSpeed));
         if (transform.localScale.x > range * 2)
             this.gameObject.SetActive(false);
 

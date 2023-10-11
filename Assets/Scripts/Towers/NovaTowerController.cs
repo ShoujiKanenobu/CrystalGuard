@@ -52,7 +52,9 @@ public class NovaTowerController : TowerBase
             NovaPool.instance.ExpandPool(temp);
         }
         temp.GetComponent<SpriteRenderer>().color = novaData[level - 1].novaColor;
+        temp.GetComponent<SpriteRenderer>().sprite = novaData[level - 1].novaSprite;
         NovaController tempNC = temp.GetComponent<NovaController>();
+        tempNC.rotationSpeed = novaData[level - 1].rotationSpeed;
         tempNC.damage = novaData[level - 1].damage;
         tempNC.expandRate = novaData[level - 1].expandSpeed;
         tempNC.range = novaData[level - 1].range;

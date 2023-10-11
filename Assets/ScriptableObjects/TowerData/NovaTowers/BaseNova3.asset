@@ -17,6 +17,8 @@ MonoBehaviour:
   debuff: {fileID: 0}
   damage: 6
   attackspeed: 0.6
+  rotationSpeed: 15
   expandSpeed: 20
   novaColor: {r: 0.83137256, g: 0.15294118, b: 0.15294118, a: 0.4}
   nova: {fileID: 2968420865967860188, guid: ab72d9af895626d419955deaa443656f, type: 3}
+  novaSprite: {fileID: 21300000, guid: c0151eda09e364e42acaab3b6fb9ddc3, type: 3}
