@@ -24,7 +24,7 @@ public class NovaController : MonoBehaviour
         transform.localScale += new Vector3(expandRate * Time.deltaTime, expandRate * Time.deltaTime, expandRate * Time.deltaTime);
         transform.Rotate(new Vector3(0, 0, rotationSpeed));
         if (transform.localScale.x > range * 2)
-            this.gameObject.SetActive(false);
+            Destroy(this.gameObject);
 
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, transform.localScale.x / 2f);
         foreach (Collider2D hit in hits)

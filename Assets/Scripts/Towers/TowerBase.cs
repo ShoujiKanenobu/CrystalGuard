@@ -8,6 +8,7 @@ public abstract class TowerBase : MonoBehaviour
 {
     public abstract List<TowerDataBase> data { get; }
     public int level { get; private set; }
+    
     private string typing;
 
     protected TowerStarUIController levelHandler;
@@ -18,11 +19,9 @@ public abstract class TowerBase : MonoBehaviour
     {
         levelHandler = GetComponent<TowerStarUIController>();
 
-
         nextAttack = 0;
         typing = gameObject.name;
         level = 1;
-
 
         levelHandler.CheckStars(level);
     }

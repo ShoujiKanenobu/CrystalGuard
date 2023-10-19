@@ -7,7 +7,7 @@ public class BulletController : MonoBehaviour
     public float speed;
     public int damage;
     public GameObject target;
-    public float minHitDistance;
+    public float minHitDistance = 0.35f;
     private Vector3 lastKnownPos;
     
     public DebuffInfo debuff;
@@ -32,7 +32,7 @@ public class BulletController : MonoBehaviour
                 target.GetComponent<EnemyHealthController>().TakeDamage(damage);
             }
                 
-            gameObject.SetActive(false);
+            Destroy(this.gameObject);
         }
 
         transform.position = Vector3.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);

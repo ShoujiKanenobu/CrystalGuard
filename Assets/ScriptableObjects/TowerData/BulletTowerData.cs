@@ -6,6 +6,5 @@ using UnityEngine;
 public class BulletTowerData : TowerDataBase
 {
     public float projSpeed;
-    public Color projColor;
     public GameObject projectile;
 }

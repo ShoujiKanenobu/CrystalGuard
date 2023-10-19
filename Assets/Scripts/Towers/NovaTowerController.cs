@@ -7,6 +7,7 @@ public class NovaTowerController : TowerBase
 {
     [SerializeField]
     private List<NovaTowerData> novaData = new List<NovaTowerData>();
+    public Transform attackOrigin;
     public override List<TowerDataBase> data
     {
         get { return novaData.Cast<TowerDataBase>().ToList(); }
@@ -16,7 +17,8 @@ public class NovaTowerController : TowerBase
     public void Start()
     {
         Init();
-        this.GetComponent<SpriteRenderer>().color = novaData[0].towerColor;
+        if (attackOrigin == null)
+            attackOrigin = this.transform;
     }
 
     void FixedUpdate()
@@ -38,28 +40,16 @@ public class NovaTowerController : TowerBase
 
     public void Shoot()
     {
-        GameObject temp = NovaPool.instance.GetPooledObject();
-        if (temp != null)
-        {
-            temp.transform.position = transform.position;
-            temp.transform.rotation = Quaternion.identity;
-            temp.transform.localScale = new Vector3(0.15f, 0.15f, 0.15f);
-            temp.SetActive(true);
-        }
-        else
-        {
-            temp = Instantiate(novaData[level - 1].nova, transform.position, Quaternion.identity);
-            NovaPool.instance.ExpandPool(temp);
-        }
-        temp.GetComponent<SpriteRenderer>().color = novaData[level - 1].novaColor;
-        temp.GetComponent<SpriteRenderer>().sprite = novaData[level - 1].novaSprite;
+        NovaTowerData nt = novaData[level - 1];
+        GameObject temp = Instantiate(nt.nova, attackOrigin.position, Quaternion.identity);
+
         NovaController tempNC = temp.GetComponent<NovaController>();
-        tempNC.rotationSpeed = novaData[level - 1].rotationSpeed;
-        tempNC.damage = novaData[level - 1].damage;
-        tempNC.expandRate = novaData[level - 1].expandSpeed;
-        tempNC.range = novaData[level - 1].range;
-        if (novaData[level - 1].debuff != null)
-            tempNC.debuff = novaData[level - 1].debuff;
+        tempNC.rotationSpeed = nt.rotationSpeed;
+        tempNC.damage = nt.damage;
+        tempNC.expandRate = nt.expandSpeed;
+        tempNC.range = nt.range;
+        if (nt.debuff != null)
+            tempNC.debuff = nt.debuff;
     }
 
     public bool FindTargetsInRange()

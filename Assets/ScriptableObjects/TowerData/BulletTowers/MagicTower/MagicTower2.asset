@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86b3be0ce4d4800469e56df347fead64, type: 3}
   m_Name: MagicTower2
   m_EditorClassIdentifier: 
-  towerColor: {r: 0.7251382, g: 0.06132078, b: 1, a: 1}
+  towerSprite: {fileID: 0}
+  towerColor: {r: 0.95440906, g: 0.8443396, b: 1, a: 1}
   range: 2
+  debuff: {fileID: 0}
   damage: 1
   attackspeed: 0.1
   projSpeed: 2
   projColor: {r: 0.90588236, g: 0, b: 0.89411765, a: 1}
-  projectile: {fileID: 1575907916180157428, guid: cdf6f23c4834ca143974b8c0112a20af, type: 3}
-  debuff: {fileID: 0}
+  projectile: {fileID: 1661707786246352, guid: 3ffda37d3accf41409af0257a27df3df, type: 3}

@@ -11,8 +11,17 @@ public class EnemyHealthController : MonoBehaviour
     private int livesDamage;
     public float DamageAmp;
 
+    private SpriteRenderer sr;
+    [SerializeField]
+    private Material flashMaterial;
+    [SerializeField]
+    private Material originalMaterial;
+    private Coroutine flashRoutine;
+
     public void Init(int HP, int livesDamage)
     {
+        if(sr == null)
+            sr = GetComponent<SpriteRenderer>();
         this.HP = HP;
         this.maxHP = HP;
         this.livesDamage = livesDamage;
@@ -24,12 +33,26 @@ public class EnemyHealthController : MonoBehaviour
         DamageAmp = 1;
     }
 
+    private void OnDisable()
+    {
+        if(flashRoutine != null)
+            StopCoroutine(flashRoutine);
+        if (sr == null)
+            sr = GetComponent<SpriteRenderer>();
+        sr.material = originalMaterial;
+    }
+
     public void TakeDamage(int damage)
     {
         if (barUI.gameObject.activeSelf == false)
             barUI.gameObject.SetActive(true);
 
         HP -= (int)(damage * DamageAmp);
+
+        if (flashRoutine != null)
+            StopCoroutine(flashRoutine);
+        flashRoutine = StartCoroutine(FlashDamage(0.1f));
+
         if (HP <= 0)
             Die();
 
@@ -44,5 +67,15 @@ public class EnemyHealthController : MonoBehaviour
     {
         GameManager.instance.LoseLife(livesDamage);
         gameObject.SetActive(false);
+    }
+
+    public IEnumerator FlashDamage(float duration)
+    {
+        sr.material = flashMaterial;
+
+        yield return new WaitForSeconds(duration);
+
+        sr.material = originalMaterial;
+        flashRoutine = null;
     }
 }

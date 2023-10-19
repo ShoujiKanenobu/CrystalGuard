@@ -12,11 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86b3be0ce4d4800469e56df347fead64, type: 3}
   m_Name: Tower2
   m_EditorClassIdentifier: 
-  towerColor: {r: 0.39607844, g: 0.24065728, b: 0.05069805, a: 1}
+  shopIcon: {fileID: 0}
   range: 2
+  debuff: {fileID: 0}
   damage: 3
   attackspeed: 0.2
   projSpeed: 10
-  projColor: {r: 0.03529412, g: 1, b: 0.19215687, a: 1}
-  projectile: {fileID: 1575907916180157428, guid: cdf6f23c4834ca143974b8c0112a20af, type: 3}
-  debuff: {fileID: 0}
+  projectile: {fileID: 1049234075114562, guid: 7d828c6936c7cef45a7ba6a58b4bf64b, type: 3}

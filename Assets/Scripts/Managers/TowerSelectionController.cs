@@ -111,9 +111,7 @@ public class TowerSelectionController : MonoBehaviour
             previewObj.transform.position = boc.selectedTile + new Vector3(0.5f, 0.5f, 0);
             //Yikes
             previewObj.GetComponent<TowerRangeIndicator>().ShowRadius(d.data[0].range);
-            Color tempColor = d.data[0].towerColor;
-            tempColor.a = 0.6f;
-            previewObj.GetComponent<SpriteRenderer>().color = tempColor;
+            previewObj.GetComponent<SpriteRenderer>().sprite = d.data[0].shopIcon;
         }
         lastSelection = i;
     }
@@ -189,11 +187,11 @@ public class TowerSelectionController : MonoBehaviour
 
     private void UpdateChoiceUI()
     {
-        option1Image.sprite = currentItems[0].itemImage;
-        option2Image.sprite = currentItems[1].itemImage;
-        option3Image.sprite = currentItems[2].itemImage;
+        option1Image.sprite = currentItems[0].item.GetComponent<TowerBase>().data[0].shopIcon;
+        option2Image.sprite = currentItems[1].item.GetComponent<TowerBase>().data[0].shopIcon;
+        option3Image.sprite = currentItems[2].item.GetComponent<TowerBase>().data[0].shopIcon;
         option1Text.text = currentItems[0].item.name;
-        option2Text.text = currentItems[1].item.name;
+        option2Text.text = currentItems[1].item.name; 
         option3Text.text = currentItems[2].item.name;
     }
 

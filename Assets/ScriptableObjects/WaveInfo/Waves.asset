@@ -62,7 +62,7 @@ MonoBehaviour:
     livesDamage: 1
     reward: 20
   - timeBetweenSpawns: 0.5
-    HP: 155
+    HP: 125
     speed: 1
     spawnCount: 20
     livesDamage: 1

@@ -11,7 +11,7 @@ public class AOEController : MonoBehaviour
 
     private List<Collider2D> alreadyHit = new List<Collider2D>();
     private float endTime;
-    public void OnEnable()
+    public void Init()
     {
         endTime = Time.time + duration;
         alreadyHit.Clear();
@@ -20,7 +20,7 @@ public class AOEController : MonoBehaviour
     public void Update()
     {
         if (endTime < Time.time)
-            this.gameObject.SetActive(false);
+            Destroy(this.gameObject);
 
         transform.localScale = new Vector3(radius * 2f, radius * 2f, 1f);
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, radius);

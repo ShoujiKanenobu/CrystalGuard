@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7bb9a568c1255b42b9c0ee16b960e6f, type: 3}
+  m_Name: Shockwave3
+  m_EditorClassIdentifier: 
+  shopIcon: {fileID: 0}
+  range: 2
+  debuff: {fileID: 0}
+  damage: 6
+  attackspeed: 0.6
+  rotationSpeed: 0
+  expandSpeed: 6
+  nova: {fileID: 2995664060464940497, guid: 10562bfa038c5784995698f61632225d, type: 3}

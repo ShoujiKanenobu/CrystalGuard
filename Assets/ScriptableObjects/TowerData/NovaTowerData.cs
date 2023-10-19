@@ -7,7 +7,5 @@ public class NovaTowerData : TowerDataBase
 {
     public float rotationSpeed;
     public float expandSpeed;
-    public Color novaColor;
     public GameObject nova;
-    public Sprite novaSprite;
 }

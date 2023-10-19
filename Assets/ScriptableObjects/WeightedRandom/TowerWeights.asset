@@ -13,24 +13,27 @@ MonoBehaviour:
   m_Name: TowerWeights
   m_EditorClassIdentifier: 
   items:
-  - item: {fileID: 6253202821482886739, guid: 58ba61a7cc0ec6a4d9974c70f489064a, type: 3}
+  - item: {fileID: 7897724528464270085, guid: 58ba61a7cc0ec6a4d9974c70f489064a, type: 3}
     itemImage: {fileID: 21300006, guid: 01842c69a0801d74382f6f4ed41ec4bf, type: 3}
     weight: 300
-  - item: {fileID: 6253202821482886739, guid: 46859fec5c0c2224cbf66957852f88ea, type: 3}
+  - item: {fileID: 3826467779808190847, guid: 46859fec5c0c2224cbf66957852f88ea, type: 3}
     itemImage: {fileID: 21300010, guid: 01842c69a0801d74382f6f4ed41ec4bf, type: 3}
     weight: 300
-  - item: {fileID: 6253202821482886739, guid: dc5a382c6bba4e2439a7049814458ebf, type: 3}
+  - item: {fileID: 1524847336205516504, guid: dc5a382c6bba4e2439a7049814458ebf, type: 3}
     itemImage: {fileID: 21300112, guid: 01842c69a0801d74382f6f4ed41ec4bf, type: 3}
     weight: 300
-  - item: {fileID: 6253202821482886739, guid: bd07fb9e64ee2b44194f10b8cb20805a, type: 3}
+  - item: {fileID: 560969924777114220, guid: bd07fb9e64ee2b44194f10b8cb20805a, type: 3}
     itemImage: {fileID: 21300130, guid: 01842c69a0801d74382f6f4ed41ec4bf, type: 3}
     weight: 300
-  - item: {fileID: 6253202821482886739, guid: 75a46d14dccc73a44959f031db974d03, type: 3}
+  - item: {fileID: 6973134486405789580, guid: e3fab4319ec480544941496b70c41999, type: 3}
     itemImage: {fileID: 21300146, guid: 01842c69a0801d74382f6f4ed41ec4bf, type: 3}
     weight: 300
-  - item: {fileID: 6253202821482886739, guid: 04e12cb2b3c4dd14bbaa228fd9fdeb82, type: 3}
+  - item: {fileID: 6615455237926875816, guid: 864aebe2b62c40746bbcdc72c72b4475, type: 3}
     itemImage: {fileID: 21300154, guid: 01842c69a0801d74382f6f4ed41ec4bf, type: 3}
     weight: 300
-  - item: {fileID: 6253202821482886739, guid: e3fab4319ec480544941496b70c41999, type: 3}
+  - item: {fileID: 5658634507634551782, guid: 75a46d14dccc73a44959f031db974d03, type: 3}
     itemImage: {fileID: 21300116, guid: 01842c69a0801d74382f6f4ed41ec4bf, type: 3}
+    weight: 300
+  - item: {fileID: 7925159871159873148, guid: 04e12cb2b3c4dd14bbaa228fd9fdeb82, type: 3}
+    itemImage: {fileID: 577687900, guid: 969e89189eda19d449de92194dbf8e15, type: 3}
     weight: 300

@@ -12,11 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86b3be0ce4d4800469e56df347fead64, type: 3}
   m_Name: IceTower3
   m_EditorClassIdentifier: 
-  towerColor: {r: 0.057493784, g: 0.24615985, b: 0.7169812, a: 1}
+  shopIcon: {fileID: 0}
   range: 2
+  debuff: {fileID: 11400000, guid: 0f61ffcd821caa043ad8ee2ad43a019b, type: 2}
   damage: 5
   attackspeed: 0.1
   projSpeed: 10
-  projColor: {r: 0, g: 0.27450982, b: 1, a: 1}
-  projectile: {fileID: 1575907916180157428, guid: cdf6f23c4834ca143974b8c0112a20af, type: 3}
-  debuff: {fileID: 11400000, guid: 0f61ffcd821caa043ad8ee2ad43a019b, type: 2}
+  projectile: {fileID: 1374267004960804, guid: d5ed7990c7ae22c43820b2ee24fb0e6c, type: 3}

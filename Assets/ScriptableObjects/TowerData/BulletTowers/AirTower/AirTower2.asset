@@ -12,11 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86b3be0ce4d4800469e56df347fead64, type: 3}
   m_Name: AirTower2
   m_EditorClassIdentifier: 
-  towerColor: {r: 0, g: 0.9000001, b: 1, a: 1}
+  shopIcon: {fileID: 0}
   range: 2
+  debuff: {fileID: 11400000, guid: c6f4d2561416cfd4fbd50c741c461e27, type: 2}
   damage: 4
   attackspeed: 0.8
   projSpeed: 10
-  projColor: {r: 0, g: 0.8862745, b: 0.5411765, a: 1}
-  projectile: {fileID: 1575907916180157428, guid: cdf6f23c4834ca143974b8c0112a20af, type: 3}
-  debuff: {fileID: 11400000, guid: c6f4d2561416cfd4fbd50c741c461e27, type: 2}
+  projectile: {fileID: 1846563170864394, guid: d7f2500df52651e479187ee03bf0a382, type: 3}

@@ -7,7 +7,7 @@ public class BulletTowerController : TowerBase
 {    
     [SerializeField]
     private List<BulletTowerData> bulletData = new List<BulletTowerData>();
-
+    public Transform attackOrigin;
     public override List<TowerDataBase> data
     {
         get { return bulletData.Cast<TowerDataBase>().ToList(); }
@@ -18,7 +18,8 @@ public class BulletTowerController : TowerBase
     public void Start()
     {
         Init();
-        this.GetComponent<SpriteRenderer>().color = bulletData[0].towerColor;
+        if (attackOrigin == null)
+            attackOrigin = this.transform;
     }
 
     void FixedUpdate()
@@ -66,27 +67,15 @@ public class BulletTowerController : TowerBase
 
     private void Shoot()
     {
-        GameObject temp = BulletPool.instance.GetPooledObject();
-        if(temp != null)
-        {
-            temp.transform.position = transform.position;
-            temp.transform.rotation = Quaternion.identity;
-            temp.SetActive(true);
-        }
-        else
-        {
-            temp = Instantiate((bulletData[level - 1]).projectile, transform.position, Quaternion.identity);
-            BulletPool.instance.ExpandPool(temp);
-        }
+        BulletTowerData bt = bulletData[level - 1];
+        GameObject temp = Instantiate(bt.projectile, attackOrigin.position, Quaternion.identity);
 
-        temp.GetComponent<SpriteRenderer>().color = bulletData[level - 1].projColor;
         BulletController tempBC = temp.GetComponent<BulletController>();
-        tempBC.speed = bulletData[level - 1].projSpeed;
-        tempBC.damage = bulletData[level - 1].damage;
+        tempBC.speed = bt.projSpeed;
+        tempBC.damage = bt.damage;
         tempBC.target = target.gameObject;
-        if (bulletData[level - 1].debuff != null)
-            tempBC.debuff = bulletData[level - 1].debuff;
-
+        if (bt.debuff != null)
+            tempBC.debuff = bt.debuff;
     }
 
 }

@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01115af4ae2056e4ebe2351defb48fad, type: 3}
   m_Name: AOETower2
   m_EditorClassIdentifier: 
-  towerColor: {r: 0.123798504, g: 0.2239724, b: 0.24528301, a: 1}
+  towerSprite: {fileID: 0}
+  towerColor: {r: 1, g: 1, b: 1, a: 1}
   range: 2
   debuff: {fileID: 0}
   damage: 6
@@ -20,6 +21,5 @@ MonoBehaviour:
   radius: 0.71
   duration: 0.18
   projSpeed: 9
-  projColor: {r: 0.6698113, g: 0.022116425, b: 0.022116425, a: 1}
-  aoeColor: {r: 0.8301887, g: 0.27020293, b: 0.27020293, a: 1}
-  projectile: {fileID: 1575907916180157428, guid: f3d046424ec52414daeb4a88cde4ac33, type: 3}
+  projectile: {fileID: 1607489160101874, guid: 343c2d6183453f741974416f2aa8da51, type: 3}
+  explosion: {fileID: 1188432315835894, guid: 14021a57f96c8034487696537d709e1b, type: 3}

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TowerDataBase : ScriptableObject
 {
-    public Color towerColor;
+    public Sprite shopIcon;
     public float range;
     public DebuffInfo debuff;
     public int damage;

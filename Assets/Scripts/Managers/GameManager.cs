@@ -21,6 +21,15 @@ public class GameManager : MonoBehaviour
 
     public TowerSelectionController tsc;
 
+    [SerializeField]
+    private float flashDuration;
+    [SerializeField]
+    private SpriteRenderer shrineSR;
+    [SerializeField]
+    private Material flashMaterial;
+    private Material originalMaterial;
+    private Coroutine flashRoutine;
+
     private int Lives;
 
     public void Awake()
@@ -31,6 +40,7 @@ public class GameManager : MonoBehaviour
             instance = this;
         Lives = startingLives;
         livesText.text = "Lives: " + Lives;
+        originalMaterial = shrineSR.material;
     }
 
     public void RequestStateChange(GameState g, bool retainHighlights)
@@ -72,6 +82,16 @@ public class GameManager : MonoBehaviour
         infoText.gameObject.SetActive(false);
     }
 
+    public IEnumerator FlashDamage(float duration)
+    {
+        shrineSR.material = flashMaterial;
+
+        yield return new WaitForSeconds(duration);
+
+        shrineSR.material = originalMaterial;
+        flashRoutine = null;
+    }
+
     public void InsufficientGoldMessage()
     {
         StartCoroutine(GameManager.instance.TextForSeconds(1f, "Not Enough Gold!"));
@@ -81,6 +101,10 @@ public class GameManager : MonoBehaviour
     {
         Lives -= i;
         livesText.text = "Lives: " + Lives;
+
+        if (flashRoutine != null)
+            StopCoroutine(flashRoutine);
+        flashRoutine = StartCoroutine(FlashDamage(flashDuration));
 
         if(Lives <= 0)
         {

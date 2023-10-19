@@ -7,6 +7,7 @@ public class AOETowerController : TowerBase
 {
     [SerializeField]
     private List<AOETowerData> aoeData = new List<AOETowerData>();
+    public Transform attackOrigin;
 
     public override List<TowerDataBase> data
     {
@@ -18,7 +19,8 @@ public class AOETowerController : TowerBase
     public void Start()
     {
         Init();
-        this.GetComponent<SpriteRenderer>().color = aoeData[0].towerColor;
+        if (attackOrigin == null)
+            attackOrigin = this.transform;
     }
 
     void FixedUpdate()
@@ -66,28 +68,18 @@ public class AOETowerController : TowerBase
 
     private void Shoot()
     {
-        GameObject temp = AOEBulletPool.instance.GetPooledObject();
-        if (temp != null)
-        {
-            temp.transform.position = transform.position;
-            temp.transform.rotation = Quaternion.identity;
-        }
-        else
-        {
-            temp = Instantiate((aoeData[level - 1]).projectile, transform.position, Quaternion.identity);
-            AOEBulletPool.instance.ExpandPool(temp);
-            temp.SetActive(false);
-        }
-        temp.GetComponent<SpriteRenderer>().color = aoeData[level - 1].projColor;
+        AOETowerData ad = aoeData[level - 1];
+        GameObject temp = Instantiate(ad.projectile, attackOrigin.position, Quaternion.identity);
+
         AOEBulletController tempABC = temp.GetComponent<AOEBulletController>();
-        tempABC.AOEColor = aoeData[level - 1].aoeColor;
-        tempABC.radius = aoeData[level - 1].radius;
-        tempABC.duration = aoeData[level - 1].duration;
-        tempABC.speed = aoeData[level - 1].projSpeed;
-        tempABC.damage = aoeData[level - 1].damage;
+        tempABC.AOE = ad.explosion;
+        tempABC.radius = ad.radius;
+        tempABC.duration = ad.duration;
+        tempABC.speed = ad.projSpeed;
+        tempABC.damage = ad.damage;
         tempABC.target = target.gameObject;
-        if (aoeData[level - 1].debuff != null)
-            tempABC.debuff = aoeData[level - 1].debuff;
+        if (ad.debuff != null)
+            tempABC.debuff = ad.debuff;
 
         temp.SetActive(true);
 
