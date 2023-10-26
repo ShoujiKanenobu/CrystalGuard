@@ -56,7 +56,7 @@ public class EnemySpawnManager : MonoBehaviour
             waveNumber++;
             if (waveNumber > waveStats.waves.Count - 1)
             {
-                if(waveNumber == waveStats.waves.Count)
+                if(waveNumber == waveStats.waves.Count && GameManager.instance.hasLives())
                     StartCoroutine(GameManager.instance.TextForSeconds(3, "You beat all 10 Waves! Lets go to endless mode...."));
                 loopMultiplier += loopModifierStepAmount;
             }
@@ -76,7 +76,8 @@ public class EnemySpawnManager : MonoBehaviour
         spawnCount = 0;
         AccountedForWave = true;
         loopMultiplier = 1;
-        while(enemySet.Items.Count > 0)
+        waveText.text = "Wave: " + (waveNumber + 1);
+        while (enemySet.Items.Count > 0)
         {
             enemySet.Items[0].SetActive(false);
         }
@@ -88,7 +89,7 @@ public class EnemySpawnManager : MonoBehaviour
             return;
 
         int waveCount = waveNumber % waveStats.waves.Count;
-        spawnCount = (int)(waveStats.waves[waveCount].spawnCount * loopMultiplier);
+        spawnCount = (int)(waveStats.waves[waveCount].spawnCount);
         timeBetweenSpawns = waveStats.waves[waveCount].timeBetweenSpawns;
 
         waveText.text = "Wave: " + (waveNumber + 1);

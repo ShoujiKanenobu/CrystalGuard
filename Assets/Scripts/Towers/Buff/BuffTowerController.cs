@@ -1,0 +1,44 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using System.Linq;
+public class BuffTowerController : TowerBase
+{
+    [SerializeField]
+    private List<BuffTowerData> buffData = new List<BuffTowerData>();
+    public override List<TowerDataBase> data
+    {
+        get { return buffData.Cast<TowerDataBase>().ToList(); }
+    }
+
+    private void Start()
+    {
+        Init();
+    }
+
+    private void Update()
+    {
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, buffData[level - 1].range);
+
+        foreach(Collider2D hit in hits)
+        {
+            if(hit.TryGetComponent<TowerBase>(out TowerBase tower))
+            {
+                tower.ApplyBuff(buffData[level - 1].buff, buffData[level - 1].buffAmount, GetTowerType());     
+            }
+        }
+    }
+
+    private void OnDestroy()
+    {
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, buffData[level - 1].range);
+
+        foreach (Collider2D hit in hits)
+        {
+            if (hit.TryGetComponent<TowerBase>(out TowerBase tower))
+            {
+                tower.RemoveBuff(GetTowerType());
+            }
+        }
+    }
+}

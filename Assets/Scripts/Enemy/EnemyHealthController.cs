@@ -51,7 +51,8 @@ public class EnemyHealthController : MonoBehaviour
 
         if (flashRoutine != null)
             StopCoroutine(flashRoutine);
-        flashRoutine = StartCoroutine(FlashDamage(0.1f));
+        if(this.gameObject.activeSelf)
+            flashRoutine = StartCoroutine(FlashDamage(0.1f));
 
         if (HP <= 0)
             Die();

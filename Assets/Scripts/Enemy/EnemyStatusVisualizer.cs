@@ -6,7 +6,7 @@ using UnityEngine;
  * Copied from the EnemyStatusController. Purely for reference
  public enum StatusType
 {
-    Speed = 0, AttackSpeed = 1, DamageAmp = 2
+    Speed = 0, AttackSpeed = 1, DamageAmp = 2, Poison = 3, Darkness = 4, Bleed = 5
 }
 */
 

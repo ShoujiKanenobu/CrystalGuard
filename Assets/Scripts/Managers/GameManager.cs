@@ -11,6 +11,7 @@ public enum GameState
 
 public class GameManager : MonoBehaviour
 {
+    public float dotTickRate;
     public int startingLives;
     public static GameManager instance;
     [SerializeField]
@@ -90,6 +91,11 @@ public class GameManager : MonoBehaviour
 
         shrineSR.material = originalMaterial;
         flashRoutine = null;
+    }
+
+    public bool hasLives()
+    {
+        return Lives > 0;
     }
 
     public void InsufficientGoldMessage()

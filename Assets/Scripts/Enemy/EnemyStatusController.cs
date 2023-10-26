@@ -5,7 +5,7 @@ using UnityEngine;
 
 public enum StatusType
 {
-    Speed = 0, AttackSpeed = 1, DamageAmp = 2
+    Speed = 0, AttackSpeed = 1, DamageAmp = 2, Poison = 3, Darkness = 4, Bleed = 5
 }
 
 public struct StatusInfo
@@ -33,6 +33,12 @@ public class EnemyStatusController : MonoBehaviour
     Dictionary<StatusType, Action> ResetDict = new Dictionary<StatusType, Action>();
 
     private List<StatusType> removeList = new List<StatusType>();
+
+    private float lastDOTTick;
+
+    private float poison;
+    private float bleed;
+    private float darkness;
     // Start is called before the first frame update
     void Start()
     {
@@ -40,20 +46,46 @@ public class EnemyStatusController : MonoBehaviour
         healthController = GetComponent<EnemyHealthController>();
         movementController = GetComponent<EnemyMovementController>();
         ApplyDict.Add(StatusType.Speed, ApplySpeed);
-        ApplyDict.Add(StatusType.DamageAmp, ApplyDamageAmp);
         ResetDict.Add(StatusType.Speed, ResetSpeed);
+
+        ApplyDict.Add(StatusType.DamageAmp, ApplyDamageAmp);
         ResetDict.Add(StatusType.DamageAmp, ResetDamageAmp);
+
+        ApplyDict.Add(StatusType.Poison, ApplyPoison);
+        ResetDict.Add(StatusType.Poison, ResetPoison);
+
+        ApplyDict.Add(StatusType.Bleed, ApplyBleed);
+        ResetDict.Add(StatusType.Bleed, ResetBleed);
+
+        ApplyDict.Add(StatusType.Darkness, ApplyDarkness);
+        ResetDict.Add(StatusType.Darkness, ResetDarkness);
     }
 
     private void OnEnable()
     {
         effects.Clear();
+        bleed = 0;
+        poison = 0;
+        darkness = 0;
     }
 
     private void Update()
     {
+        if(lastDOTTick <= Time.time)
+        {
+            lastDOTTick = Time.time + GameManager.instance.dotTickRate;
+            ApplyDOTS();
+        }
         RemoveExpiredEffects();
         ApplyAllEffects();
+    }
+
+    private void ApplyDOTS()
+    {
+        if(poison > 0)
+            healthController.TakeDamage((int)poison);
+        if(bleed > 0)
+            healthController.TakeDamage((int)bleed);
     }
 
     private void ApplyAllEffects()
@@ -96,7 +128,7 @@ public class EnemyStatusController : MonoBehaviour
         {
             if (effects[t].value < amount)
                 effects[t] = new StatusInfo(amount, duration);
-            else
+            else if(duration + Time.time > effects[t].endTime)
                 effects[t] = new StatusInfo(effects[t].value, duration);
         }
         else
@@ -104,8 +136,11 @@ public class EnemyStatusController : MonoBehaviour
             effects.Add(t, new StatusInfo(amount, duration));
             visualizer.ApplyVisual(t);
         }
+        if (t == StatusType.Darkness)
+            darkness += amount;
     }
 
+    #region speed
     private void ApplySpeed(float value)
     {
         movementController.speed = movementController.baseSpeed * value;
@@ -114,6 +149,8 @@ public class EnemyStatusController : MonoBehaviour
     {
         movementController.speed = movementController.baseSpeed;
     }
+    #endregion
+    #region damage amp
     private void ApplyDamageAmp(float value)
     {
         healthController.DamageAmp = 1f + value;
@@ -122,4 +159,42 @@ public class EnemyStatusController : MonoBehaviour
     {
         healthController.DamageAmp = 1f;
     }
+    #endregion
+    #region poison
+    private void ApplyPoison(float value)
+    {
+        poison = value;
+    }
+    private void ResetPoison()
+    {
+        poison = 0;
+    }
+    #endregion
+    #region bleed
+    private void ApplyBleed(float value)
+    {
+        bleed = value;
+    }
+    private void ResetBleed()
+    {
+        bleed = 0;
+    }
+    #endregion
+    #region darkness
+    private void ApplyDarkness(float value)
+    {
+        if (darkness >= 5)
+        {
+            healthController.TakeDamage((int)darkness);
+            darkness = 0;
+        }
+
+    }
+    private void ResetDarkness()
+    {
+        healthController.TakeDamage((int)darkness);
+        darkness = 0;
+    }
+    #endregion
+
 }

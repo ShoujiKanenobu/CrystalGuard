@@ -37,7 +37,7 @@ public class TowerSelectionController : MonoBehaviour
     private WeightedItem[] currentItems = new WeightedItem[3];
     private bool isPreview;
     private int lastSelection;
-    // Start is called before the first frame update
+
     void Start()
     {
         frozen = false;
@@ -49,7 +49,6 @@ public class TowerSelectionController : MonoBehaviour
 
     public void DisplayTowerAtPosition()
     {
-
         PositionFromMouse();
         TowerBase tower = MapManager.instance.GetTowerAtMousePositionGrid();
         DisplayTowerInfo(tower.data[tower.level - 1]);
@@ -109,7 +108,6 @@ public class TowerSelectionController : MonoBehaviour
             DisplayTowerInfo(d.data[0]);
             previewObj.SetActive(true);
             previewObj.transform.position = boc.selectedTile + new Vector3(0.5f, 0.5f, 0);
-            //Yikes
             previewObj.GetComponent<TowerRangeIndicator>().ShowRadius(d.data[0].range);
             previewObj.GetComponent<SpriteRenderer>().sprite = d.data[0].shopIcon;
         }
@@ -173,6 +171,11 @@ public class TowerSelectionController : MonoBehaviour
         lastSelection = -1;
 
         ResetPreview();
+    }
+
+    public void FreezeOnCancel()
+    {
+        frozen = true;
     }
 
     public void FreezeOptions()

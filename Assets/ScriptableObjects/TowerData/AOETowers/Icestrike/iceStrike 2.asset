@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01115af4ae2056e4ebe2351defb48fad, type: 3}
+  m_Name: iceStrike 2
+  m_EditorClassIdentifier: 
+  shopIcon: {fileID: 28660166, guid: 969e89189eda19d449de92194dbf8e15, type: 3}
+  range: 2
+  debuff: {fileID: 11400000, guid: 0f61ffcd821caa043ad8ee2ad43a019b, type: 2}
+  damage: 9
+  attackspeed: 1
+  animFinishTime: 1
+  delay: 0.7
+  radius: 0.75
+  duration: 0.3
+  projSpeed: 99
+  projectile: {fileID: 1790505291792362034, guid: f7e8066638e349943b6f798d66ae2609, type: 3}
+  explosion: {fileID: 1439746347474044, guid: d58f8385c81c22c479bb2431b7c10ccf, type: 3}

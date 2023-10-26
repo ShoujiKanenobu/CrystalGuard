@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1308940898692498354}
   - component: {fileID: 849925168851880267}
   - component: {fileID: 7270411172451975587}
+  - component: {fileID: 1422259284378688730}
   m_Layer: 0
   m_Name: Shockwave Tower
   m_TagString: Untagged
@@ -269,6 +270,41 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5042bb7dcd14e0f4b99771ab84ce00f3, type: 2}
   - {fileID: 11400000, guid: 7eb0eb78a1b917b4ea826d37abf6196b, type: 2}
   attackOrigin: {fileID: 0}
+--- !u!58 &1422259284378688730
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6615455237926875816}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &7984859419631184421
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7bb9a568c1255b42b9c0ee16b960e6f, type: 3}
+  m_Name: PoisonNova1
+  m_EditorClassIdentifier: 
+  shopIcon: {fileID: 71926205, guid: 969e89189eda19d449de92194dbf8e15, type: 3}
+  range: 2
+  debuff: {fileID: 11400000, guid: 8fab27ca919c90a4393c94f881cc8ce0, type: 2}
+  damage: 0
+  attackspeed: 3
+  rotationSpeed: 0
+  expandSpeed: 15
+  nova: {fileID: 1061481793025988, guid: b8f03091bd4ffcc4191c516f9c54d034, type: 3}

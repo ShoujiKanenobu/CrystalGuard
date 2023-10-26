@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86b3be0ce4d4800469e56df347fead64, type: 3}
+  m_Name: DarknessTower 1
+  m_EditorClassIdentifier: 
+  shopIcon: {fileID: -1697574465, guid: 969e89189eda19d449de92194dbf8e15, type: 3}
+  range: 2
+  debuff: {fileID: 11400000, guid: 7a2ee5d2e1b86dc448e6b4f2b6a738c3, type: 2}
+  damage: 0
+  attackspeed: 0.5
+  projSpeed: 10
+  projectile: {fileID: 1746672929845058, guid: 2c922f25660f4c64ea6db3ccff4c3135, type: 3}
