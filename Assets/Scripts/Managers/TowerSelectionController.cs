@@ -49,7 +49,7 @@ public class TowerSelectionController : MonoBehaviour
 
     public void DisplayTowerAtPosition()
     {
-        PositionFromMouse();
+        PositionUIFromMouse();
         TowerBase tower = MapManager.instance.GetTowerAtMousePositionGrid();
         DisplayTowerInfo(tower.data[tower.level - 1]);
         towerInfoName.text = tower.name.Replace("(Clone)", "");
@@ -86,7 +86,6 @@ public class TowerSelectionController : MonoBehaviour
             return;
         }
 
-
         currentItems[0] = random.RollForItem();
         currentItems[1] = random.RollForItem();
         currentItems[2] = random.RollForItem();
@@ -99,17 +98,13 @@ public class TowerSelectionController : MonoBehaviour
             isPreview = false;
 
         if (isPreview)
-            BuildOption(i);
+            PurchaseTower(i);
         else
         {
             isPreview = true;
             TowerBase d = currentItems[i].item.GetComponent<TowerBase>();
             towerInfoName.text = currentItems[i].item.name;
             DisplayTowerInfo(d.data[0]);
-            previewObj.SetActive(true);
-            previewObj.transform.position = boc.selectedTile + new Vector3(0.5f, 0.5f, 0);
-            previewObj.GetComponent<TowerRangeIndicator>().ShowRadius(d.data[0].range);
-            previewObj.GetComponent<SpriteRenderer>().sprite = d.data[0].shopIcon;
         }
         lastSelection = i;
     }
@@ -144,7 +139,7 @@ public class TowerSelectionController : MonoBehaviour
             towerInfoStats.text += d.debuff.description + "\n";
     }
 
-    public void BuildOption(int i)
+    public void PurchaseTower(int i)
     {
         previewObj.SetActive(false);
         if (!GoldSystem.instance.SpendGold(cost))
@@ -152,14 +147,8 @@ public class TowerSelectionController : MonoBehaviour
             GameManager.instance.InsufficientGoldMessage();
             return;
         }
-            
-        Vector3 towerGridPos = boc.selectedTile;
 
-        TowerBase temp = Instantiate(currentItems[i].item, 
-            towerGridPos + new Vector3(0.5f, 0.5f, 0), 
-            Quaternion.identity).GetComponent<TowerBase>();
-
-        MapManager.instance.PlaceTower(towerGridPos, temp);
+        TowerBenchController.instance.AddTowerToBench(currentItems[i]);
 
         currentItems[i] = random.RollForItem();
         UpdateChoiceUI();
@@ -200,7 +189,7 @@ public class TowerSelectionController : MonoBehaviour
 
 
     //LOTS of hardcoding in this funciton. Yikes!
-    public void PositionFromMouse()
+    public void PositionUIFromMouse()
     {
         RectTransform RT = selfPanel.GetComponent<RectTransform>();
         RectTransform resourceRect = resourceUI.GetComponent<RectTransform>();

@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.EventSystems;
 public struct BuffInfo
 {
     
@@ -16,7 +16,7 @@ public struct BuffInfo
 
 [RequireComponent(typeof(LineRenderer))]
 [RequireComponent(typeof(TowerStarUIController))]
-public abstract class TowerBase : MonoBehaviour
+public abstract class TowerBase : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     public abstract List<TowerDataBase> data { get; }
     public int level { get; private set; }
@@ -33,6 +33,7 @@ public abstract class TowerBase : MonoBehaviour
     protected float bonusDamage;
     protected float bonusRange;
 
+    private Vector3 lastLocation;
     protected void Init()
     {
         levelHandler = GetComponent<TowerStarUIController>();
@@ -95,6 +96,47 @@ public abstract class TowerBase : MonoBehaviour
                     bonusRange += entry.Value.amount; 
                     break;
             }
+        }
+    }
+
+    public void OnBeginDrag(PointerEventData eventData)
+    {
+        MapManager.instance.RemoveTower(transform.position);
+        lastLocation = this.transform.position;
+        this.transform.position = new Vector3(999, 999, 0);
+        GameObject previewObj = TowerBenchController.instance.previewObj;
+        
+        if(level >= 1)
+            previewObj.GetComponent<TowerRangeIndicator>().ShowRadius(data[level - 1].range);
+        else
+            previewObj.GetComponent<TowerRangeIndicator>().ShowRadius(data[0].range);
+        previewObj.GetComponent<SpriteRenderer>().sprite = data[0].shopIcon;
+        previewObj.SetActive(true);
+    }
+
+    public void OnDrag(PointerEventData eventData)
+    {
+        GameObject previewObj = TowerBenchController.instance.previewObj;
+        Vector3 nextPos = MapManager.instance.MousePositionWorld;
+        nextPos.z = 0;
+        previewObj.transform.position = nextPos;
+    }
+
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        GameObject previewObj = TowerBenchController.instance.previewObj;
+
+        previewObj.SetActive(false);
+
+        if (MapManager.instance.IsCurrentMousePosTileEmpty() && MapManager.instance.IsBuildableAtTile(MapManager.instance.MousePositionGrid))
+        {
+            this.transform.position = MapManager.instance.MousePositionGrid + new Vector3(0.5f, 0.5f, 0);
+            MapManager.instance.PlaceTower(transform.position, this);
+        }
+        else
+        {
+            this.transform.position = lastLocation;
+            MapManager.instance.PlaceTower(lastLocation, this);
         }
     }
 }

@@ -151,7 +151,16 @@ public class MapManager : MonoBehaviour
 
     public void PlaceTower(Vector2 pos, TowerBase tower)
     {
+        pos.x = Mathf.Floor(pos.x);
+        pos.y = Mathf.Floor(pos.y);
         towerPlacements.Add(pos, tower);
+    }
+
+    public void RemoveTower(Vector2 pos)
+    {
+        pos.x = Mathf.Floor(pos.x);
+        pos.y = Mathf.Floor(pos.y);
+        towerPlacements.Remove(pos);
     }
 
     public bool isMaxLevel(Vector2 pos)

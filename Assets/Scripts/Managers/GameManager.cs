@@ -103,6 +103,11 @@ public class GameManager : MonoBehaviour
         StartCoroutine(GameManager.instance.TextForSeconds(1f, "Not Enough Gold!"));
     }
 
+    public void FullBenchMessage()
+    {
+        StartCoroutine(GameManager.instance.TextForSeconds(1f, "Bench is full!"));
+    }
+
     public void LoseLife(int i)
     {
         Lives -= i;

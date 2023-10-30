@@ -16,13 +16,18 @@ public class FloatController : MonoBehaviour
     private void Start()
     {
         seed = Random.Range(0, 3);
-        originPoint = this.transform.position;
+        originPoint = this.transform.localPosition;
     }
 
     void Update()
     {
         nextPos = originPoint;
         nextPos.y += Mathf.Sin(Time.fixedTime * Mathf.PI * speed + seed) * travelDistance;
-        this.transform.position = nextPos;
+        this.transform.localPosition = nextPos;
+    }
+
+    public void ChangeOrigin()
+    {
+        originPoint = this.transform.position;
     }
 }
