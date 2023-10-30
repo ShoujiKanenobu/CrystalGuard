@@ -14,62 +14,68 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waves:
   - timeBetweenSpawns: 0.5
-    HP: 1
+    HP: 6
     speed: 1
     spawnCount: 10
     livesDamage: 1
-    reward: 10
-  - timeBetweenSpawns: 1
-    HP: 3
+    reward: 5
+  - timeBetweenSpawns: 0.5
+    HP: 12
     speed: 1
-    spawnCount: 10
+    spawnCount: 17
     livesDamage: 1
     reward: 10
-  - timeBetweenSpawns: 0.7
-    HP: 10
-    speed: 0.6
-    spawnCount: 16
+  - timeBetweenSpawns: 0.5
+    HP: 21
+    speed: 1
+    spawnCount: 13
     livesDamage: 1
     reward: 10
   - timeBetweenSpawns: 0.5
     HP: 10
-    speed: 1.5
-    spawnCount: 15
-    livesDamage: 1
-    reward: 15
-  - timeBetweenSpawns: 2
-    HP: 50
-    speed: 1
-    spawnCount: 10
-    livesDamage: 1
-    reward: 15
-  - timeBetweenSpawns: 1
-    HP: 25
-    speed: 1
-    spawnCount: 30
-    livesDamage: 1
-    reward: 15
-  - timeBetweenSpawns: 0.25
-    HP: 15
     speed: 2
-    spawnCount: 60
+    spawnCount: 9
+    livesDamage: 1
+    reward: 10
+  - timeBetweenSpawns: 0.5
+    HP: 38
+    speed: 1
+    spawnCount: 10
+    livesDamage: 1
+    reward: 15
+  - timeBetweenSpawns: 0.5
+    HP: 42
+    speed: 1
+    spawnCount: 10
+    livesDamage: 1
+    reward: 15
+  - timeBetweenSpawns: 0.5
+    HP: 23
+    speed: 1
+    spawnCount: 19
+    livesDamage: 1
+    reward: 15
+  - timeBetweenSpawns: 0.5
+    HP: 51
+    speed: 1
+    spawnCount: 11
     livesDamage: 1
     reward: 20
   - timeBetweenSpawns: 0.5
-    HP: 75
+    HP: 55
     speed: 1
-    spawnCount: 30
+    spawnCount: 11
     livesDamage: 1
     reward: 20
   - timeBetweenSpawns: 0.5
-    HP: 125
+    HP: 60
     speed: 1
-    spawnCount: 20
+    spawnCount: 11
     livesDamage: 1
     reward: 20
-  - timeBetweenSpawns: 6
-    HP: 5000
-    speed: 0.5
+  - timeBetweenSpawns: 0.5
+    HP: 1044
+    speed: 1
     spawnCount: 1
     livesDamage: 5
     reward: 30
