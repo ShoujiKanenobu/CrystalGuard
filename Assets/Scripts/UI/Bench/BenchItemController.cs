@@ -15,6 +15,7 @@ public class BenchItemController : MonoBehaviour, IBeginDragHandler, IDragHandle
 
     private GameObject previewObj;
     private TowerStarUIController starControl;
+    private Slider xpSlider;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +23,9 @@ public class BenchItemController : MonoBehaviour, IBeginDragHandler, IDragHandle
         img = GetComponent<Image>();
         img.color = defaultColor;
         previewObj = TowerBenchController.instance.previewObj;
+        xpSlider = GetComponentInChildren<Slider>();
+        HandleStars();
+        HandleXPBar();
     }
 
     public void SwapItem(BenchItemController x)
@@ -40,6 +44,8 @@ public class BenchItemController : MonoBehaviour, IBeginDragHandler, IDragHandle
 
         HandleStars();
         x.HandleStars();
+        HandleXPBar();
+        x.HandleXPBar();
     }
 
     public void AddItem(WeightedItem i)
@@ -49,15 +55,39 @@ public class BenchItemController : MonoBehaviour, IBeginDragHandler, IDragHandle
         item = Instantiate(i.item, new Vector3(999, 999, 0), Quaternion.identity);
         item.GetComponent<TowerBase>().Init();
         HandleStars();
+        HandleXPBar();
         item.SetActive(false);
+    }
+
+    private void HandleXPBar()
+    {
+        if (item == null)
+        {
+            xpSlider.gameObject.SetActive(false);
+            return;
+        }
+
+        int currentxp = item.GetComponent<TowerBase>().GetXP();
+        if (currentxp == 0)
+            xpSlider.gameObject.SetActive(false);
+        else
+        {
+            xpSlider.gameObject.SetActive(true);
+            xpSlider.value = currentxp / 2f;
+        }    
     }
 
     private void HandleStars()
     {
         if (item != null)
+        {
             starControl.CheckStars(item.GetComponent<TowerBase>().level);
+        }
         else
+        {
             starControl.ClearStars();
+        }
+            
     }
 
     public void ClearSlot()
@@ -66,6 +96,7 @@ public class BenchItemController : MonoBehaviour, IBeginDragHandler, IDragHandle
         img.color = defaultColor;
         item = null;
         HandleStars();
+        HandleXPBar();
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -154,6 +185,7 @@ public class BenchItemController : MonoBehaviour, IBeginDragHandler, IDragHandle
             SwapItem(o);
         }
         HandleStars();
+        HandleXPBar();
     }
 
     private void MergeTowers(TowerBase x, BenchItemController o)

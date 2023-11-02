@@ -27,6 +27,14 @@ public class TowerBenchController : MonoBehaviour
         }
     }
 
+    public void ResetAllSlots()
+    {
+        foreach(BenchItemController b in inv)
+        {
+            b.ClearSlot();
+        }
+    }
+
     public void AddTowerToBench(WeightedItem item)
     {
         int emptyIndex = -1;

@@ -16,6 +16,7 @@ public class SellDrop : MonoBehaviour, IDropHandler
             toSell = o.item.GetComponent<TowerBase>();
             GoldSystem.instance.GainGold(toSell.level);
             o.ClearSlot();
+            TowerBenchController.instance.previewObj.SetActive(false);
         }
         else if (tb != null && o == null)
         {
@@ -23,6 +24,7 @@ public class SellDrop : MonoBehaviour, IDropHandler
             GoldSystem.instance.GainGold(toSell.level);
             Destroy(toSell.gameObject);
             GameManager.instance.RequestStateChange(GameState.FreeHover, false);
+            TowerBenchController.instance.previewObj.SetActive(false);
         }
         else
             Debug.LogError("Sell Drop data is both a BenchItemController and Towerbase!");

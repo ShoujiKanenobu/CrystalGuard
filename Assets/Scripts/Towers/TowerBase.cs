@@ -29,6 +29,8 @@ public abstract class TowerBase : MonoBehaviour, IBeginDragHandler, IDragHandler
 
     protected float nextAttack;
 
+    public HPBarController xpBar;
+
     public Dictionary<string, BuffInfo> buffs = new Dictionary<string, BuffInfo>();
 
     protected float bonusAttackSpeed;
@@ -43,7 +45,7 @@ public abstract class TowerBase : MonoBehaviour, IBeginDragHandler, IDragHandler
         if (!firstRun)
             return;
         levelHandler = GetComponent<TowerStarUIController>();
-
+        xpBar = GetComponentInChildren<HPBarController>();
         nextAttack = 0;
         typing = gameObject.name;
         level = 1;
@@ -55,6 +57,7 @@ public abstract class TowerBase : MonoBehaviour, IBeginDragHandler, IDragHandler
 
         levelHandler.CheckStars(level);
         firstRun = false;
+        UpdateXPBar();
     }
     public string GetTowerType()
     {
@@ -75,7 +78,7 @@ public abstract class TowerBase : MonoBehaviour, IBeginDragHandler, IDragHandler
             xp -= 2;
             increaseLevel();
         }
-
+        UpdateXPBar();
     }
 
     public int GetXP()
@@ -141,6 +144,7 @@ public abstract class TowerBase : MonoBehaviour, IBeginDragHandler, IDragHandler
             previewObj.GetComponent<TowerRangeIndicator>().ShowRadius(data[0].range);
         previewObj.GetComponent<SpriteRenderer>().sprite = data[0].shopIcon;
         previewObj.SetActive(true);
+        UpdateXPBar();
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -173,7 +177,17 @@ public abstract class TowerBase : MonoBehaviour, IBeginDragHandler, IDragHandler
             this.transform.position = lastLocation;
             MapManager.instance.PlaceTower(lastLocation, this);
         }
-
+        UpdateXPBar();
         GameManager.instance.RequestStateChange(GameState.FreeHover, false);
+    }
+
+    public void UpdateXPBar()
+    {
+        xpBar.SetBarHP(xp, 2);
+
+        if (xp == 0)
+            xpBar.gameObject.SetActive(false);
+        else
+            xpBar.gameObject.SetActive(true);
     }
 }

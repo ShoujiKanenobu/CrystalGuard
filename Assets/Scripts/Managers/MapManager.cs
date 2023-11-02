@@ -20,9 +20,17 @@ public class MapManager : MonoBehaviour
     [SerializeField]
     private List<TileData> datas;
     [SerializeField]
+    private int CurrentUpgradeCost = 5;
+    [SerializeField]
+    private int UpgradeCostIncrease;
+    [SerializeField]
     private int TowerLimit;
     [SerializeField]
+    private int TrueTowerLimit;
+    [SerializeField]
     private TextMeshProUGUI towersText;
+    [SerializeField]
+    private TextMeshProUGUI UpgradeText;
 
     private Dictionary<Vector2, TowerBase> towerPlacements = new Dictionary<Vector2, TowerBase>();
     private List<Vector3Int> lastingHighlights = new List<Vector3Int>();
@@ -59,6 +67,9 @@ public class MapManager : MonoBehaviour
                 dataFromTiles.Add(tile, data);
             }
         }
+        CurrentUpgradeCost = 5;
+        TowerLimit = 5;
+        UpdateUpgradeText();
     }
 
     private void Update()
@@ -74,6 +85,23 @@ public class MapManager : MonoBehaviour
         HighlightMouseHover();
     }
 
+    public void UpgradeTowerLimit()
+    {
+
+        if(GoldSystem.instance.SpendGold(CurrentUpgradeCost))
+        {
+            TowerLimit++;
+            CurrentUpgradeCost += UpgradeCostIncrease;
+            UpdateUpgradeText();
+            UpdateTowerText();
+        }
+
+        if (TowerLimit == TrueTowerLimit)
+            UpgradeText.transform.parent.gameObject.SetActive(false);
+        else
+            UpgradeText.transform.parent.gameObject.SetActive(true);
+    }
+
     public bool isAtTowerLimit()
     {
         return towerPlacements.Count >= TowerLimit;
@@ -85,13 +113,17 @@ public class MapManager : MonoBehaviour
 
     public void ResetLevel()
     {
-        foreach(var x in towerPlacements)
+        
+        foreach (var x in towerPlacements)
         {
             Destroy(x.Value.gameObject);
         }
         towerPlacements.Clear();
 
+        CurrentUpgradeCost = 5;
+        TowerLimit = 5;
         UpdateTowerText();
+        UpdateUpgradeText();
     }
 
     private void HighlightMouseHover()
@@ -136,7 +168,7 @@ public class MapManager : MonoBehaviour
         Destroy(towerPlacements[pos].gameObject);
         towerPlacements.Remove(pos);
         GoldSystem.instance.GainGold(level);
-
+        
         UpdateTowerText();
     }
 
@@ -219,5 +251,10 @@ public class MapManager : MonoBehaviour
     private void UpdateTowerText()
     {
         towersText.text = "Towers: " + towerPlacements.Count + "/" + TowerLimit;
+    }
+
+    private void UpdateUpgradeText()
+    {
+        UpgradeText.text = CurrentUpgradeCost.ToString();
     }
 }
