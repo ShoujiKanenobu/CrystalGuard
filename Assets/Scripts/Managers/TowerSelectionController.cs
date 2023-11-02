@@ -49,7 +49,7 @@ public class TowerSelectionController : MonoBehaviour
 
     public void DisplayTowerAtPosition()
     {
-        PositionUIFromMouse();
+        //PositionUIFromMouse();
         TowerBase tower = MapManager.instance.GetTowerAtMousePositionGrid();
         DisplayTowerInfo(tower.data[tower.level - 1]);
         towerInfoName.text = tower.name.Replace("(Clone)", "");

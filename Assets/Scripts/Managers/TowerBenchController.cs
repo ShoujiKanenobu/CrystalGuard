@@ -33,7 +33,7 @@ public class TowerBenchController : MonoBehaviour
         int currentIndex = 0;
         foreach(BenchItemController i in inv)
         {
-            if(i.HeldItem == null)
+            if(i.item == null)
             {
                 emptyIndex = currentIndex;
                 break;

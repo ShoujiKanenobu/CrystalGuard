@@ -16,11 +16,23 @@ public class TowerStarUIController : MonoBehaviour
     public void CheckStars(int level)
     {
         int count = starParent.transform.childCount;
+        int iterations = level - count;
         if (count > level)
-            Destroy(starParent.transform.GetChild(0).gameObject);
+            for(int i = 0; i < iterations; i++)
+                Destroy(starParent.transform.GetChild(0).gameObject);
+            
         if (count < level)
-            Instantiate(star, starParent.transform);
+            for (int i = 0; i < iterations; i++)
+                Instantiate(star, starParent.transform);
 
         starParent.RespaceChildren();
+    }
+
+    public void ClearStars()
+    {
+        foreach (Transform child in starParent.transform)
+        {
+            Destroy(child.gameObject);
+        }
     }
 }

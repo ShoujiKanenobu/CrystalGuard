@@ -108,6 +108,11 @@ public class GameManager : MonoBehaviour
         StartCoroutine(GameManager.instance.TextForSeconds(1f, "Bench is full!"));
     }
 
+    public void FullTowersMessage()
+    {
+        StartCoroutine(GameManager.instance.TextForSeconds(1f, "Tower Cap is full!"));
+    }
+
     public void LoseLife(int i)
     {
         Lives -= i;

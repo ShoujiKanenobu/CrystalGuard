@@ -21,4 +21,10 @@ public class CanvasBugFix : MonoBehaviour
     {
         pos = GetComponent<RectTransform>().anchoredPosition;
     }
+    
+    [Button]
+    public void SetPosition()
+    {
+        GetComponent<RectTransform>().anchoredPosition = pos;
+    }
 }

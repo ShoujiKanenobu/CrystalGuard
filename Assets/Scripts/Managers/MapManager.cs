@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using TMPro;
 
 public class MapManager : MonoBehaviour
 {
@@ -18,6 +19,10 @@ public class MapManager : MonoBehaviour
     private Tile hoveredTile;
     [SerializeField]
     private List<TileData> datas;
+    [SerializeField]
+    private int TowerLimit;
+    [SerializeField]
+    private TextMeshProUGUI towersText;
 
     private Dictionary<Vector2, TowerBase> towerPlacements = new Dictionary<Vector2, TowerBase>();
     private List<Vector3Int> lastingHighlights = new List<Vector3Int>();
@@ -69,6 +74,10 @@ public class MapManager : MonoBehaviour
         HighlightMouseHover();
     }
 
+    public bool isAtTowerLimit()
+    {
+        return towerPlacements.Count >= TowerLimit;
+    }
     public TowerBase GetTowerAtMousePositionGrid()
     {
         return towerPlacements[(Vector2Int)MousePositionGrid];
@@ -81,6 +90,8 @@ public class MapManager : MonoBehaviour
             Destroy(x.Value.gameObject);
         }
         towerPlacements.Clear();
+
+        UpdateTowerText();
     }
 
     private void HighlightMouseHover()
@@ -116,12 +127,17 @@ public class MapManager : MonoBehaviour
         nonLastingHighlight.Clear();
     }
 
-    internal void SellTargetTower(Vector2 selectedTile)
+    internal void SellTargetTower(Vector2 pos)
     {
-        int level = towerPlacements[selectedTile].level;
-        Destroy(towerPlacements[selectedTile].gameObject);
-        towerPlacements.Remove(selectedTile);
+        pos.x = Mathf.Floor(pos.x);
+        pos.y = Mathf.Floor(pos.y);
+
+        int level = towerPlacements[pos].level;
+        Destroy(towerPlacements[pos].gameObject);
+        towerPlacements.Remove(pos);
         GoldSystem.instance.GainGold(level);
+
+        UpdateTowerText();
     }
 
     public void HighlightTile(Vector3Int position, bool lasting)
@@ -154,6 +170,7 @@ public class MapManager : MonoBehaviour
         pos.x = Mathf.Floor(pos.x);
         pos.y = Mathf.Floor(pos.y);
         towerPlacements.Add(pos, tower);
+        UpdateTowerText();
     }
 
     public void RemoveTower(Vector2 pos)
@@ -161,6 +178,7 @@ public class MapManager : MonoBehaviour
         pos.x = Mathf.Floor(pos.x);
         pos.y = Mathf.Floor(pos.y);
         towerPlacements.Remove(pos);
+        UpdateTowerText();
     }
 
     public bool isMaxLevel(Vector2 pos)
@@ -193,6 +211,13 @@ public class MapManager : MonoBehaviour
         {
             StartCoroutine(GameManager.instance.TextForSeconds(2f, "Tower Types or levels don't match"));
         }
+
+        UpdateTowerText();
     }
 
+
+    private void UpdateTowerText()
+    {
+        towersText.text = "Towers: " + towerPlacements.Count + "/" + TowerLimit;
+    }
 }

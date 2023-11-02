@@ -26,7 +26,7 @@ public class GameFlowStateController : MonoBehaviour
 
     public void Update()
     {
-        if(gameManager.state == GameState.FreeHover)
+        if (gameManager.state == GameState.FreeHover)
         {
             selectedTile = nullVector3Int;
             if (Input.GetMouseButtonDown(0) && mapManager.IsBuildableAtTile(mapManager.MousePositionGrid) && !isMouseOverWaveStart())
@@ -38,35 +38,41 @@ public class GameFlowStateController : MonoBehaviour
                     gameManager.RequestStateChange(GameState.BuildOptionHover, false);
                     mapManager.HighlightTile(selectedTile, true);
                 }
-                    
+
                 else
                 {
                     gameManager.RequestStateChange(GameState.SelectedTower, false);
                     mapManager.HighlightTile(selectedTile, true);
                 }
-                    
+
             }
-            
+
+        }
+        else if(gameManager.state == GameState.SelectedTower || gameManager.state == GameState.BuildOptionHover)
+        {
+            if (Input.GetMouseButtonDown(0) && mapManager.IsCurrentMousePosTileEmpty())
+                gameManager.RequestStateChange(GameState.FreeHover, false);
+
         }
         else if(gameManager.state == GameState.Merging)
         {
             if(Input.GetMouseButtonDown(0) && mapManager.IsBuildableAtTile(mapManager.MousePositionGrid))
             {
-                if(!mapManager.IsCurrentMousePosTileEmpty())
+                if (!mapManager.IsCurrentMousePosTileEmpty())
                 {
                     if (mergeTarget1 == nullVector3Int)
                     {
                         mergeTarget1 = mapManager.MousePositionGrid;
                         mapManager.HighlightTile(mergeTarget1, true);
-                    } 
+                    }
                     else if (mergeTarget1 != mapManager.MousePositionGrid)
                         mergeTarget2 = mapManager.MousePositionGrid;
                 }
-                    
-                if(mergeTarget2 != nullVector3Int)
+                
+                if (mergeTarget2 != nullVector3Int)
                 {
                     mapManager.MergeTower((Vector2Int)selectedTile, (Vector2Int)mergeTarget1, (Vector2Int)mergeTarget2);
-                    GameManager.instance.RequestStateChange(GameState.FreeHover, false);
+                    gameManager.RequestStateChange(GameState.FreeHover, false);
                 }
                     
             }
