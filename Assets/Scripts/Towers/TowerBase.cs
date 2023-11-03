@@ -22,7 +22,6 @@ public abstract class TowerBase : MonoBehaviour, IBeginDragHandler, IDragHandler
     public int level { get; private set; }
 
     private int xp;
-
     private string typing;
 
     protected TowerStarUIController levelHandler;
@@ -39,9 +38,10 @@ public abstract class TowerBase : MonoBehaviour, IBeginDragHandler, IDragHandler
 
     private Vector3 lastLocation;
     private bool firstRun = true;
-
+    
     public void Init()
     {
+        
         if (!firstRun)
             return;
         levelHandler = GetComponent<TowerStarUIController>();
@@ -57,12 +57,16 @@ public abstract class TowerBase : MonoBehaviour, IBeginDragHandler, IDragHandler
 
         levelHandler.CheckStars(level);
         firstRun = false;
+
         UpdateXPBar();
+
+
     }
     public string GetTowerType()
     {
         return typing + level;
     }
+
     public void increaseLevel()
     {
         if (level < 3)
@@ -70,20 +74,34 @@ public abstract class TowerBase : MonoBehaviour, IBeginDragHandler, IDragHandler
         levelHandler.CheckStars(level);
     }
 
-    public void GainXP(int otherXp)
+    public bool GainXP(int otherXp)
     {
+        if (level >= 3)
+            return false;
         xp += otherXp + 1;
-        while (xp >= 2)
+        if(xp >= 2)
         {
-            xp -= 2;
+            xp = 0;
             increaseLevel();
         }
+            
         UpdateXPBar();
+        return true;
     }
 
     public int GetXP()
     {
         return xp;
+    }
+
+    public void UpdateXPBar()
+    {
+        xpBar.SetBarHP(xp, 2);
+
+        if (xp == 0)
+            xpBar.gameObject.SetActive(false);
+        else
+            xpBar.gameObject.SetActive(true);
     }
 
     public void ApplyBuff(BuffType b, float amount, string source)
@@ -166,11 +184,19 @@ public abstract class TowerBase : MonoBehaviour, IBeginDragHandler, IDragHandler
             this.transform.position = MapManager.instance.MousePositionGrid + new Vector3(0.5f, 0.5f, 0);
             MapManager.instance.PlaceTower(transform.position, this);
         }
-        else if (MapManager.instance.GetTowerAtMousePositionGrid().GetTowerType() == GetTowerType())
+        else if (MapManager.instance.IsBuildableAtTile(MapManager.instance.MousePositionGrid) && 
+            MapManager.instance.GetTowerAtMousePositionGrid().GetTowerType() == GetTowerType())
         {
-            MapManager.instance.GetTowerAtMousePositionGrid().GainXP(GetXP());
-            MapManager.instance.RemoveTower(lastLocation);
-            Destroy(this.gameObject);
+            if (MapManager.instance.GetTowerAtMousePositionGrid().GainXP(GetXP()))
+            {
+                MapManager.instance.RemoveTower(lastLocation);
+                Destroy(this.gameObject);
+            }
+            else
+            {
+                transform.position = lastLocation;
+                MapManager.instance.PlaceTower(lastLocation, this);
+            }
         }
         else
         {
@@ -181,13 +207,5 @@ public abstract class TowerBase : MonoBehaviour, IBeginDragHandler, IDragHandler
         GameManager.instance.RequestStateChange(GameState.FreeHover, false);
     }
 
-    public void UpdateXPBar()
-    {
-        xpBar.SetBarHP(xp, 2);
-
-        if (xp == 0)
-            xpBar.gameObject.SetActive(false);
-        else
-            xpBar.gameObject.SetActive(true);
-    }
+    
 }

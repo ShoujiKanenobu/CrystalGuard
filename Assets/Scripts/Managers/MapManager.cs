@@ -9,7 +9,6 @@ public class MapManager : MonoBehaviour
 {
     public static MapManager instance;
 
-    //Map Data
     [SerializeField]
     private Tilemap map;
     private Collider2D mapCollider;
@@ -39,13 +38,36 @@ public class MapManager : MonoBehaviour
     private Dictionary<TileBase, TileData> dataFromTiles;
 
     [SerializeField]
-    public Vector3 MousePositionWorld; //{ get; private set; }
+    public Vector3 MousePositionWorld; 
     [SerializeField]
-    public Vector3Int MousePositionGrid; // { get; private set; }
+    public Vector3Int MousePositionGrid;
 
+    #region utility
     public Tilemap GetMap() { return map; }
     public Collider2D GetMapCollider() { return mapCollider; }
 
+    public bool isAtTowerLimit()
+    {
+        return towerPlacements.Count >= TowerLimit;
+    }
+    public TowerBase GetTowerAtMousePositionGrid()
+    {
+        return towerPlacements[(Vector2Int)MousePositionGrid];
+    }
+    public bool IsCurrentMousePosTileEmpty()
+    {
+        return !towerPlacements.ContainsKey(new Vector2(MousePositionGrid.x, MousePositionGrid.y));
+    }
+
+    public bool IsBuildableAtTile(Vector3Int pos)
+    {
+        if (map.GetTile(pos) == null)
+            return false;
+        return dataFromTiles[map.GetTile(pos)].isBuildable;
+    }
+    #endregion
+
+    #region unityFunctions
     private void Awake()
     {
         Cursor.lockState = CursorLockMode.None;
@@ -84,7 +106,9 @@ public class MapManager : MonoBehaviour
         ClearNonLastingTiles();
         HighlightMouseHover();
     }
+    #endregion
 
+    #region gameplay
     public void UpgradeTowerLimit()
     {
 
@@ -101,19 +125,9 @@ public class MapManager : MonoBehaviour
         else
             UpgradeText.transform.parent.gameObject.SetActive(true);
     }
-
-    public bool isAtTowerLimit()
-    {
-        return towerPlacements.Count >= TowerLimit;
-    }
-    public TowerBase GetTowerAtMousePositionGrid()
-    {
-        return towerPlacements[(Vector2Int)MousePositionGrid];
-    }
-
     public void ResetLevel()
     {
-        
+
         foreach (var x in towerPlacements)
         {
             Destroy(x.Value.gameObject);
@@ -125,7 +139,24 @@ public class MapManager : MonoBehaviour
         UpdateTowerText();
         UpdateUpgradeText();
     }
+    public void PlaceTower(Vector2 pos, TowerBase tower)
+    {
+        pos.x = Mathf.Floor(pos.x);
+        pos.y = Mathf.Floor(pos.y);
+        towerPlacements.Add(pos, tower);
+        UpdateTowerText();
+    }
 
+    public void RemoveTower(Vector2 pos)
+    {
+        pos.x = Mathf.Floor(pos.x);
+        pos.y = Mathf.Floor(pos.y);
+        towerPlacements.Remove(pos);
+        UpdateTowerText();
+    }
+    #endregion
+
+    #region highlights
     private void HighlightMouseHover()
     {
         if (GameManager.instance.state == GameState.FreeHover)
@@ -147,7 +178,7 @@ public class MapManager : MonoBehaviour
 
     public void ClearNonLastingTiles()
     {
-        if(nonLastingHighlight.Count == 0)
+        if (nonLastingHighlight.Count == 0)
             return;
 
         foreach (Vector3Int x in nonLastingHighlight)
@@ -157,19 +188,6 @@ public class MapManager : MonoBehaviour
         }
 
         nonLastingHighlight.Clear();
-    }
-
-    internal void SellTargetTower(Vector2 pos)
-    {
-        pos.x = Mathf.Floor(pos.x);
-        pos.y = Mathf.Floor(pos.y);
-
-        int level = towerPlacements[pos].level;
-        Destroy(towerPlacements[pos].gameObject);
-        towerPlacements.Remove(pos);
-        GoldSystem.instance.GainGold(level);
-        
-        UpdateTowerText();
     }
 
     public void HighlightTile(Vector3Int position, bool lasting)
@@ -184,70 +202,9 @@ public class MapManager : MonoBehaviour
 
         interactableMap.SetTile(position, hoveredTile);
     }
+    #endregion
 
-    public bool IsCurrentMousePosTileEmpty()
-    {
-        return !towerPlacements.ContainsKey(new Vector2(MousePositionGrid.x, MousePositionGrid.y));
-    }
-
-    public bool IsBuildableAtTile(Vector3Int pos)
-    {
-        if (map.GetTile(pos) == null)
-            return false;
-        return dataFromTiles[map.GetTile(pos)].isBuildable;
-    }
-
-    public void PlaceTower(Vector2 pos, TowerBase tower)
-    {
-        pos.x = Mathf.Floor(pos.x);
-        pos.y = Mathf.Floor(pos.y);
-        towerPlacements.Add(pos, tower);
-        UpdateTowerText();
-    }
-
-    public void RemoveTower(Vector2 pos)
-    {
-        pos.x = Mathf.Floor(pos.x);
-        pos.y = Mathf.Floor(pos.y);
-        towerPlacements.Remove(pos);
-        UpdateTowerText();
-    }
-
-    public bool isMaxLevel(Vector2 pos)
-    {
-        return !(towerPlacements[pos].level < 3);
-    }
-
-    public void MergeTower(Vector2 pos, Vector2 consumedPos, Vector2 consumedPos2)
-    {
-        if (!towerPlacements.ContainsKey(consumedPos))
-            return;
-
-        if (!towerPlacements.ContainsKey(consumedPos2))
-            return;
-
-        if (!towerPlacements.ContainsKey(pos))
-            return;
-
-        if (towerPlacements[pos].GetTowerType() == towerPlacements[consumedPos].GetTowerType() &&
-            towerPlacements[pos].GetTowerType() == towerPlacements[consumedPos2].GetTowerType())
-        {
-            
-            towerPlacements[pos].increaseLevel();
-            Destroy(towerPlacements[consumedPos].gameObject);
-            Destroy(towerPlacements[consumedPos2].gameObject);
-            towerPlacements.Remove(consumedPos);
-            towerPlacements.Remove(consumedPos2);
-        }
-        else
-        {
-            StartCoroutine(GameManager.instance.TextForSeconds(2f, "Tower Types or levels don't match"));
-        }
-
-        UpdateTowerText();
-    }
-
-
+    #region text
     private void UpdateTowerText()
     {
         towersText.text = "Towers: " + towerPlacements.Count + "/" + TowerLimit;
@@ -257,4 +214,13 @@ public class MapManager : MonoBehaviour
     {
         UpgradeText.text = CurrentUpgradeCost.ToString();
     }
+    #endregion
+
+
+
+
+
+    
+
+    
 }

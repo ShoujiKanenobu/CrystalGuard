@@ -16,7 +16,8 @@ public class BenchItemController : MonoBehaviour, IBeginDragHandler, IDragHandle
     private GameObject previewObj;
     private TowerStarUIController starControl;
     private Slider xpSlider;
-    // Start is called before the first frame update
+
+    #region unityFunctions
     void Start()
     {
         starControl = GetComponent<TowerStarUIController>();
@@ -24,77 +25,6 @@ public class BenchItemController : MonoBehaviour, IBeginDragHandler, IDragHandle
         img.color = defaultColor;
         previewObj = TowerBenchController.instance.previewObj;
         xpSlider = GetComponentInChildren<Slider>();
-        HandleStars();
-        HandleXPBar();
-    }
-
-    public void SwapItem(BenchItemController x)
-    {
-        GameObject piTemp = x.item;
-        Sprite spTemp = x.img.sprite;
-        Color cTemp = x.img.color;
-
-        x.item = item;
-        x.img.sprite = img.sprite;
-        x.img.color = img.color;
-
-        item = piTemp;
-        img.sprite = spTemp;
-        img.color = cTemp;
-
-        HandleStars();
-        x.HandleStars();
-        HandleXPBar();
-        x.HandleXPBar();
-    }
-
-    public void AddItem(WeightedItem i)
-    {
-        img.sprite = i.item.GetComponent<TowerBase>().data[0].shopIcon;
-        img.color = Color.white;
-        item = Instantiate(i.item, new Vector3(999, 999, 0), Quaternion.identity);
-        item.GetComponent<TowerBase>().Init();
-        HandleStars();
-        HandleXPBar();
-        item.SetActive(false);
-    }
-
-    private void HandleXPBar()
-    {
-        if (item == null)
-        {
-            xpSlider.gameObject.SetActive(false);
-            return;
-        }
-
-        int currentxp = item.GetComponent<TowerBase>().GetXP();
-        if (currentxp == 0)
-            xpSlider.gameObject.SetActive(false);
-        else
-        {
-            xpSlider.gameObject.SetActive(true);
-            xpSlider.value = currentxp / 2f;
-        }    
-    }
-
-    private void HandleStars()
-    {
-        if (item != null)
-        {
-            starControl.CheckStars(item.GetComponent<TowerBase>().level);
-        }
-        else
-        {
-            starControl.ClearStars();
-        }
-            
-    }
-
-    public void ClearSlot()
-    {
-        img.sprite = null;
-        img.color = defaultColor;
-        item = null;
         HandleStars();
         HandleXPBar();
     }
@@ -142,8 +72,8 @@ public class BenchItemController : MonoBehaviour, IBeginDragHandler, IDragHandle
             }
             else if(MapManager.instance.GetTowerAtMousePositionGrid().GetTowerType() == item.GetComponent<TowerBase>().GetTowerType())
             {
-                MapManager.instance.GetTowerAtMousePositionGrid().GainXP(item.GetComponent<TowerBase>().GetXP());
-                ClearSlot();
+                if(MapManager.instance.GetTowerAtMousePositionGrid().GainXP(item.GetComponent<TowerBase>().GetXP()))
+                    ClearSlot();
             }
         }
         
@@ -157,9 +87,10 @@ public class BenchItemController : MonoBehaviour, IBeginDragHandler, IDragHandle
         previewObj.SetActive(false);
 
         eventData.pointerDrag.TryGetComponent<BenchItemController>(out BenchItemController o);
+        //pointerDrag isnt a bench item
         if (o == null)
         {
-            if(item == null)
+            if (item == null)
             {
                 TowerBenchController.instance.previewObj.SetActive(false);
                 item = eventData.pointerDrag;
@@ -167,31 +98,107 @@ public class BenchItemController : MonoBehaviour, IBeginDragHandler, IDragHandle
                 img.color = Color.white;
                 item.SetActive(false);
             }
-            else if(item.GetComponent<TowerBase>().GetTowerType() == eventData.pointerDrag.GetComponent<TowerBase>().GetTowerType())
+            else if (item.GetComponent<TowerBase>().GetTowerType() == eventData.pointerDrag.GetComponent<TowerBase>().GetTowerType())
             {
-                item.GetComponent<TowerBase>().GainXP(eventData.pointerDrag.GetComponent<TowerBase>().GetXP());
-                Destroy(eventData.pointerDrag);
-
+                if (item.GetComponent<TowerBase>().GainXP(eventData.pointerDrag.GetComponent<TowerBase>().GetXP()))
+                {
+                    Destroy(eventData.pointerDrag);
+                }
             }
-            
         }
-        else if(item != null)
+        //pointerDrag is a bench item... are both slots full?
+        else if(item != null && o.item != null)
         {
             if (o.item.GetComponent<TowerBase>().GetTowerType() == item.GetComponent<TowerBase>().GetTowerType())
                 MergeTowers(item.GetComponent<TowerBase>(), o);
+            else
+                SwapItem(o);
         }
-        else
+        else if(o.item != null)
         {
             SwapItem(o);
         }
         HandleStars();
         HandleXPBar();
     }
+    #endregion
 
+    public void AddItem(WeightedItem i)
+    {
+        img.sprite = i.item.GetComponent<TowerBase>().data[0].shopIcon;
+        img.color = Color.white;
+        item = Instantiate(i.item, new Vector3(999, 999, 0), Quaternion.identity);
+        item.GetComponent<TowerBase>().Init();
+        HandleStars();
+        HandleXPBar();
+        item.SetActive(false);
+    }
     private void MergeTowers(TowerBase x, BenchItemController o)
     {
-        x.GainXP(o.item.GetComponent<TowerBase>().GetXP());
-        o.ClearSlot();
-        Destroy(o.item);
+        if (x.GainXP(o.item.GetComponent<TowerBase>().GetXP()))
+        {
+            Destroy(o.item);
+            o.ClearSlot();
+        }
+        else
+        {
+            StartCoroutine(GameManager.instance.TextForSeconds(3f, "Tower is already Max Level!"));
+        }
+    }
+    public void SwapItem(BenchItemController x)
+    {
+        GameObject piTemp = x.item;
+        Sprite spTemp = x.img.sprite;
+        Color cTemp = x.img.color;
+
+        x.item = item;
+        x.img.sprite = img.sprite;
+        x.img.color = img.color;
+
+        item = piTemp;
+        img.sprite = spTemp;
+        img.color = cTemp;
+
+        HandleStars();
+        x.HandleStars();
+        HandleXPBar();
+        x.HandleXPBar();
+    }
+    private void HandleXPBar()
+    {
+        if (item == null)
+        {
+            xpSlider.gameObject.SetActive(false);
+            return;
+        }
+
+        int currentxp = item.GetComponent<TowerBase>().GetXP();
+        if (currentxp == 0)
+            xpSlider.gameObject.SetActive(false);
+        else
+        {
+            xpSlider.gameObject.SetActive(true);
+            xpSlider.value = currentxp / 2f;
+        }
+    }
+    private void HandleStars()
+    {
+        if (item != null)
+        {
+            starControl.CheckStars(item.GetComponent<TowerBase>().level);
+        }
+        else
+        {
+            starControl.ClearStars();
+        }
+
+    }
+    public void ClearSlot()
+    {
+        img.sprite = null;
+        img.color = defaultColor;
+        item = null;
+        HandleStars();
+        HandleXPBar();
     }
 }
