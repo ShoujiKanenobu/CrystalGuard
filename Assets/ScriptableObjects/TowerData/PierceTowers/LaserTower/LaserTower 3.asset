@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: LaserTower 3
   m_EditorClassIdentifier: 
   shopIcon: {fileID: 908440833, guid: 969e89189eda19d449de92194dbf8e15, type: 3}
-  range: 2
+  range: 3
   debuff: {fileID: 0}
-  damage: 5
-  attackspeed: 0.3
+  damage: 16
+  attackspeed: 0.2
   radius: 0.2
   duration: 0.6
   projSpeed: 10

@@ -15,7 +15,7 @@ MonoBehaviour:
   shopIcon: {fileID: 0}
   range: 2
   debuff: {fileID: 0}
-  damage: 9
+  damage: 50
   attackspeed: 0.1
   projSpeed: 10
   projectile: {fileID: 1049234075114562, guid: 7d828c6936c7cef45a7ba6a58b4bf64b, type: 3}

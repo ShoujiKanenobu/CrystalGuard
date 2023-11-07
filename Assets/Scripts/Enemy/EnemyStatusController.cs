@@ -134,7 +134,8 @@ public class EnemyStatusController : MonoBehaviour
         else
         {
             effects.Add(t, new StatusInfo(amount, duration));
-            visualizer.ApplyVisual(t);
+            if(visualizer != null)
+                visualizer.ApplyVisual(t);
         }
         if (t == StatusType.Darkness)
             darkness += amount;

@@ -38,6 +38,9 @@ public abstract class TowerBase : MonoBehaviour, IBeginDragHandler, IDragHandler
 
     private Vector3 lastLocation;
     private bool firstRun = true;
+
+    private RadialTimerController radialTimer;
+    private float moveCooldown;
     
     public void Init()
     {
@@ -46,10 +49,13 @@ public abstract class TowerBase : MonoBehaviour, IBeginDragHandler, IDragHandler
             return;
         levelHandler = GetComponent<TowerStarUIController>();
         xpBar = GetComponentInChildren<HPBarController>();
+        radialTimer = GetComponentInChildren<RadialTimerController>();
         nextAttack = 0;
         typing = gameObject.name;
         level = 1;
         xp = 0;
+
+        moveCooldown = 8f;
 
         bonusAttackSpeed = 0;
         bonusDamage = 0;
@@ -62,6 +68,18 @@ public abstract class TowerBase : MonoBehaviour, IBeginDragHandler, IDragHandler
 
 
     }
+
+    public void RadialActiveCheck()
+    {
+        if (GameManager.instance.isEnemiesAlive())
+            radialTimer.gameObject.SetActive(true);
+        else
+        {
+            radialTimer.SetCooldown(0f);
+            radialTimer.gameObject.SetActive(false);
+        }
+    }
+
     public string GetTowerType()
     {
         return typing + level;
@@ -151,6 +169,9 @@ public abstract class TowerBase : MonoBehaviour, IBeginDragHandler, IDragHandler
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        if (!isMoveable())
+            return;
+
         MapManager.instance.RemoveTower(transform.position);
         lastLocation = this.transform.position;
         this.transform.position = new Vector3(999, 999, 0);
@@ -167,6 +188,8 @@ public abstract class TowerBase : MonoBehaviour, IBeginDragHandler, IDragHandler
 
     public void OnDrag(PointerEventData eventData)
     {
+        if (!isMoveable())
+            return;
         GameObject previewObj = TowerBenchController.instance.previewObj;
         Vector3 nextPos = MapManager.instance.MousePositionWorld;
         nextPos.z = 0;
@@ -175,6 +198,8 @@ public abstract class TowerBase : MonoBehaviour, IBeginDragHandler, IDragHandler
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        if (!isMoveable())
+            return;
         GameObject previewObj = TowerBenchController.instance.previewObj;
 
         previewObj.SetActive(false);
@@ -183,6 +208,7 @@ public abstract class TowerBase : MonoBehaviour, IBeginDragHandler, IDragHandler
         {
             this.transform.position = MapManager.instance.MousePositionGrid + new Vector3(0.5f, 0.5f, 0);
             MapManager.instance.PlaceTower(transform.position, this);
+            radialTimer.SetCooldown(moveCooldown);
         }
         else if (MapManager.instance.IsBuildableAtTile(MapManager.instance.MousePositionGrid) && 
             MapManager.instance.GetTowerAtMousePositionGrid().GetTowerType() == GetTowerType())
@@ -207,5 +233,18 @@ public abstract class TowerBase : MonoBehaviour, IBeginDragHandler, IDragHandler
         GameManager.instance.RequestStateChange(GameState.FreeHover, false);
     }
 
-    
+    private bool isMoveable()
+    {
+        if (GameManager.instance.isEnemiesAlive() == false)
+        {
+            return true;
+        }
+            
+        if (radialTimer.GetCooldownPercent() == 0)
+        {
+            return true;
+        }
+
+        return false;
+    }
 }

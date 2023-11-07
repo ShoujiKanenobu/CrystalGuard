@@ -15,8 +15,10 @@ MonoBehaviour:
   shopIcon: {fileID: 0}
   range: 2
   debuff: {fileID: 0}
-  damage: 8
+  damage: 30
   attackspeed: 1
+  animFinishTime: 0
+  delay: 0
   radius: 1
   duration: 0.25
   projSpeed: 9

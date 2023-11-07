@@ -23,7 +23,9 @@ public class NovaTowerController : TowerBase
 
     void FixedUpdate()
     {
-        if(FindTargetsInRange())
+        RadialActiveCheck();
+
+        if (FindTargetsInRange())
         {
             HandleAttackTime();
         }

@@ -18,64 +18,64 @@ MonoBehaviour:
     speed: 1
     spawnCount: 10
     livesDamage: 1
-    reward: 5
+    reward: 10
   - timeBetweenSpawns: 0.5
     HP: 12
     speed: 1
-    spawnCount: 17
+    spawnCount: 15
     livesDamage: 1
     reward: 10
   - timeBetweenSpawns: 0.5
-    HP: 21
+    HP: 25
     speed: 1
-    spawnCount: 13
+    spawnCount: 25
     livesDamage: 1
     reward: 10
   - timeBetweenSpawns: 0.5
-    HP: 10
-    speed: 2
-    spawnCount: 9
+    HP: 35
+    speed: 1
+    spawnCount: 20
     livesDamage: 1
     reward: 10
   - timeBetweenSpawns: 0.5
-    HP: 38
-    speed: 1
-    spawnCount: 10
+    HP: 50
+    speed: 1.5
+    spawnCount: 15
     livesDamage: 1
-    reward: 15
+    reward: 10
   - timeBetweenSpawns: 0.5
-    HP: 42
-    speed: 1
-    spawnCount: 10
+    HP: 90
+    speed: 1.5
+    spawnCount: 15
     livesDamage: 1
-    reward: 15
+    reward: 10
   - timeBetweenSpawns: 0.5
-    HP: 23
+    HP: 150
     speed: 1
-    spawnCount: 19
+    spawnCount: 15
     livesDamage: 1
-    reward: 15
+    reward: 10
   - timeBetweenSpawns: 0.5
-    HP: 51
+    HP: 215
+    speed: 1
+    spawnCount: 15
+    livesDamage: 1
+    reward: 10
+  - timeBetweenSpawns: 0.5
+    HP: 176
+    speed: 1.5
+    spawnCount: 15
+    livesDamage: 1
+    reward: 10
+  - timeBetweenSpawns: 0.5
+    HP: 310
     speed: 1
     spawnCount: 11
     livesDamage: 1
-    reward: 20
-  - timeBetweenSpawns: 0.5
-    HP: 55
-    speed: 1
-    spawnCount: 11
-    livesDamage: 1
-    reward: 20
-  - timeBetweenSpawns: 0.5
-    HP: 60
-    speed: 1
-    spawnCount: 11
-    livesDamage: 1
-    reward: 20
+    reward: 10
   - timeBetweenSpawns: 0.5
     HP: 1044
     speed: 1
     spawnCount: 1
     livesDamage: 5
-    reward: 30
+    reward: 10

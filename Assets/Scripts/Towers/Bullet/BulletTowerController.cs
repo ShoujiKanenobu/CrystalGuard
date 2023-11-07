@@ -24,6 +24,8 @@ public class BulletTowerController : TowerBase
 
     void FixedUpdate()
     {
+        RadialActiveCheck();
+
         HandleAttackTime();
 
         FindTargetInRange();

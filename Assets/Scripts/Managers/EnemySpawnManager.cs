@@ -57,7 +57,7 @@ public class EnemySpawnManager : MonoBehaviour
             if (waveNumber > waveStats.waves.Count - 1)
             {
                 if(waveNumber == waveStats.waves.Count && GameManager.instance.hasLives())
-                    StartCoroutine(GameManager.instance.TextForSeconds(3, "You beat all 10 Waves! Lets go to endless mode...."));
+                    StartCoroutine(GameManager.instance.TextForSeconds(3, "You beat all Waves! Going to endless mode..."));
                 loopMultiplier += loopModifierStepAmount;
             }
             AccountedForWave = true;

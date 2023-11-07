@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: BleedTowerDebuff 2
   m_EditorClassIdentifier: 
   type: 5
-  debuffValue: 3
+  debuffValue: 20
   duration: 3
   description: Bleeds the enemy for 3 seconds, dealing 1 damage per tick

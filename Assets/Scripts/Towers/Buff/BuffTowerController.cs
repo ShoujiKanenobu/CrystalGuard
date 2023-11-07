@@ -16,8 +16,10 @@ public class BuffTowerController : TowerBase
         Init();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
+        RadialActiveCheck();
+
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, buffData[level - 1].range);
 
         foreach(Collider2D hit in hits)

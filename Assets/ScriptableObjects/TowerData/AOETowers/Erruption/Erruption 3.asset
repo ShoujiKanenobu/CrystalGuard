@@ -15,7 +15,7 @@ MonoBehaviour:
   shopIcon: {fileID: 1830173364, guid: 969e89189eda19d449de92194dbf8e15, type: 3}
   range: 2
   debuff: {fileID: 0}
-  damage: 8
+  damage: 15
   attackspeed: 1
   animFinishTime: 1
   delay: 0

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: PoisonTowerDebuff 2
   m_EditorClassIdentifier: 
   type: 3
-  debuffValue: 3
+  debuffValue: 11
   duration: 3
   description: Poisons an enemy for 3 seconds, dealing 3 damage per tick.

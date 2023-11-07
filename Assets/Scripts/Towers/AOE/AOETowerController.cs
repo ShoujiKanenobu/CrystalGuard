@@ -25,6 +25,8 @@ public class AOETowerController : TowerBase
 
     void FixedUpdate()
     {
+        RadialActiveCheck();
+
         HandleAttackTime();
 
         FindTargetInRange();

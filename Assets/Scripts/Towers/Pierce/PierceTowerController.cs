@@ -24,6 +24,8 @@ public class PierceTowerController : TowerBase
 
     void FixedUpdate()
     {
+        RadialActiveCheck();
+
         HandleAttackTime();
 
         FindTargetInRange();

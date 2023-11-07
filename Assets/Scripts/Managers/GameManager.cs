@@ -23,6 +23,9 @@ public class GameManager : MonoBehaviour
     public TowerSelectionController tsc;
 
     [SerializeField]
+    private GORuntimeSet enemySet;
+
+    [SerializeField]
     private float flashDuration;
     [SerializeField]
     private SpriteRenderer shrineSR;
@@ -33,6 +36,7 @@ public class GameManager : MonoBehaviour
 
     private int Lives;
 
+   
     public void Awake()
     {
         if (instance != null && instance != this)
@@ -91,6 +95,13 @@ public class GameManager : MonoBehaviour
 
         shrineSR.material = originalMaterial;
         flashRoutine = null;
+    }
+
+    public bool isEnemiesAlive()
+    {
+        if (enemySet.Items.Count == 0)
+            return false;
+        return true;
     }
 
     public bool hasLives()

@@ -18,4 +18,4 @@ MonoBehaviour:
   damage: 1
   attackspeed: 0
   buff: 0
-  buffAmount: 4
+  buffAmount: 20

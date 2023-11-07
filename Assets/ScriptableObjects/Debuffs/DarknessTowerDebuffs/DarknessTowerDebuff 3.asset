@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DarknessTowerDebuff 3
   m_EditorClassIdentifier: 
   type: 4
-  debuffValue: 3
+  debuffValue: 30
   duration: 5
   description: Adds 1 stack of Darkness. When darkness expires, deal damage equal
     to the number of darkness stacks.
