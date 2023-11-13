@@ -17,6 +17,8 @@ MonoBehaviour:
   debuff: {fileID: 11400000, guid: 26482f5ae6f465c4bbdad4c62ab6eb67, type: 2}
   damage: 1
   attackspeed: 2.2
+  description: Every 2.2 seconds, fire a piercing arrow dealing 1 damage and applying
+    a bleed to all enemies it touches. Bleed deals 3 damage every second for 3 seconds.
   radius: 0.4
   duration: 0.6
   projSpeed: 10

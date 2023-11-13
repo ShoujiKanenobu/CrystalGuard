@@ -13,10 +13,6 @@ MonoBehaviour:
   m_Name: BuildableTileData
   m_EditorClassIdentifier: 
   tiles:
-  - {fileID: 11400000, guid: ac53c3ca6663dd249bfa45d3f0090244, type: 2}
-  - {fileID: 11400000, guid: 9095e829dcf9cb2429d5ab3f32bfea39, type: 2}
-  - {fileID: 11400000, guid: 582c348beef99f94aadf71f2674aec30, type: 2}
-  - {fileID: 11400000, guid: a6765e52cfa11c1418f14ce11d22a0fa, type: 2}
   - {fileID: 11400000, guid: 140ce92a65ef0c94389ad38025ff75cd, type: 2}
   - {fileID: 11400000, guid: 2accbf754c07a7f48a86fcd96736f0d1, type: 2}
   - {fileID: 11400000, guid: 49218445c9fd71b40b997189d752cf5d, type: 2}

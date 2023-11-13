@@ -17,5 +17,7 @@ MonoBehaviour:
   debuff: {fileID: 11400000, guid: 0f61ffcd821caa043ad8ee2ad43a019b, type: 2}
   damage: 2
   attackspeed: 0.3
+  description: Every 0.3 seconds, shoots a frost bolt dealing 2 damage and slowing
+    the target.
   projSpeed: 10
   projectile: {fileID: 1374267004960804, guid: d5ed7990c7ae22c43820b2ee24fb0e6c, type: 3}

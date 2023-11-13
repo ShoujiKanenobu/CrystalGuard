@@ -74,8 +74,15 @@ public class TowerSelectionController : MonoBehaviour
             GameManager.instance.InsufficientGoldMessage();
             return;
         }
-            
-        FillOptions();
+
+        if (frozen)
+        {
+            frozen = false;
+            FillOptions();
+            frozen = true;
+        }
+        else
+            FillOptions();
     }
 
     public void FillOptions()
@@ -90,6 +97,8 @@ public class TowerSelectionController : MonoBehaviour
         currentItems[1] = random.RollForItem();
         currentItems[2] = random.RollForItem();
         UpdateChoiceUI();
+
+        ResetPreview();
     }
     
     public void PreviewOrBuild(int i)
@@ -111,32 +120,10 @@ public class TowerSelectionController : MonoBehaviour
 
     private void DisplayTowerInfo(TowerDataBase d)
     {
-        towerInfoStats.text = "";
-        if(d.damage != 0)
-            towerInfoStats.text += "Damage: "  + d.damage + "\n";
-
-        if (d.attackspeed != 0)
-            towerInfoStats.text += "Attack Speed: " + d.attackspeed + "\n";
-
-        if (d is NovaTowerData)
-        {
-            NovaTowerData novaD = (NovaTowerData)d;
-            if (d.range != 0)
-                towerInfoStats.text += "Radius: " + d.range + "\n";
-            if (novaD.expandSpeed != 0)
-                towerInfoStats.text += "Nova Expansion Speed: " + novaD.expandSpeed + "\n";
-        }
-        else if (d is BulletTowerData)
-        {
-            BulletTowerData bulletD = (BulletTowerData)d;
-            if (d.range != 0)
-                towerInfoStats.text += "Range: " + d.range + "\n";
-            if (bulletD.projSpeed != 0)
-                towerInfoStats.text += "Projectile Speed: " + bulletD.projSpeed + "\n";
-        }
-
-        if (d.debuff != null)
-            towerInfoStats.text += d.debuff.description + "\n";
+        towerInfoStats.text = d.description;
+        
+        /*if (d.debuff != null)
+            towerInfoStats.text += d.debuff.description + "\n";*/
     }
 
     public void PurchaseTower(int i)

@@ -17,6 +17,8 @@ MonoBehaviour:
   debuff: {fileID: 11400000, guid: 0f61ffcd821caa043ad8ee2ad43a019b, type: 2}
   damage: 3
   attackspeed: 1
+  description: Every 1 second, unleash a nova of ice dealing 3 damage and slowing
+    all enemies hit.
   rotationSpeed: 0
   expandSpeed: 15
   nova: {fileID: 1873612019324734, guid: 9b731ea8e101f1840b8a70d93ed3baf1, type: 3}

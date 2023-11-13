@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: FireTowerAmp
   m_EditorClassIdentifier: 
   type: 2
-  debuffValue: 1
+  debuffValue: 0.5
   duration: 1
   description: 'Scorched: Causes hit enemies to take double damage.'

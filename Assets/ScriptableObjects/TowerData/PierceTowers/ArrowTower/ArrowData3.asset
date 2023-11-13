@@ -17,6 +17,8 @@ MonoBehaviour:
   debuff: {fileID: 0}
   damage: 40
   attackspeed: 1
+  description: Every second, fire a piercing bolt that deals 40 damage to all enemies
+    it touches.
   radius: 0.5
   duration: 0.8
   projSpeed: 8

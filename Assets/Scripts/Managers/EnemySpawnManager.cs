@@ -65,6 +65,11 @@ public class EnemySpawnManager : MonoBehaviour
 
         if (waveStartButton.activeSelf == true && AutoPlayToggle.isOn)
             LoadNewWave();
+
+        if(GameManager.instance.state == GameState.GameOver)
+        {
+            AutoPlayToggle.isOn = false;
+        }
     }
 
     public void ResetLevel()

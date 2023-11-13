@@ -17,6 +17,8 @@ MonoBehaviour:
   debuff: {fileID: 0}
   damage: 12
   attackspeed: 1
+  description: Every second, shoot a charged beam of holy light, dealing 12 damage
+    to all enemies in the area.
   animFinishTime: 0
   delay: 0
   radius: 0.75

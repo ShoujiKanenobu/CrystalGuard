@@ -17,5 +17,7 @@ MonoBehaviour:
   debuff: {fileID: 11400000, guid: c9d598a4ecd23e548b53f72269fb7449, type: 2}
   damage: 20
   attackspeed: 0.3
+  description: Every 0.3 seconds, shoots a fireball dealing 20 damage and applying
+    scorch. Scorch increases damage dealt by 50% for 1 second.
   projSpeed: 5
   projectile: {fileID: 1391574063814312, guid: 2543722d89ad5f044bbdc6b9eaa7cdb8, type: 3}

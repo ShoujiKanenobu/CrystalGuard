@@ -17,5 +17,8 @@ MonoBehaviour:
   debuff: {fileID: 11400000, guid: 3dbb8b13e5ac69748af72131be171f9a, type: 2}
   damage: 0
   attackspeed: 0.5
+  description: Every 0.5 seconds, shoots a ball of dark energy, applying 30 stacks
+    of darkness. When darkness expires or reaches 50 stacks, deal damage equal to
+    the number of darkness stacks on the enemy.
   projSpeed: 10
   projectile: {fileID: 1746672929845058, guid: 2c922f25660f4c64ea6db3ccff4c3135, type: 3}

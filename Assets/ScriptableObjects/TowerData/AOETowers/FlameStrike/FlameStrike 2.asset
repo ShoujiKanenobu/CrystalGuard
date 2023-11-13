@@ -17,6 +17,8 @@ MonoBehaviour:
   debuff: {fileID: 0}
   damage: 9
   attackspeed: 1
+  description: Every second, create a column of fire at target location, dealing
+    9 damage to all enemies in the area.
   animFinishTime: 0.8
   delay: 0.7
   radius: 0.75

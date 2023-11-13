@@ -17,6 +17,8 @@ MonoBehaviour:
   debuff: {fileID: 0}
   damage: 11
   attackspeed: 1
+  description: Every second, shoot a ball of lightning, dealing 11 damage to all
+    enemies in the area.
   animFinishTime: 1
   delay: 0.7
   radius: 0.75

@@ -17,6 +17,8 @@ MonoBehaviour:
   debuff: {fileID: 0}
   damage: 30
   attackspeed: 0.6
+  description: Every 0.6 second, cause tremors in the ground dealing 30 damage to
+    all enemies in the area.
   rotationSpeed: 0
   expandSpeed: 6
   nova: {fileID: 2995664060464940497, guid: 10562bfa038c5784995698f61632225d, type: 3}

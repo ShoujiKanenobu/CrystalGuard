@@ -17,6 +17,8 @@ MonoBehaviour:
   debuff: {fileID: 0}
   damage: 11
   attackspeed: 1
+  description: Every second, strike target location with lightning, dealing 11 damage
+    to all enemies in the area.
   animFinishTime: 0
   delay: 0
   radius: 0.75

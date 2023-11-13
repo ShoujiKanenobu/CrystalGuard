@@ -17,6 +17,8 @@ MonoBehaviour:
   debuff: {fileID: 0}
   damage: 3
   attackspeed: 1
+  description: Every second, create an erruption at target location, dealing 3 damage
+    to all enemies in the area.
   animFinishTime: 1
   delay: 0
   radius: 0.75

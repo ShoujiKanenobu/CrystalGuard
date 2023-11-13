@@ -16,6 +16,7 @@ MonoBehaviour:
   range: 2
   debuff: {fileID: 0}
   damage: 50
-  attackspeed: 0.1
+  attackspeed: 0.2
+  description: Every 0.2 seconds, hurl a rock dealing 50 damage.
   projSpeed: 10
   projectile: {fileID: 1049234075114562, guid: 7d828c6936c7cef45a7ba6a58b4bf64b, type: 3}

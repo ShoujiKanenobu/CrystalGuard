@@ -17,6 +17,8 @@ MonoBehaviour:
   debuff: {fileID: 11400000, guid: a9ab3ceddbeb71145a8bae7c2571a17e, type: 2}
   damage: 2
   attackspeed: 3
+  description: Every 3 seconds, deal 2 damage and apply a poison to all enemies in
+    the area. Poisoned enemies take 45 damage every second for 3 seconds.
   rotationSpeed: 0
   expandSpeed: 15
   nova: {fileID: 1061481793025988, guid: b8f03091bd4ffcc4191c516f9c54d034, type: 3}

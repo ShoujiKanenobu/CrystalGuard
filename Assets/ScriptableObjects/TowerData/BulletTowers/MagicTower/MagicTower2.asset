@@ -17,5 +17,6 @@ MonoBehaviour:
   debuff: {fileID: 0}
   damage: 9
   attackspeed: 0.1
+  description: Every 0.1 seconds, shoots a slow moving arcane bolt dealing 9 damage.
   projSpeed: 2
   projectile: {fileID: 1661707786246352, guid: 3ffda37d3accf41409af0257a27df3df, type: 3}

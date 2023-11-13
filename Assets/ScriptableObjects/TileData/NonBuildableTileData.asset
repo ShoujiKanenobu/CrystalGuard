@@ -13,11 +13,6 @@ MonoBehaviour:
   m_Name: NonBuildableTileData
   m_EditorClassIdentifier: 
   tiles:
-  - {fileID: 11400000, guid: ffc384bc38619e449bb6940cdcb72b54, type: 2}
-  - {fileID: 11400000, guid: 5f5dc7a3f8ab5b646b472a4bbeed40b6, type: 2}
-  - {fileID: 11400000, guid: 0b363d1e9d6d23a41a54551f02c74f49, type: 2}
-  - {fileID: 11400000, guid: 7db6c4ddb13313646a8b4749df4d4034, type: 2}
-  - {fileID: 11400000, guid: 58ad1e1f59c1ded40bf6e0141ac69710, type: 2}
   - {fileID: 11400000, guid: 120aa079e1904bc48934e24b3848eacf, type: 2}
   - {fileID: 11400000, guid: 63ad895077e446f4a90e11cd5d118635, type: 2}
   - {fileID: 11400000, guid: 8189eb774b39ec8488c948cd4c0b5b2c, type: 2}

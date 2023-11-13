@@ -134,8 +134,7 @@ public class EnemyStatusController : MonoBehaviour
         else
         {
             effects.Add(t, new StatusInfo(amount, duration));
-            if(visualizer != null)
-                visualizer.ApplyVisual(t);
+            visualizer.ApplyVisual(t);
         }
         if (t == StatusType.Darkness)
             darkness += amount;
@@ -154,7 +153,7 @@ public class EnemyStatusController : MonoBehaviour
     #region damage amp
     private void ApplyDamageAmp(float value)
     {
-        healthController.DamageAmp = 1f + value;
+        healthController.DamageAmp = Mathf.Max(value, healthController.DamageAmp);
     }
     private void ResetDamageAmp()
     {
@@ -184,7 +183,7 @@ public class EnemyStatusController : MonoBehaviour
     #region darkness
     private void ApplyDarkness(float value)
     {
-        if (darkness >= 5)
+        if (darkness >= 50)
         {
             healthController.TakeDamage((int)darkness);
             darkness = 0;

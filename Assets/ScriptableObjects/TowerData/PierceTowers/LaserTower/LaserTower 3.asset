@@ -17,6 +17,8 @@ MonoBehaviour:
   debuff: {fileID: 0}
   damage: 16
   attackspeed: 0.2
+  description: Every 0.2 seconds, fire a piercing laser dealing 16 damage to all
+    enemies it touches.
   radius: 0.2
   duration: 0.6
   projSpeed: 10
