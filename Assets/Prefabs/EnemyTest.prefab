@@ -262,6 +262,8 @@ MonoBehaviour:
   DamageAmp: 0
   flashMaterial: {fileID: 2100000, guid: c6d61b96c26695a4cb549cc3caf417e2, type: 2}
   originalMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  darkheraldEvent: {fileID: 11400000, guid: 4ea580f93b065f345a6651304dace838, type: 2}
+  darkheraldRelic: {fileID: 11400000, guid: 73a8825da54afe640a71077bf98c37d4, type: 2}
 --- !u!114 &6715142513452413503
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -274,6 +276,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42e3b3912d70e2345b8efff4e6ff07dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  darkHeraldPop: {fileID: 1061481793025988, guid: 6a704c07afed23f4f9f7f9c8bc0061fa, type: 3}
+  darkHeraldRelic: {fileID: 11400000, guid: 73a8825da54afe640a71077bf98c37d4, type: 2}
 --- !u!114 &6016918585035643229
 MonoBehaviour:
   m_ObjectHideFlags: 0

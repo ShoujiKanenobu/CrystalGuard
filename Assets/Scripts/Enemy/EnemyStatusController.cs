@@ -24,6 +24,11 @@ public struct StatusInfo
 [RequireComponent(typeof(EnemyMovementController))]
 public class EnemyStatusController : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject darkHeraldPop;
+    [SerializeField]
+    private Relic darkHeraldRelic;
+
     private EnemyHealthController healthController;
     private EnemyMovementController movementController;
     private EnemyStatusVisualizer visualizer;
@@ -185,15 +190,41 @@ public class EnemyStatusController : MonoBehaviour
     {
         if (darkness >= 50)
         {
-            healthController.TakeDamage((int)darkness);
+            if (RelicManager.instance.ContainsRelic(darkHeraldRelic))
+            {
+                DarkHeraldPop();
+            }
+            else
+            {
+                healthController.TakeDamage((int)darkness);
+            }
             darkness = 0;
         }
-
     }
     private void ResetDarkness()
     {
-        healthController.TakeDamage((int)darkness);
+        if (RelicManager.instance.ContainsRelic(darkHeraldRelic))
+        {
+            DarkHeraldPop();
+        }
+        else
+        {
+            healthController.TakeDamage((int)darkness);
+        }
         darkness = 0;
+    }
+
+    public void DarkHeraldPop()
+    {
+        GameObject aoeGO = Instantiate(darkHeraldPop, this.gameObject.transform.position, Quaternion.identity);
+
+        AOEController aoe = aoeGO.GetComponent<AOEController>();
+        aoe.animFinishTime = 0f;
+        aoe.delay = 0f;
+        aoe.radius = 0.5f;
+        aoe.damage = (int)darkness;
+        aoe.duration = 0.25f;
+        aoe.Init();
     }
     #endregion
 

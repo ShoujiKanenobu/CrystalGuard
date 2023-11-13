@@ -18,6 +18,10 @@ public class EnemyHealthController : MonoBehaviour
     private Material originalMaterial;
     private Coroutine flashRoutine;
 
+    [SerializeField]
+    private GameEvent darkheraldEvent;
+    [SerializeField]
+    private Relic darkheraldRelic;
     public void Init(int HP, int livesDamage)
     {
         if(sr == null)
@@ -63,6 +67,10 @@ public class EnemyHealthController : MonoBehaviour
     public void Die()
     {
         gameObject.SetActive(false);
+        if (RelicManager.instance.ContainsRelic(darkheraldRelic))
+        {
+            this.GetComponent<EnemyStatusController>().DarkHeraldPop();
+        }
     }
     public void TakeLives()
     {
