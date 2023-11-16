@@ -22,6 +22,8 @@ public class EnemyHealthController : MonoBehaviour
     private GameEvent darkheraldEvent;
     [SerializeField]
     private Relic darkheraldRelic;
+    [SerializeField]
+    private GameEvent EnemyDeathEvent;
     public void Init(int HP, int livesDamage)
     {
         if(sr == null)
@@ -71,6 +73,8 @@ public class EnemyHealthController : MonoBehaviour
         {
             this.GetComponent<EnemyStatusController>().DarkHeraldPop();
         }
+        EnemyDeathEvent.Raise(this.transform.position);
+        EnemyDeathEvent.Raise();
     }
     public void TakeLives()
     {

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d77feda826861e9408100a5a4d0f7683, type: 3}
   m_Name: Herald of the Void
   m_EditorClassIdentifier: 
-  sprite: {fileID: -1002138475, guid: 969e89189eda19d449de92194dbf8e15, type: 3}
+  sprite: {fileID: 21300000, guid: 3a5afeb72a393de438b71deffc68586f, type: 3}
   description: 'When Darkness stacks deal damage to their target, deal damage to
     all surrounding enemies as well. '

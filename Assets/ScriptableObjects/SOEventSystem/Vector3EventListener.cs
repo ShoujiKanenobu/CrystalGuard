@@ -1,13 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
-
-
-public class GameEventListener : MonoBehaviour
+public class Vector3EventListener : MonoBehaviour
 {
-    public delegate void GamEventDelegate();
+    public delegate void GamEventDelegate(Vector3 position);
 
     public GameEvent Event;
     public GamEventDelegate response;
@@ -21,10 +18,10 @@ public class GameEventListener : MonoBehaviour
         Event.UnregisterListener(this);
     }
 
-    public void OnEventRaised()
+    public void OnEventRaised(Vector3 position)
     {
-        if(response != null)
-            response.Invoke();
+        if (response != null)
+            response.Invoke(position);
     }
 
 }

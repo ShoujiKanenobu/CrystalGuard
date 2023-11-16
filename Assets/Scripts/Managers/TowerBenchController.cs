@@ -35,7 +35,7 @@ public class TowerBenchController : MonoBehaviour
         }
     }
 
-    public void AddTowerToBench(WeightedItem item)
+    public void AddTowerToBench(WeightedItem<GameObject> item)
     {
         int emptyIndex = -1;
         int currentIndex = 0;

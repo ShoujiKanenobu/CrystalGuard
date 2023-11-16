@@ -7,6 +7,13 @@ public class RelicManager : MonoBehaviour
     public static RelicManager instance;
 
     [SerializeField]
+    private GameEventListener OnRoundEndListener;
+    [SerializeField]
+    private Vector3EventListener OnEnemyKillListener;
+    [SerializeField]
+    private Vector3EventListener OnLifeLostListener;
+
+    [SerializeField]
     protected List<Relic> obtainedRelics;
     void Awake()
     {
@@ -14,6 +21,10 @@ public class RelicManager : MonoBehaviour
             Destroy(this);
         else
             instance = this;
+
+        OnRoundEndListener.response = OnRoundEnd;
+        OnEnemyKillListener.response = OnEnemyKilled;
+        OnLifeLostListener.response = OnLifeLost;
     }
 
     public bool ContainsRelic(Relic r)
@@ -26,11 +37,36 @@ public class RelicManager : MonoBehaviour
         if(!obtainedRelics.Contains(r))
         {
             obtainedRelics.Add(r);
+            r.OnObtained();
         }
     }
 
     public void RemoveRelic(Relic r)
     {
         obtainedRelics.Remove(r);
+    }
+
+    public void OnRoundEnd()
+    {
+        foreach(Relic r in obtainedRelics)
+        {
+            r.OnRoundEnd();
+        }
+    }
+
+    public void OnLifeLost(Vector3 position)
+    {
+        foreach (Relic r in obtainedRelics)
+        {
+            r.OnLifeLost(position);
+        }
+    }
+
+    public void OnEnemyKilled(Vector3 position)
+    {
+        foreach(Relic r in obtainedRelics)
+        {
+            r.OnEnemyKilled(position);
+        }
     }
 }

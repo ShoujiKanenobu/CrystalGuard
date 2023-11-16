@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour
 
     public TowerSelectionController tsc;
 
+    public GameEvent LifeLostEvent;
+
     [SerializeField]
     private GORuntimeSet enemySet;
 
@@ -129,6 +131,9 @@ public class GameManager : MonoBehaviour
         Lives -= i;
         livesText.text = "Lives: " + Lives;
 
+        LifeLostEvent.Raise();
+        LifeLostEvent.Raise(this.transform.position);
+
         if (flashRoutine != null)
             StopCoroutine(flashRoutine);
         flashRoutine = StartCoroutine(FlashDamage(flashDuration));
@@ -138,5 +143,14 @@ public class GameManager : MonoBehaviour
             RequestStateChange(GameState.GameOver, false);
             Debug.Log("Game over!");
         }
+    }
+
+    public void GainLife(int i)
+    {
+        if (state == GameState.GameOver)
+            return;
+
+        Lives += i;
+        livesText.text = "Lives: " + Lives;
     }
 }

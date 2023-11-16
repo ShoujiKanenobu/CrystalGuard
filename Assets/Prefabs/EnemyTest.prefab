@@ -264,6 +264,7 @@ MonoBehaviour:
   originalMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   darkheraldEvent: {fileID: 11400000, guid: 4ea580f93b065f345a6651304dace838, type: 2}
   darkheraldRelic: {fileID: 11400000, guid: 73a8825da54afe640a71077bf98c37d4, type: 2}
+  EnemyDeathEvent: {fileID: 11400000, guid: 168b875266806364aa1830e8355142a8, type: 2}
 --- !u!114 &6715142513452413503
 MonoBehaviour:
   m_ObjectHideFlags: 0

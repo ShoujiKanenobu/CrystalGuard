@@ -21,6 +21,8 @@ public class EnemySpawnManager : MonoBehaviour
    
     public EnemyWaveStats waveStats;
 
+    public GameEvent RoundEndEvent;
+
     private float loopMultiplier;
 
     private bool AccountedForWave;
@@ -50,6 +52,7 @@ public class EnemySpawnManager : MonoBehaviour
         }
         if (enemySet.Items.Count == 0 && !AccountedForWave && spawnCount <= 0)
         {
+            RoundEndEvent.Raise();
             GoldSystem.instance.GainGold(waveStats.waves[waveNumber % waveStats.waves.Count].reward);
             waveSpawning = false;
             waveStartButton.SetActive(true);

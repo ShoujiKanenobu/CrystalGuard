@@ -32,9 +32,9 @@ public class TowerSelectionController : MonoBehaviour
 
     private bool frozen;
 
-    public WeightedRandom random;
+    public GORandom random;
 
-    private WeightedItem[] currentItems = new WeightedItem[3];
+    private WeightedItem<GameObject>[] currentItems = new WeightedItem<GameObject>[3];
     private bool isPreview;
     private int lastSelection;
 

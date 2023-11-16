@@ -123,7 +123,7 @@ public class BenchItemController : MonoBehaviour, IBeginDragHandler, IDragHandle
     }
     #endregion
 
-    public void AddItem(WeightedItem i)
+    public void AddItem(WeightedItem<GameObject> i)
     {
         img.sprite = i.item.GetComponent<TowerBase>().data[0].shopIcon;
         img.color = Color.white;

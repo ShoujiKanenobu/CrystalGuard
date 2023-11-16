@@ -8,14 +8,33 @@ using Sirenix.OdinInspector;
 public class GameEvent : ScriptableObject
 {
     private List<GameEventListener> listeners = new List<GameEventListener>();
+    private List<Vector3EventListener> vec3Listeners = new List<Vector3EventListener>();
 
     [Button]
     public void Raise()
     {
-        for(int i = listeners.Count -1; i >= 0; i--)
+        for (int i = listeners.Count - 1; i >= 0; i--)
         {
             listeners[i].OnEventRaised();
         }
+    }
+
+    [Button]
+    public void Raise(Vector3 position)
+    {
+        for (int i = vec3Listeners.Count - 1; i >= 0; i--)
+        {
+            vec3Listeners[i].OnEventRaised(position);
+        }
+    }
+
+    public void RegisterListener(Vector3EventListener listener)
+    {
+        vec3Listeners.Add(listener);
+    }
+    public void UnregisterListener(Vector3EventListener listener)
+    {
+        vec3Listeners.Remove(listener);
     }
 
     public void RegisterListener(GameEventListener listener)

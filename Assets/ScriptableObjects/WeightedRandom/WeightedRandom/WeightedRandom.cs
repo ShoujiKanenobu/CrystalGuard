@@ -3,34 +3,33 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public struct WeightedItem
+public struct WeightedItem<T>
 {
-    public GameObject item;
-    public Sprite itemImage;
+    public T item;
     public int weight;
 }
 
-[System.Serializable][CreateAssetMenu(fileName = "WeightedRandomTable", menuName = "Weighted Random Table")]
-public class WeightedRandom : ScriptableObject
+[System.Serializable]
+public class WeightedRandom<T> : ScriptableObject
 {
     [SerializeField]
-    public List<WeightedItem> items;
+    public List<WeightedItem<T>> items;
 
     private int totalWeight;
 
     public void RecalculateWeights()
     {
         totalWeight = 0;
-        foreach (WeightedItem x in items)
+        foreach (WeightedItem<T> x in items)
         {
             totalWeight += x.weight;
         }
     }
 
-    public WeightedItem RollForItem()
+    public WeightedItem<T> RollForItem()
     {
         float roll = totalWeight * Random.value;
-        foreach (WeightedItem x in items)
+        foreach (WeightedItem<T> x in items)
         {
             if (roll < x.weight)
             {
@@ -38,6 +37,6 @@ public class WeightedRandom : ScriptableObject
             }
             roll -= x.weight;
         }
-        return default(WeightedItem);
+        return default(WeightedItem<T>);
     }
 }
