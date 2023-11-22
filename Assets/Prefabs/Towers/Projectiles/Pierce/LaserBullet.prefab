@@ -4945,3 +4945,11 @@ MonoBehaviour:
   target: {fileID: 0}
   debuff: {fileID: 0}
   minHitDistance: 0.35
+  sound:
+    clip: {fileID: 8300000, guid: 4bb67c444d6fafd4db86760fcadd1ad9, type: 3}
+    volume: 0.03
+    mixGroup: {fileID: -5316668263460104751, guid: 409e6ad4f4d5fba428211d0432a058dd, type: 2}
+  hitSound:
+    clip: {fileID: 8300000, guid: e4d32980046d9d146a4eafa7d4fd0ad4, type: 3}
+    volume: 0.01
+    mixGroup: {fileID: -5316668263460104751, guid: 409e6ad4f4d5fba428211d0432a058dd, type: 2}

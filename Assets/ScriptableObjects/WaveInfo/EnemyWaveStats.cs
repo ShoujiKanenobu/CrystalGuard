@@ -11,6 +11,7 @@ public struct WaveInfo
     public int spawnCount;
     public int livesDamage;
     public int reward;
+    public bool awardRelic;
 }
 
 [CreateAssetMenu(fileName = "EnemyWaveStats" , menuName = "Enemy Wave Stat")]

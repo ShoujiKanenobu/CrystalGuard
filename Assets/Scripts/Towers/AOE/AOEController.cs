@@ -10,11 +10,14 @@ public class AOEController : MonoBehaviour
     public int damage;
     public float duration;
     public DebuffInfo debuff;
+    public AudioPoolInfo castSound;
+    public AudioPoolInfo hitSound;
 
     private List<Collider2D> alreadyHit = new List<Collider2D>();
     private float hitboxEndTime;
     private float hitboxStartTime;
     private float deleteTime;
+    
     public void Init()
     {
         hitboxEndTime = Time.time + duration + delay;
@@ -24,6 +27,8 @@ public class AOEController : MonoBehaviour
         transform.localScale = new Vector3(radius * 2f, radius * 2f, 1f);
 
         alreadyHit.Clear();
+        if(castSound.clip != null)
+            AudioSourceProvider.instance.PlayClipOnSource(castSound);
     }
 
     public void Update()
@@ -46,6 +51,8 @@ public class AOEController : MonoBehaviour
                 if (debuff != null)
                     temp.GetComponent<EnemyStatusController>().ApplyStatusEffect(debuff);
                 temp.TakeDamage(damage);
+                if(hitSound.clip != null)
+                    AudioSourceProvider.instance.PlayClipOnSource(hitSound);
                 alreadyHit.Add(hit);
             }
         }

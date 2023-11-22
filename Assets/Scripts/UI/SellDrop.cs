@@ -5,6 +5,7 @@ using UnityEngine.EventSystems;
 
 public class SellDrop : MonoBehaviour, IDropHandler
 {
+    public AudioPoolInfo sound;
     public void OnDrop(PointerEventData eventData)
     {
         eventData.pointerDrag.TryGetComponent<BenchItemController>(out BenchItemController o);
@@ -15,6 +16,7 @@ public class SellDrop : MonoBehaviour, IDropHandler
         {
             toSell = o.item.GetComponent<TowerBase>();
             GoldSystem.instance.GainGold(toSell.level);
+            AudioSourceProvider.instance.PlayClipOnSource(sound);
             o.ClearSlot();
             TowerBenchController.instance.previewObj.SetActive(false);
         }
@@ -22,6 +24,7 @@ public class SellDrop : MonoBehaviour, IDropHandler
         {
             toSell = tb;
             GoldSystem.instance.GainGold(toSell.level);
+            AudioSourceProvider.instance.PlayClipOnSource(sound);
             Destroy(toSell.gameObject);
             GameManager.instance.RequestStateChange(GameState.FreeHover, false);
             TowerBenchController.instance.previewObj.SetActive(false);

@@ -1,12 +1,11 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
 [System.Serializable]
 public enum GameState
 {
-    FreeHover = 0, BuildOptionHover = 1, SelectedTileNoTower = 2, SelectedTower = 3, Merging = 4, GameOver = 5, Reset = 6
+    FreeHover = 0, BuildOptionHover = 1, Buying = 2, SelectedTower = 3, Merging = 4, GameOver = 5, Reset = 6, RelicBuying = 7
 }
 
 public class GameManager : MonoBehaviour
@@ -38,6 +37,9 @@ public class GameManager : MonoBehaviour
 
     private int Lives;
 
+    [SerializeField]
+    private AudioPoolInfo loseLifeSound;
+
    
     public void Awake()
     {
@@ -48,6 +50,7 @@ public class GameManager : MonoBehaviour
         Lives = startingLives;
         livesText.text = "Lives: " + Lives;
         originalMaterial = shrineSR.material;
+        state = GameState.RelicBuying;
     }
 
     public void RequestStateChange(GameState g, bool retainHighlights)
@@ -69,7 +72,7 @@ public class GameManager : MonoBehaviour
         {
             Lives = startingLives;
             livesText.text = "Lives: " + Lives;
-            state = GameState.FreeHover;
+            state = GameState.RelicBuying;
         }
             
     }
@@ -111,6 +114,11 @@ public class GameManager : MonoBehaviour
         return Lives > 0;
     }
 
+    public int GetLives()
+    {
+        return Lives;
+    }
+
     public void InsufficientGoldMessage()
     {
         StartCoroutine(GameManager.instance.TextForSeconds(1f, "Not Enough Gold!"));
@@ -138,10 +146,11 @@ public class GameManager : MonoBehaviour
             StopCoroutine(flashRoutine);
         flashRoutine = StartCoroutine(FlashDamage(flashDuration));
 
+        AudioSourceProvider.instance.PlayClipOnSource(loseLifeSound);
+
         if(Lives <= 0)
         {
             RequestStateChange(GameState.GameOver, false);
-            Debug.Log("Game over!");
         }
     }
 

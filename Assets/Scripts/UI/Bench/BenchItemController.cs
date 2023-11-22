@@ -17,6 +17,9 @@ public class BenchItemController : MonoBehaviour, IBeginDragHandler, IDragHandle
     private TowerStarUIController starControl;
     private Slider xpSlider;
 
+    public AudioPoolInfo pickupSound;
+    public AudioPoolInfo dropSound;
+
     #region unityFunctions
     void Start()
     {
@@ -38,6 +41,7 @@ public class BenchItemController : MonoBehaviour, IBeginDragHandler, IDragHandle
         previewObj.GetComponent<TowerRangeIndicator>().ShowRadius(d.data[0].range);
         previewObj.GetComponent<SpriteRenderer>().sprite = d.data[0].shopIcon;
         previewObj.SetActive(true);
+        AudioSourceProvider.instance.PlayClipOnSource(pickupSound);
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -54,9 +58,10 @@ public class BenchItemController : MonoBehaviour, IBeginDragHandler, IDragHandle
         previewObj.SetActive(false);
         if (item == null)
             return;
-        
 
-        if(MapManager.instance.IsBuildableAtTile(MapManager.instance.MousePositionGrid))
+        AudioSourceProvider.instance.PlayClipOnSource(dropSound);
+
+        if (MapManager.instance.IsBuildableAtTile(MapManager.instance.MousePositionGrid))
         {
             if(MapManager.instance.IsCurrentMousePosTileEmpty())
             {
@@ -90,6 +95,9 @@ public class BenchItemController : MonoBehaviour, IBeginDragHandler, IDragHandle
         //pointerDrag isnt a bench item
         if (o == null)
         {
+            if (!eventData.pointerDrag.GetComponent<TowerBase>().isMoveable())
+                return;
+
             if (item == null)
             {
                 TowerBenchController.instance.previewObj.SetActive(false);

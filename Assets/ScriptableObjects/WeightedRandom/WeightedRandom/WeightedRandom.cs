@@ -37,6 +37,34 @@ public class WeightedRandom<T> : ScriptableObject
             }
             roll -= x.weight;
         }
-        return default(WeightedItem<T>);
+        return default;
+    }
+
+    public WeightedItem<T> RollforUniqueItem(List<T> blacklist)
+    {
+        List<WeightedItem<T>> filtered = new List<WeightedItem<T>>(items);
+        for(int i = filtered.Count - 1; i >= 0; i--)
+        {
+            if (blacklist.Contains(filtered[i].item))
+                filtered.RemoveAt(i);
+        }
+
+        int uniqueWeight = 0;
+
+        foreach (WeightedItem<T> x in filtered)
+        {
+            uniqueWeight += x.weight;
+        }
+
+        float roll = uniqueWeight * Random.value;
+        foreach (WeightedItem<T> x in filtered)
+        {
+            if (roll < x.weight)
+            {
+                return x;
+            }
+            roll -= x.weight;
+        }
+        return default;
     }
 }

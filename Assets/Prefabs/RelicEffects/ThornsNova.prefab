@@ -19498,7 +19498,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   expandRate: 30
-  damage: 3
+  damage: 15
   debuff: {fileID: 0}
   range: 70
   rotationSpeed: 0

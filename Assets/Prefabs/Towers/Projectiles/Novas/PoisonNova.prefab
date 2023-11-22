@@ -52,6 +52,10 @@ MonoBehaviour:
   debuff: {fileID: 0}
   range: 0
   rotationSpeed: 0
+  sound:
+    clip: {fileID: 8300000, guid: 0a616498e6eb7ef458647b7e3ebf3151, type: 3}
+    volume: 0.01
+    mixGroup: {fileID: -5316668263460104751, guid: 409e6ad4f4d5fba428211d0432a058dd, type: 2}
 --- !u!1 &1782486163655560
 GameObject:
   m_ObjectHideFlags: 0

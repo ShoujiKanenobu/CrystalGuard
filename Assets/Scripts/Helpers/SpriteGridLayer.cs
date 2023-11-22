@@ -8,12 +8,33 @@ public class SpriteGridLayer : MonoBehaviour
     public float spacing;
     public float YPos = 0;
     public bool unforcedPos = false;
+
+    private bool isDirty;
     public void Awake()
     {
+        isDirty = true;
         if(!unforcedPos)
             transform.localPosition = new Vector3(0, -0.4f, 0);        
     }
+
+
+    //Doing all this to get around Destroy not happening until the end of next frame.
+    public void LateUpdate()
+    {
+        if (isDirty)
+        {
+            RespaceChildren();
+            isDirty = false;
+        }
+    }
+
     [Button]
+    public void SetDirty()
+    {
+        isDirty = true;
+    }
+
+
     public void RespaceChildren()
     {
         int cc = transform.childCount;

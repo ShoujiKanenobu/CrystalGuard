@@ -131,6 +131,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: {fileID: 0}
   defaultColor: {r: 0, g: 0, b: 0, a: 0.4}
+  pickupSound:
+    clip: {fileID: 8300000, guid: f862ed6287ee4c345a167a9d05de00e6, type: 3}
+    volume: 0.1
+    mixGroup: {fileID: 7735959660642350164, guid: 409e6ad4f4d5fba428211d0432a058dd, type: 2}
+  dropSound:
+    clip: {fileID: 8300000, guid: 62e65e24c65e3c54288c76f415e9089a, type: 3}
+    volume: 0.1
+    mixGroup: {fileID: 7735959660642350164, guid: 409e6ad4f4d5fba428211d0432a058dd, type: 2}
 --- !u!114 &5472563154212037204
 MonoBehaviour:
   m_ObjectHideFlags: 0

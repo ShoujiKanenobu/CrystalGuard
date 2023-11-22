@@ -38,6 +38,8 @@ public class TowerSelectionController : MonoBehaviour
     private bool isPreview;
     private int lastSelection;
 
+    public AudioPoolInfo sound;
+
     void Start()
     {
         frozen = false;
@@ -134,6 +136,8 @@ public class TowerSelectionController : MonoBehaviour
             GameManager.instance.InsufficientGoldMessage();
             return;
         }
+
+        AudioSourceProvider.instance.PlayClipOnSource(sound);
 
         TowerBenchController.instance.AddTowerToBench(currentItems[i]);
 

@@ -51,6 +51,14 @@ MonoBehaviour:
   damage: 0
   duration: 0
   debuff: {fileID: 0}
+  castSound:
+    clip: {fileID: 8300000, guid: ce977a104ca53794986902f8b80959a1, type: 3}
+    volume: 0.01
+    mixGroup: {fileID: -5316668263460104751, guid: 409e6ad4f4d5fba428211d0432a058dd, type: 2}
+  hitSound:
+    clip: {fileID: 8300000, guid: 3dd614545b3d46245a77c94dafa9d544, type: 3}
+    volume: 0.001
+    mixGroup: {fileID: -5316668263460104751, guid: 409e6ad4f4d5fba428211d0432a058dd, type: 2}
 --- !u!1 &1045335384389786
 GameObject:
   m_ObjectHideFlags: 0

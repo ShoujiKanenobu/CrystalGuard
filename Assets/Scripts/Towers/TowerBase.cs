@@ -41,7 +41,10 @@ public abstract class TowerBase : MonoBehaviour, IBeginDragHandler, IDragHandler
 
     private RadialTimerController radialTimer;
     private float moveCooldown;
-    
+
+    public AudioPoolInfo pickupSound;
+    public AudioPoolInfo dropSound;
+
     public void Init()
     {
         
@@ -172,6 +175,8 @@ public abstract class TowerBase : MonoBehaviour, IBeginDragHandler, IDragHandler
         if (!isMoveable())
             return;
 
+        AudioSourceProvider.instance.PlayClipOnSource(pickupSound);
+
         MapManager.instance.RemoveTower(transform.position);
         lastLocation = this.transform.position;
         this.transform.position = new Vector3(999, 999, 0);
@@ -204,6 +209,8 @@ public abstract class TowerBase : MonoBehaviour, IBeginDragHandler, IDragHandler
 
         previewObj.SetActive(false);
 
+        AudioSourceProvider.instance.PlayClipOnSource(dropSound);
+
         if (MapManager.instance.IsCurrentMousePosTileEmpty() && MapManager.instance.IsBuildableAtTile(MapManager.instance.MousePositionGrid))
         {
             this.transform.position = MapManager.instance.MousePositionGrid + new Vector3(0.5f, 0.5f, 0);
@@ -233,7 +240,7 @@ public abstract class TowerBase : MonoBehaviour, IBeginDragHandler, IDragHandler
         GameManager.instance.RequestStateChange(GameState.FreeHover, false);
     }
 
-    private bool isMoveable()
+    public bool isMoveable()
     {
         if (GameManager.instance.isEnemiesAlive() == false)
         {

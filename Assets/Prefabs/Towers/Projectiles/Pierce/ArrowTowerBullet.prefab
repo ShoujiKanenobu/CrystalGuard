@@ -52,6 +52,14 @@ MonoBehaviour:
   target: {fileID: 0}
   debuff: {fileID: 0}
   minHitDistance: 0.35
+  sound:
+    clip: {fileID: 8300000, guid: d25482385d09334489215561a96af33f, type: 3}
+    volume: 0.05
+    mixGroup: {fileID: -5316668263460104751, guid: 409e6ad4f4d5fba428211d0432a058dd, type: 2}
+  hitSound:
+    clip: {fileID: 8300000, guid: dffc3717769a1954aaec6a0534c349f1, type: 3}
+    volume: 0.005
+    mixGroup: {fileID: -5316668263460104751, guid: 409e6ad4f4d5fba428211d0432a058dd, type: 2}
 --- !u!1 &1520093347119720
 GameObject:
   m_ObjectHideFlags: 0

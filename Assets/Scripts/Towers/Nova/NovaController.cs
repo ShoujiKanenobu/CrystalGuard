@@ -11,12 +11,13 @@ public class NovaController : MonoBehaviour
     public float rotationSpeed;
     private List<Collider2D> alreadyHit = new List<Collider2D>();
 
-
+    public AudioPoolInfo sound;
 
     private void OnEnable()
     {
         transform.localScale = new Vector3(0.15f, 0.15f, 0.15f);
         alreadyHit.Clear();
+        AudioSourceProvider.instance.PlayClipOnSource(sound);
     }
 
     void FixedUpdate()

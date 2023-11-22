@@ -11,6 +11,16 @@ public class BulletController : MonoBehaviour
     private Vector3 lastKnownPos;
     
     public DebuffInfo debuff;
+
+    public AudioPoolInfo sound;
+    public AudioPoolInfo hitSound;
+
+    public void Awake()
+    {
+        if(sound.clip != null)
+            AudioSourceProvider.instance.PlayClipOnSource(sound);
+    }
+
     public void Update()
     {
         if (target != null)
@@ -32,7 +42,8 @@ public class BulletController : MonoBehaviour
                     target.GetComponent<EnemyStatusController>().ApplyStatusEffect(debuff);
                 target.GetComponent<EnemyHealthController>().TakeDamage(damage);
             }
-                
+            if(hitSound.clip != null)
+                AudioSourceProvider.instance.PlayClipOnSource(hitSound);
             Destroy(this.gameObject);
         }
         transform.position = Vector3.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);

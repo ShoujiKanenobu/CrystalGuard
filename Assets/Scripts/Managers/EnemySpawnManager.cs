@@ -32,6 +32,9 @@ public class EnemySpawnManager : MonoBehaviour
     private int waveNumber;
     private int spawnCount;
 
+    [SerializeField]
+    private RelicSelectionManager relicSelectionManager;
+
     public void Start()
     {
         waveSpawning = false;
@@ -53,6 +56,8 @@ public class EnemySpawnManager : MonoBehaviour
         if (enemySet.Items.Count == 0 && !AccountedForWave && spawnCount <= 0)
         {
             RoundEndEvent.Raise();
+            if (waveStats.waves[waveNumber % waveStats.waves.Count].awardRelic == true && loopMultiplier == 1)
+                relicSelectionManager.ActivateRelicPanel();
             GoldSystem.instance.GainGold(waveStats.waves[waveNumber % waveStats.waves.Count].reward);
             waveSpawning = false;
             waveStartButton.SetActive(true);

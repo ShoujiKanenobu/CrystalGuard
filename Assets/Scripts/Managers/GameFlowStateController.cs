@@ -26,32 +26,21 @@ public class GameFlowStateController : MonoBehaviour
 
     public void Update()
     {
-        if (gameManager.state == GameState.FreeHover)
+        if (gameManager.state == GameState.Buying || gameManager.state == GameState.RelicBuying)
+            return;
+
+        if (Input.GetMouseButtonDown(0) && !isMouseOverWaveStart())
         {
-            selectedTile = nullVector3Int;
-            if (Input.GetMouseButtonDown(0) && mapManager.IsBuildableAtTile(mapManager.MousePositionGrid) && !isMouseOverWaveStart())
+            if(!mapManager.IsCurrentMousePosTileEmpty() && mapManager.IsBuildableAtTile(mapManager.MousePositionGrid))
             {
                 selectedTile = mapManager.MousePositionGrid;
-
-                if (mapManager.IsCurrentMousePosTileEmpty())
-                {
-                    gameManager.RequestStateChange(GameState.BuildOptionHover, false);
-                    mapManager.HighlightTile(selectedTile, true);
-                }
-                else
-                {
-                    gameManager.RequestStateChange(GameState.SelectedTower, false);
-                    mapManager.HighlightTile(selectedTile, true);
-                }
-
+                mapManager.HighlightTile(selectedTile, false);
+                gameManager.RequestStateChange(GameState.SelectedTower, false);
             }
-
-        }
-        else if(gameManager.state == GameState.SelectedTower || gameManager.state == GameState.BuildOptionHover)
-        {
-            if (Input.GetMouseButtonDown(0) && mapManager.IsCurrentMousePosTileEmpty())
+            else if(gameManager.state != GameState.Buying)
+            {
                 gameManager.RequestStateChange(GameState.FreeHover, false);
-
+            }
         }
     }
 
@@ -78,7 +67,7 @@ public class GameFlowStateController : MonoBehaviour
 
     public void StartTowerSelection()
     {
-        gameManager.RequestStateChange(GameState.SelectedTileNoTower, true);
+        gameManager.RequestStateChange(GameState.Buying, true);
     }
 
     public void StartMerge()

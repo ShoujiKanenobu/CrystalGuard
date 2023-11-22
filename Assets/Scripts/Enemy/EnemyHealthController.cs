@@ -19,6 +19,9 @@ public class EnemyHealthController : MonoBehaviour
     private Coroutine flashRoutine;
 
     [SerializeField]
+    private AudioSource hurtSound; 
+
+    [SerializeField]
     private GameEvent darkheraldEvent;
     [SerializeField]
     private Relic darkheraldRelic;
@@ -59,6 +62,8 @@ public class EnemyHealthController : MonoBehaviour
             StopCoroutine(flashRoutine);
         if(this.gameObject.activeSelf)
             flashRoutine = StartCoroutine(FlashDamage(0.1f));
+
+        //hurtSound.Play();
 
         if (HP <= 0)
             Die();

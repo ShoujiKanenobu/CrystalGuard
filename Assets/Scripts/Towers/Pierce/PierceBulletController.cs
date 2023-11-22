@@ -16,6 +16,9 @@ public class PierceBulletController : MonoBehaviour
     private List<Collider2D> alreadyHit = new List<Collider2D>();
     private float endTime;
 
+    public AudioPoolInfo sound;
+    public AudioPoolInfo hitSound;
+
     void Start()
     {
         endTime = Time.time + duration;
@@ -23,6 +26,7 @@ public class PierceBulletController : MonoBehaviour
         transform.localScale = new Vector3(0.15f, 0.15f, 0.15f);
         if (target != null)
         {
+            AudioSourceProvider.instance.PlayClipOnSource(sound);
             travelMagnitude = target.transform.position - this.transform.position;
             travelMagnitude = travelMagnitude.normalized;
             this.transform.rotation = Quaternion.LookRotation(travelMagnitude);
@@ -49,7 +53,7 @@ public class PierceBulletController : MonoBehaviour
                     hit.gameObject.GetComponent<EnemyStatusController>().ApplyStatusEffect(debuff);
                 temp.TakeDamage(damage);
                 alreadyHit.Add(hit);
-
+                AudioSourceProvider.instance.PlayClipOnSource(hitSound);
             }
         }
         transform.position = Vector3.MoveTowards(transform.position, transform.position + travelMagnitude, Time.deltaTime * speed);

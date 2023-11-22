@@ -125,6 +125,10 @@ MonoBehaviour:
   debuff: {fileID: 0}
   range: 0
   rotationSpeed: 0
+  sound:
+    clip: {fileID: 8300000, guid: 2cfd375573ce6144f92d40b608e97475, type: 3}
+    volume: 0.01
+    mixGroup: {fileID: -5316668263460104751, guid: 409e6ad4f4d5fba428211d0432a058dd, type: 2}
 --- !u!114 &9091861912643563668
 MonoBehaviour:
   m_ObjectHideFlags: 0

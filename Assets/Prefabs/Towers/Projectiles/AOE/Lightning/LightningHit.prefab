@@ -9772,10 +9772,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31b3ce193887ddb4b8b033fa96a2e3f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animFinishTime: 0
+  delay: 0
   radius: 0
   damage: 0
   duration: 0
   debuff: {fileID: 0}
+  castSound:
+    clip: {fileID: 8300000, guid: 42009cfaaf0138b49a72349067023ee8, type: 3}
+    volume: 0.02
+    mixGroup: {fileID: -5316668263460104751, guid: 409e6ad4f4d5fba428211d0432a058dd, type: 2}
+  hitSound:
+    clip: {fileID: 0}
+    volume: 0
+    mixGroup: {fileID: 0}
 --- !u!1 &1969773048335070
 GameObject:
   m_ObjectHideFlags: 0

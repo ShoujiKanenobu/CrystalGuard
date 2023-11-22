@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b850e6fa141e8a9409fdce5e06560333, type: 3}
+  m_Name: Greedy Grinner
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 21300000, guid: a3e27f0b2a0cbf840a0ccab3dadd4374, type: 3}
+  description: Gain 25 Gold. Lose 10 life. If you have 10 or less life remaining,
+    go to 1 life.

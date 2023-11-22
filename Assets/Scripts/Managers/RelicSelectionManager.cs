@@ -22,7 +22,9 @@ public class RelicSelectionManager : MonoBehaviour
 
     private int lastSelection;
 
-    private WeightedItem<Relic>[] currentItems = new WeightedItem<Relic>[3];
+    private Relic[] currentItems = new Relic[3];
+
+    public AudioPoolInfo sound;
 
     public void Start()
     {
@@ -43,30 +45,42 @@ public class RelicSelectionManager : MonoBehaviour
         previewDescription.text = "";
     }
 
+    private void ClearCurrentItems()
+    {
+        currentItems[0] = null;
+        currentItems[1] = null;
+        currentItems[2] = null;
+    }
+
     public void FillSlots()
     {
-        currentItems[0] = random.RollForItem();
-        currentItems[1] = random.RollForItem();
-        currentItems[2] = random.RollForItem();
+        ClearCurrentItems();
 
-        if(currentItems[0].item == currentItems[1].item || 
-            currentItems[1].item == currentItems[2].item || 
-            currentItems[0].item == currentItems[2].item)
-        {
-            FillSlots();
-        }
+        List<Relic> blacklist = new List<Relic>(RelicManager.instance.obtainedRelics);
+        currentItems[0] = random.RollforUniqueItem(blacklist).item;
+        blacklist.Add(currentItems[0]);
+        currentItems[1] = random.RollforUniqueItem(blacklist).item;
+        blacklist.Add(currentItems[1]);
+        currentItems[2] = random.RollforUniqueItem(blacklist).item;
 
         UpdateChoiceUI();
     }
 
+    private bool InCurrentItems(Relic r)
+    {
+        if (currentItems[0] == r || currentItems[1] == r || currentItems[2] == r)
+            return true;
+        return false;
+    }
+
     private void UpdateChoiceUI()
     {
-        option1Image.sprite = currentItems[0].item.sprite;
-        option2Image.sprite = currentItems[1].item.sprite;
-        option3Image.sprite = currentItems[2].item.sprite;
-        option1Text.text = currentItems[0].item.name;
-        option2Text.text = currentItems[1].item.name;
-        option3Text.text = currentItems[2].item.name;
+        option1Image.sprite = currentItems[0].sprite;
+        option2Image.sprite = currentItems[1].sprite;
+        option3Image.sprite = currentItems[2].sprite;
+        option1Text.text = currentItems[0].name;
+        option2Text.text = currentItems[1].name;
+        option3Text.text = currentItems[2].name;
     }
 
     public void HandlePreview(int i)
@@ -77,14 +91,22 @@ public class RelicSelectionManager : MonoBehaviour
         {
             lastSelection = i;
 
-            previewDescription.text = currentItems[i].item.description;
-            previewName.text = currentItems[i].item.name;
+            previewDescription.text = currentItems[i].description;
+            previewName.text = currentItems[i].name;
         }
     }
 
     private void PurchaseItem(int i)
     {
-        RelicManager.instance.AddRelic(currentItems[i].item);
+        AudioSourceProvider.instance.PlayClipOnSource(sound);
+        RelicManager.instance.AddRelic(currentItems[i]);
         panel.SetActive(false);
+        GameManager.instance.RequestStateChange(GameState.FreeHover, false);
+    }
+
+    public void ActivateRelicPanel()
+    {
+        GameManager.instance.RequestStateChange(GameState.RelicBuying, false);
+        Init();
     }
 }

@@ -441,6 +441,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   xpBar: {fileID: 0}
+  pickupSound:
+    clip: {fileID: 8300000, guid: f862ed6287ee4c345a167a9d05de00e6, type: 3}
+    volume: 0.1
+    mixGroup: {fileID: 7735959660642350164, guid: 409e6ad4f4d5fba428211d0432a058dd, type: 2}
+  dropSound:
+    clip: {fileID: 8300000, guid: 62e65e24c65e3c54288c76f415e9089a, type: 3}
+    volume: 0.1
+    mixGroup: {fileID: 7735959660642350164, guid: 409e6ad4f4d5fba428211d0432a058dd, type: 2}
   bulletData:
   - {fileID: 11400000, guid: e452631fe96d3fc4bb9bf481f12175fe, type: 2}
   - {fileID: 11400000, guid: 4731306ccf27bfb41a5f006864f3ea21, type: 2}

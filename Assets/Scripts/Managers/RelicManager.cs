@@ -1,10 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class RelicManager : MonoBehaviour
 {
     public static RelicManager instance;
+
+    [SerializeField]
+    private GameObject relicPanel;
+    [SerializeField]
+    private GameObject relicIcon;
 
     [SerializeField]
     private GameEventListener OnRoundEndListener;
@@ -14,7 +19,7 @@ public class RelicManager : MonoBehaviour
     private Vector3EventListener OnLifeLostListener;
 
     [SerializeField]
-    protected List<Relic> obtainedRelics;
+    public List<Relic> obtainedRelics;
     void Awake()
     {
         if (instance != null && instance != this)
@@ -38,12 +43,24 @@ public class RelicManager : MonoBehaviour
         {
             obtainedRelics.Add(r);
             r.OnObtained();
+            GameObject temp = Instantiate(relicIcon, relicPanel.transform);
+            temp.GetComponent<Image>().sprite = r.sprite;
+            temp.GetComponent<RelicTooltipActivator>().relic = r;
         }
     }
 
     public void RemoveRelic(Relic r)
     {
         obtainedRelics.Remove(r);
+    }
+
+    public void ClearRelics()
+    {
+        obtainedRelics.Clear();
+        foreach(Transform child in relicPanel.transform)
+        {
+            Destroy(child.gameObject);
+        }
     }
 
     public void OnRoundEnd()
