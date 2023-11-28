@@ -19,6 +19,9 @@ public class RelicManager : MonoBehaviour
     private Vector3EventListener OnLifeLostListener;
 
     [SerializeField]
+    private Relic TuneUpRelic;
+
+    [SerializeField]
     public List<Relic> obtainedRelics;
     void Awake()
     {
@@ -35,6 +38,12 @@ public class RelicManager : MonoBehaviour
     public bool ContainsRelic(Relic r)
     {
         return obtainedRelics.Contains(r);
+    }
+
+    //This is so bad
+    public bool ContainsTuneUp()
+    {
+        return ContainsRelic(TuneUpRelic);
     }
 
     public void AddRelic(Relic r)

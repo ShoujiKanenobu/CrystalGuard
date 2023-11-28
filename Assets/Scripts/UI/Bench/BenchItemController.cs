@@ -34,7 +34,7 @@ public class BenchItemController : MonoBehaviour, IBeginDragHandler, IDragHandle
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if (item == null)
+        if (item == null || GameManager.instance.isGamePaused())
             return;
         
         TowerBase d = item.GetComponent<TowerBase>();
@@ -56,7 +56,7 @@ public class BenchItemController : MonoBehaviour, IBeginDragHandler, IDragHandle
     public void OnEndDrag(PointerEventData eventData)
     {
         previewObj.SetActive(false);
-        if (item == null)
+        if (item == null || GameManager.instance.isGamePaused())
             return;
 
         AudioSourceProvider.instance.PlayClipOnSource(dropSound);
@@ -86,7 +86,7 @@ public class BenchItemController : MonoBehaviour, IBeginDragHandler, IDragHandle
 
     public void OnDrop(PointerEventData eventData)
     {
-        if (eventData.pointerDrag == this.gameObject)
+        if (eventData.pointerDrag == this.gameObject || GameManager.instance.isGamePaused())
             return;
 
         previewObj.SetActive(false);

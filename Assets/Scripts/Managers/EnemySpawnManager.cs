@@ -48,7 +48,12 @@ public class EnemySpawnManager : MonoBehaviour
 
     void Update()
     {
-        if(Time.time - lastSpawn > timeBetweenSpawns && spawnCount > 0 && waveSpawning)
+        if (GameManager.instance.state == GameState.RelicBuying)
+            AutoPlayToggle.interactable = false;
+        else if(AutoPlayToggle.interactable == false)
+            AutoPlayToggle.interactable = true;
+
+        if (Time.time - lastSpawn > timeBetweenSpawns && spawnCount > 0 && waveSpawning)
         {
             lastSpawn = Time.time;
             SpawnEnemy();
@@ -98,7 +103,7 @@ public class EnemySpawnManager : MonoBehaviour
 
     public void LoadNewWave()
     {
-        if (GameManager.instance.state == GameState.GameOver)
+        if (GameManager.instance.state == GameState.GameOver || GameManager.instance.state == GameState.Paused)
             return;
 
         int waveCount = waveNumber % waveStats.waves.Count;

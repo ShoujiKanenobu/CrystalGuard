@@ -112,6 +112,9 @@ public class MapManager : MonoBehaviour
     public void UpgradeTowerLimit()
     {
 
+        if (GameManager.instance.state == GameState.RelicBuying || GameManager.instance.state == GameState.Paused) 
+            return;
+
         if(GoldSystem.instance.SpendGold(CurrentUpgradeCost))
         {
             TowerLimit++;
@@ -124,6 +127,12 @@ public class MapManager : MonoBehaviour
             UpgradeText.transform.parent.gameObject.SetActive(false);
         else
             UpgradeText.transform.parent.gameObject.SetActive(true);
+    }
+
+    public void LoseTowerLimit()
+    {
+        TowerLimit--;
+        UpdateTowerText();
     }
     public void ResetLevel()
     {

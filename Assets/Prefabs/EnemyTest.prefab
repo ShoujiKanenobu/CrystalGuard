@@ -263,10 +263,11 @@ MonoBehaviour:
   DamageAmp: 0
   flashMaterial: {fileID: 2100000, guid: c6d61b96c26695a4cb549cc3caf417e2, type: 2}
   originalMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  hurtSound: {fileID: 7018076306628391773}
   darkheraldEvent: {fileID: 11400000, guid: 4ea580f93b065f345a6651304dace838, type: 2}
   darkheraldRelic: {fileID: 11400000, guid: 73a8825da54afe640a71077bf98c37d4, type: 2}
   EnemyDeathEvent: {fileID: 11400000, guid: 168b875266806364aa1830e8355142a8, type: 2}
+  cullingStrikeRelic: {fileID: 11400000, guid: f517c7ea4c82bd747be1e4b13b2fb40e, type: 2}
+  cullEffect: {fileID: 1576947433937734, guid: b544d70bfcfb8af408fce007029f2d07, type: 3}
 --- !u!114 &6715142513452413503
 MonoBehaviour:
   m_ObjectHideFlags: 0

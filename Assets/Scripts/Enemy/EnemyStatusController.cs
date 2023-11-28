@@ -45,7 +45,7 @@ public class EnemyStatusController : MonoBehaviour
     private float bleed;
     private float darkness;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         visualizer = GetComponent<EnemyStatusVisualizer>();
         healthController = GetComponent<EnemyHealthController>();

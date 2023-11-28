@@ -90,6 +90,11 @@ public abstract class TowerBase : MonoBehaviour, IBeginDragHandler, IDragHandler
 
     public void increaseLevel()
     {
+        if(RelicManager.instance.ContainsTuneUp())
+        {
+            GoldSystem.instance.GainGold(3);
+        }
+
         if (level < 3)
             level++;
         levelHandler.CheckStars(level);
@@ -172,7 +177,7 @@ public abstract class TowerBase : MonoBehaviour, IBeginDragHandler, IDragHandler
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if (!isMoveable())
+        if (!isMoveable() || GameManager.instance.isGamePaused())
             return;
 
         AudioSourceProvider.instance.PlayClipOnSource(pickupSound);
@@ -193,7 +198,7 @@ public abstract class TowerBase : MonoBehaviour, IBeginDragHandler, IDragHandler
 
     public void OnDrag(PointerEventData eventData)
     {
-        if (!isMoveable())
+        if (!isMoveable() || GameManager.instance.isGamePaused())
             return;
         GameObject previewObj = TowerBenchController.instance.previewObj;
         Vector3 nextPos = MapManager.instance.MousePositionWorld;
@@ -203,7 +208,7 @@ public abstract class TowerBase : MonoBehaviour, IBeginDragHandler, IDragHandler
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        if (!isMoveable())
+        if (!isMoveable() || GameManager.instance.isGamePaused())
             return;
         GameObject previewObj = TowerBenchController.instance.previewObj;
 

@@ -19,14 +19,16 @@ public class EnemyHealthController : MonoBehaviour
     private Coroutine flashRoutine;
 
     [SerializeField]
-    private AudioSource hurtSound; 
-
-    [SerializeField]
     private GameEvent darkheraldEvent;
     [SerializeField]
     private Relic darkheraldRelic;
     [SerializeField]
     private GameEvent EnemyDeathEvent;
+
+    [SerializeField]
+    private Relic cullingStrikeRelic;
+    [SerializeField]
+    private GameObject cullEffect;
     public void Init(int HP, int livesDamage)
     {
         if(sr == null)
@@ -63,10 +65,15 @@ public class EnemyHealthController : MonoBehaviour
         if(this.gameObject.activeSelf)
             flashRoutine = StartCoroutine(FlashDamage(0.1f));
 
-        //hurtSound.Play();
-
         if (HP <= 0)
             Die();
+
+        if (RelicManager.instance.ContainsRelic(cullingStrikeRelic) && (float)HP / (float)maxHP <= 0.1f)
+        {
+            Instantiate(cullEffect, this.transform.position, Quaternion.identity);
+            Die();
+        }
+        
 
         barUI.SetBarHP(HP, maxHP);
     }

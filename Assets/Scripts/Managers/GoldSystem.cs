@@ -44,6 +44,13 @@ public class GoldSystem : MonoBehaviour
         return true;
     }
 
+    public void ForceLoseGold(int i)
+    {
+        currentGold -= i;
+        if (currentGold < 0)
+            currentGold = 0;
+        changeUI();
+    }
     private void changeUI()
     {
         goldElement.text = currentGold.ToString();

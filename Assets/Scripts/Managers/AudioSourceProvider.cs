@@ -20,6 +20,8 @@ public class AudioSourceProvider : MonoBehaviour
 
     [SerializeField]
     private int initialPoolSize;
+    [SerializeField]
+    private int poolLimit;
     void Start()
     {
         if (instance != null && instance != this)
@@ -47,12 +49,16 @@ public class AudioSourceProvider : MonoBehaviour
             }   
         }
 
-        if (openSource == -1)
+        if (openSource == -1 && pool.Count <= poolLimit)
         {
             AudioSource asource = gameObject.AddComponent(typeof(AudioSource)) as AudioSource;
             pool.Add(asource);
             openSource = pool.Count - 1;
         }
+
+        if (openSource == -1)
+            return;
+
         pool[openSource].volume = info.volume;
         pool[openSource].clip = info.clip;
         pool[openSource].outputAudioMixerGroup = info.mixGroup;
