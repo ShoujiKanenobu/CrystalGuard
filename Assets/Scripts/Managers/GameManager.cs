@@ -210,14 +210,4 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 1f;
         }
     }
-
-    public void QuitGame()
-    {
-        //Possibly Remove!?!?!
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-#endif
-        Application.Quit();
-
-    }
 }
