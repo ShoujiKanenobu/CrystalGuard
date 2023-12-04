@@ -4,8 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class SceneLoadButton : MonoBehaviour
 {
-    [SerializeField]
-    private string targetScene;
+    public string targetScene;
 
     [SerializeField]
     private Animator anim;
