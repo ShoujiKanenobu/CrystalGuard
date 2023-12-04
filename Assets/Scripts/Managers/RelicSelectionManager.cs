@@ -32,11 +32,6 @@ public class RelicSelectionManager : MonoBehaviour
         Init();
     }
 
-    public void OnEnable()
-    {
-        Init();
-    }
-
     private void Init()
     {
         FillSlots();

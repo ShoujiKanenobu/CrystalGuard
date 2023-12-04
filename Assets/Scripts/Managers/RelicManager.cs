@@ -22,7 +22,7 @@ public class RelicManager : MonoBehaviour
     private Relic TuneUpRelic;
 
     [SerializeField]
-    public List<Relic> obtainedRelics;
+    public List<Relic> obtainedRelics  = new List<Relic>();
     void Awake()
     {
         if (instance != null && instance != this)
