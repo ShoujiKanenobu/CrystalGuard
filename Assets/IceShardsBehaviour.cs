@@ -43,6 +43,12 @@ public class IceShardsBehaviour : MonoBehaviour
             else
                 Debug.LogError("Couldn't find Pierce Bullet Controller on Ice shard.");
             currentAngle += step;
+
+            //Clamping, essentially
+            if (temp.transform.position.x > 50f || temp.transform.position.y > 50f || temp.transform.position.z > 50f)
+                Destroy(temp);
+            if (temp.transform.position.x < -50f || temp.transform.position.y < -50f || temp.transform.position.z < -50f)
+                Destroy(temp);
         }
     }
 }
