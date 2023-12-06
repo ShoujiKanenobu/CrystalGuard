@@ -9,6 +9,7 @@ public class PierceBulletController : MonoBehaviour
     public float duration;
     public int damage;
     public GameObject target;
+    public Vector3 direction;
     public DebuffInfo debuff;
 
     public float minHitDistance = 0.35f;
@@ -29,6 +30,12 @@ public class PierceBulletController : MonoBehaviour
             AudioSourceProvider.instance.PlayClipOnSource(sound);
             travelMagnitude = target.transform.position - this.transform.position;
             travelMagnitude = travelMagnitude.normalized;
+            this.transform.rotation = Quaternion.LookRotation(travelMagnitude);
+        }
+        else if(direction != null)
+        {
+            AudioSourceProvider.instance.PlayClipOnSource(sound);
+            travelMagnitude = direction.normalized;
             this.transform.rotation = Quaternion.LookRotation(travelMagnitude);
         }
         else

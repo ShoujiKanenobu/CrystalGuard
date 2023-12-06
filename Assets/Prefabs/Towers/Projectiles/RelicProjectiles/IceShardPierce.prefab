@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 1222159440896900}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 4209758916121126}
@@ -4951,7 +4951,7 @@ Transform:
   m_GameObject: {fileID: 1264819656396196}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 4209758916121126}
@@ -5081,10 +5081,9 @@ GameObject:
   - component: {fileID: 4209758916121126}
   - component: {fileID: 199329164939455274}
   - component: {fileID: 198075817535356192}
-  - component: {fileID: -6108006640029509508}
-  - component: {fileID: -1916447927260605855}
+  - component: {fileID: 3854205887271254562}
   m_Layer: 0
-  m_Name: IceTowerBullet
+  m_Name: IceShardPierce
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10001,7 +10000,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
---- !u!114 &-6108006640029509508
+--- !u!114 &3854205887271254562
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10010,37 +10009,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 1374267004960804}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 651d2e22879238747a29a7701294b095, type: 3}
+  m_Script: {fileID: 11500000, guid: aacd04d717728f548b671ce3db542efe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  radius: 0
   speed: 0
+  duration: 0
   damage: 0
   target: {fileID: 0}
-  minHitDistance: 0.35
+  direction: {x: 0, y: 0, z: 0}
   debuff: {fileID: 0}
+  minHitDistance: 0.35
   sound:
     clip: {fileID: 8300000, guid: 176a5e5eefe23fa40a37ffab336c547d, type: 3}
-    volume: 0.025
-    mixGroup: {fileID: -5316668263460104751, guid: 409e6ad4f4d5fba428211d0432a058dd, type: 2}
-  hitSound:
-    clip: {fileID: 8300000, guid: e185665b0d128a64684fb3c55495dd0e, type: 3}
     volume: 0.005
     mixGroup: {fileID: -5316668263460104751, guid: 409e6ad4f4d5fba428211d0432a058dd, type: 2}
---- !u!114 &-1916447927260605855
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1374267004960804}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ac1a69979b3adf4dbfb482d1f1a07ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shardPrefab: {fileID: 1374267004960804, guid: d173505013a122f47ad28a46d0d317e2, type: 3}
-  angles: 6
-  iceShardRelic: {fileID: 11400000, guid: 6fb03b9e764fbaa47b1ee423579233aa, type: 2}
+  hitSound:
+    clip: {fileID: 8300000, guid: 49d9c1e1808fa6840a518f66241ef754, type: 3}
+    volume: 0.005
+    mixGroup: {fileID: -5316668263460104751, guid: 409e6ad4f4d5fba428211d0432a058dd, type: 2}
 --- !u!1 &1831172876973338
 GameObject:
   m_ObjectHideFlags: 0
@@ -10068,7 +10055,7 @@ Transform:
   m_GameObject: {fileID: 1831172876973338}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.45, y: 0.45, z: 0.45}
+  m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 4209758916121126}
@@ -15015,7 +15002,7 @@ Transform:
   m_GameObject: {fileID: 1979158187693510}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 4209758916121126}
