@@ -25,7 +25,7 @@ public class IceShardsBehaviour : MonoBehaviour
 
         float randOffset = Random.value * 360f;
         float step = 360 / angles;
-        float currentAngle = 0f;
+        float currentAngle = randOffset;
         for (int i = 0; i < angles; i++)
         {
             GameObject temp = Instantiate(shardPrefab, this.transform.position, Quaternion.identity);

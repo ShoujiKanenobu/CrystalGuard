@@ -15,8 +15,8 @@ MonoBehaviour:
   shopIcon: {fileID: 0}
   range: 2
   debuff: {fileID: 0}
-  damage: 1
+  damage: 0
   attackspeed: 0
-  description: A tower that increases the damage of all other nearby towers.
+  description: A tower that increases the damage of all other nearby towers by 20.
   buff: 0
   buffAmount: 20

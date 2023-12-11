@@ -10,14 +10,14 @@ public class OrbitAroundPoint : MonoBehaviour
 
     private float rot;
 
-    private void OnEnable()
+    private void Awake()
     {
         rot = Random.Range(0, 12);
     }
 
     void Update()
     {
-        rot += Time.deltaTime * speed;
+        rot += Time.fixedDeltaTime * speed;
         transform.localPosition = new Vector3(Mathf.Cos(rot) * radius + point.x, Mathf.Sin(rot) * radius + point.y, point.z);
     }
 }

@@ -5,6 +5,8 @@ using TMPro;
 using UnityEngine.UI;
 public class EnemySpawnManager : MonoBehaviour
 {
+    public static EnemySpawnManager instance;
+
     public GameObject waveStartButton;
     public TextMeshProUGUI waveText;
     public GORuntimeSet enemySet;
@@ -34,6 +36,14 @@ public class EnemySpawnManager : MonoBehaviour
 
     [SerializeField]
     private RelicSelectionManager relicSelectionManager;
+
+    private void Awake()
+    {
+        if (instance != null && instance != this)
+            Destroy(this);
+        else
+            instance = this;
+    }
 
     public void Start()
     {
@@ -69,8 +79,8 @@ public class EnemySpawnManager : MonoBehaviour
             waveNumber++;
             if (waveNumber > waveStats.waves.Count - 1)
             {
-                if(waveNumber == waveStats.waves.Count && GameManager.instance.hasLives())
-                    StartCoroutine(GameManager.instance.TextForSeconds(3, "You beat all Waves! Going to endless mode..."));
+                if (waveNumber == waveStats.waves.Count && GameManager.instance.hasLives())
+                    GameManager.instance.WavesComplete();
                 loopMultiplier += loopModifierStepAmount;
             }
             AccountedForWave = true;
@@ -147,5 +157,10 @@ public class EnemySpawnManager : MonoBehaviour
     {
         yield return new WaitForSeconds(disableDelay);
         waveStartButton.SetActive(false);
+    }
+
+    public bool isWaveSpawning()
+    {
+        return waveSpawning;
     }
 }

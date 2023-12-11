@@ -45,6 +45,13 @@ public abstract class TowerBase : MonoBehaviour, IBeginDragHandler, IDragHandler
     public AudioPoolInfo pickupSound;
     public AudioPoolInfo dropSound;
 
+    [SerializeField]
+    private GameObject rangeBuffIndicator;
+    [SerializeField]
+    private GameObject damageBuffIndicator;
+    [SerializeField]
+    private GameObject attackSpeedBuffIndicator;
+
     public void Init()
     {
         
@@ -74,7 +81,7 @@ public abstract class TowerBase : MonoBehaviour, IBeginDragHandler, IDragHandler
 
     public void RadialActiveCheck()
     {
-        if (GameManager.instance.isEnemiesAlive())
+        if (GameManager.instance.isEnemiesAlive() || EnemySpawnManager.instance.isWaveSpawning())
             radialTimer.gameObject.SetActive(true);
         else
         {
@@ -153,6 +160,14 @@ public abstract class TowerBase : MonoBehaviour, IBeginDragHandler, IDragHandler
         bonusDamage = 0;
         bonusRange = 0;
 
+        if(attackSpeedBuffIndicator != null)
+        {
+            attackSpeedBuffIndicator.SetActive(false);
+            damageBuffIndicator.SetActive(false);
+            rangeBuffIndicator.SetActive(false);
+        }
+        
+
         foreach (var entry in buffs)
         {
             switch(entry.Value.bufftype)
@@ -168,6 +183,15 @@ public abstract class TowerBase : MonoBehaviour, IBeginDragHandler, IDragHandler
                     break;
             }
         }
+        if (attackSpeedBuffIndicator != null)
+        {
+            if (bonusAttackSpeed != 0)
+                attackSpeedBuffIndicator.SetActive(true);
+            if (bonusDamage != 0)
+                damageBuffIndicator.SetActive(true);
+            if (bonusRange != 0)
+                rangeBuffIndicator.SetActive(true);
+        }
     }
 
     public Vector3 GetLastLocation()
@@ -175,7 +199,7 @@ public abstract class TowerBase : MonoBehaviour, IBeginDragHandler, IDragHandler
         return lastLocation;
     }
 
-    public void OnBeginDrag(PointerEventData eventData)
+    public virtual void OnBeginDrag(PointerEventData eventData)
     {
         if (!isMoveable() || GameManager.instance.isGamePaused())
             return;
@@ -185,8 +209,12 @@ public abstract class TowerBase : MonoBehaviour, IBeginDragHandler, IDragHandler
         MapManager.instance.RemoveTower(transform.position);
         lastLocation = this.transform.position;
         this.transform.position = new Vector3(999, 999, 0);
+
+        buffs.Clear();
+        RecalculateBuffs();
+
         GameObject previewObj = TowerBenchController.instance.previewObj;
-        
+
         if(level >= 1)
             previewObj.GetComponent<TowerRangeIndicator>().ShowRadius(data[level - 1].range);
         else
@@ -208,7 +236,7 @@ public abstract class TowerBase : MonoBehaviour, IBeginDragHandler, IDragHandler
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        if (!isMoveable() || GameManager.instance.isGamePaused())
+        if (!isMoveable() || GameManager.instance.isGamePaused() || this.transform.position != new Vector3(999, 999, 0))
             return;
         GameObject previewObj = TowerBenchController.instance.previewObj;
 
@@ -247,7 +275,7 @@ public abstract class TowerBase : MonoBehaviour, IBeginDragHandler, IDragHandler
 
     public bool isMoveable()
     {
-        if (GameManager.instance.isEnemiesAlive() == false)
+        if (!GameManager.instance.isEnemiesAlive() && !EnemySpawnManager.instance.isWaveSpawning())
         {
             return true;
         }

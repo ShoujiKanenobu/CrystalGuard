@@ -9,14 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a437cffedb1fddd4f917e723d595f64d, type: 3}
-  m_Name: BuffTower 2
+  m_Script: {fileID: 11500000, guid: cf5504b4c0fbe2c4da5900e2dd03d3a2, type: 3}
+  m_Name: 1WaveTest
   m_EditorClassIdentifier: 
-  shopIcon: {fileID: 0}
-  range: 2
-  debuff: {fileID: 0}
-  damage: 0
-  attackspeed: 0
-  description: A tower that increases the damage of all other nearby towers by 11.
-  buff: 0
-  buffAmount: 11
+  waves:
+  - timeBetweenSpawns: 0.5
+    HP: 1
+    speed: 1
+    spawnCount: 1
+    livesDamage: 99
+    reward: 15
+    awardRelic: 0

@@ -47,7 +47,12 @@ public class GameManager : MonoBehaviour
 
     private bool isPaused;
     private GameState lastState;
-    
+
+    [SerializeField]
+    private GameObject VictoryScreen;
+    [SerializeField]
+    private GameObject LazyPauseButtonFix;
+
 
     public void Awake()
     {
@@ -90,6 +95,13 @@ public class GameManager : MonoBehaviour
             
     }
     
+    public void WavesComplete()
+    {
+        TogglePause(false);
+        VictoryScreen.SetActive(true);
+        LazyPauseButtonFix.SetActive(false);
+    }
+
     public void RequestStateChangeUpCast(int i)
     {
         RequestStateChange((GameState)i, false);

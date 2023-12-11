@@ -11,6 +11,12 @@ public class GoldSystem : MonoBehaviour
     public int currentGold;
     public int startingGold;
 
+    [SerializeField]
+    private GameObject floatText;
+    [SerializeField]
+    private Vector3 offset;
+
+
     public void Awake()
     {
         if (instance != null && instance != this)
@@ -31,6 +37,7 @@ public class GoldSystem : MonoBehaviour
     public void GainGold(int i)
     {
         currentGold += i;
+        createFloatingText("+" + i.ToString(), Color.green);
         changeUI();
     }
 
@@ -40,6 +47,7 @@ public class GoldSystem : MonoBehaviour
             return false;
 
         currentGold -= i;
+        createFloatingText("-" + i.ToString(), Color.red);
         changeUI();
         return true;
     }
@@ -54,6 +62,12 @@ public class GoldSystem : MonoBehaviour
     private void changeUI()
     {
         goldElement.text = currentGold.ToString();
+    }
+
+    private void createFloatingText(string newText, Color color)
+    {
+        GameObject temp = Instantiate(floatText, goldElement.transform);
+        temp.GetComponent<FloatingTextController>().Init(goldElement.transform.position + offset, newText, color, 3f, 80);
     }
 
 }

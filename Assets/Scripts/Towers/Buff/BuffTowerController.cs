@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using System.Linq;
 public class BuffTowerController : TowerBase
 {
@@ -20,7 +21,7 @@ public class BuffTowerController : TowerBase
     {
         RadialActiveCheck();
 
-        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, buffData[level - 1].range);
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, buffData[level - 1].range - 0.5f);
 
         foreach(Collider2D hit in hits)
         {
@@ -31,9 +32,10 @@ public class BuffTowerController : TowerBase
         }
     }
 
-    private void OnDestroy()
+    public override void OnBeginDrag(PointerEventData eventData)
     {
-        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, buffData[level - 1].range);
+
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, buffData[level - 1].range - 0.5f);
 
         foreach (Collider2D hit in hits)
         {
@@ -42,5 +44,7 @@ public class BuffTowerController : TowerBase
                 tower.RemoveBuff(GetTowerType());
             }
         }
+
+        base.OnBeginDrag(eventData);
     }
 }
