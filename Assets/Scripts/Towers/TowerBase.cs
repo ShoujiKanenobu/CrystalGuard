@@ -270,6 +270,9 @@ public abstract class TowerBase : MonoBehaviour, IBeginDragHandler, IDragHandler
             MapManager.instance.PlaceTower(lastLocation, this);
         }
         UpdateXPBar();
+        buffs.Clear();
+        RecalculateBuffs();
+
         GameManager.instance.RequestStateChange(GameState.FreeHover, false);
     }
 
