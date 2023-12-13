@@ -7,6 +7,9 @@ public class EnemySpawnManager : MonoBehaviour
 {
     public static EnemySpawnManager instance;
 
+    [SerializeField]
+    private bool DoubleLane;
+
     public GameObject waveStartButton;
     public TextMeshProUGUI waveText;
     public GORuntimeSet enemySet;
@@ -14,7 +17,9 @@ public class EnemySpawnManager : MonoBehaviour
     public Toggle AutoPlayToggle;
 
     public Vector3 SpawnTilePoint;
+    public Vector3 SecondarySpawnTilePoint;
     public List<Vector3> Path;
+    public List<Vector3> SecondPath;
     public GameObject enemyPrefab;
     public float disableDelay;
 
@@ -141,6 +146,22 @@ public class EnemySpawnManager : MonoBehaviour
             SetUpEnemy(newEnemy);
             EnemyPool.instance.ExpandPool(newEnemy);
         }
+        if (DoubleLane)
+        {
+            GameObject second = EnemyPool.instance.GetPooledObject();
+            if (second != null)
+            {
+                SetUpSecondEnemy(second);
+                second.SetActive(true);
+            }
+            else
+            {
+                second = Instantiate(enemyPrefab, new Vector3(-99, -99, 0), Quaternion.identity);
+                SetUpSecondEnemy(second);
+                EnemyPool.instance.ExpandPool(second);
+            };
+        }
+
         spawnCount--;
     }
 
@@ -150,6 +171,14 @@ public class EnemySpawnManager : MonoBehaviour
         newEnemy.transform.position = SpawnTilePoint + new Vector3(Random.Range(0f + bufferZone, 1f - bufferZone), Random.Range(0f + bufferZone, 1f - bufferZone));
         newEnemy.transform.rotation = Quaternion.Euler(0, 0, 0);
         newEnemy.GetComponent<EnemyMovementController>().Init(new List<Vector3>(Path), waveStats.waves[waveCount].speed);
+        newEnemy.GetComponent<EnemyHealthController>().Init((int)(waveStats.waves[waveCount].HP * loopMultiplier), waveStats.waves[waveCount].livesDamage);
+    }
+    private void SetUpSecondEnemy(GameObject newEnemy)
+    {
+        int waveCount = waveNumber % waveStats.waves.Count;
+        newEnemy.transform.position = SecondarySpawnTilePoint + new Vector3(Random.Range(0f + bufferZone, 1f - bufferZone), Random.Range(0f + bufferZone, 1f - bufferZone));
+        newEnemy.transform.rotation = Quaternion.Euler(0, 0, 0);
+        newEnemy.GetComponent<EnemyMovementController>().Init(new List<Vector3>(SecondPath), waveStats.waves[waveCount].speed);
         newEnemy.GetComponent<EnemyHealthController>().Init((int)(waveStats.waves[waveCount].HP * loopMultiplier), waveStats.waves[waveCount].livesDamage);
     }
 
