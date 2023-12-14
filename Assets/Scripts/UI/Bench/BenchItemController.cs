@@ -73,6 +73,8 @@ public class BenchItemController : MonoBehaviour, IBeginDragHandler, IDragHandle
                 item.transform.position = MapManager.instance.MousePositionGrid + new Vector3(0.5f, 0.5f, 0);
                 MapManager.instance.PlaceTower((Vector3)MapManager.instance.MousePositionGrid, item.GetComponent<TowerBase>());
                 item.SetActive(true);
+                if(EnemySpawnManager.instance.isWaveSpawning())
+                    item.GetComponent<TowerBase>().SetOnCooldown();
                 ClearSlot();
             }
             else if(MapManager.instance.GetTowerAtMousePositionGrid().GetTowerType() == item.GetComponent<TowerBase>().GetTowerType())

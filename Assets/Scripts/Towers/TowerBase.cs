@@ -248,7 +248,7 @@ public abstract class TowerBase : MonoBehaviour, IBeginDragHandler, IDragHandler
         {
             this.transform.position = MapManager.instance.MousePositionGrid + new Vector3(0.5f, 0.5f, 0);
             MapManager.instance.PlaceTower(transform.position, this);
-            radialTimer.SetCooldown(moveCooldown);
+            SetOnCooldown();
         }
         else if (MapManager.instance.IsBuildableAtTile(MapManager.instance.MousePositionGrid) && 
             MapManager.instance.GetTowerAtMousePositionGrid().GetTowerType() == GetTowerType())
@@ -289,5 +289,10 @@ public abstract class TowerBase : MonoBehaviour, IBeginDragHandler, IDragHandler
         }
 
         return false;
+    }
+
+    public void SetOnCooldown()
+    {
+        radialTimer.SetCooldown(moveCooldown);
     }
 }
