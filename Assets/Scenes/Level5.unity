@@ -4696,7 +4696,6 @@ GameObject:
   - component: {fileID: 2183327210888858559}
   - component: {fileID: 4140142187152204901}
   - component: {fileID: 4140142187152204902}
-  - component: {fileID: 4140142187152204903}
   m_Layer: 0
   m_Name: Grid
   m_TagString: Untagged
@@ -4917,18 +4916,6 @@ SortingGroup:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_SortAtRoot: 0
---- !u!114 &4140142187152204903
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2556263644302318504}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8e00ec5de9d0934eaec0bf0334cc593, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1839735485 &4274191703619740007
 Tilemap:
   m_ObjectHideFlags: 0
