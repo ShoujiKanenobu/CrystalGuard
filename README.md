@@ -15,4 +15,4 @@ Gameplay Overhaul started on October 6th
 
 First alpha test ran from November 15th 2023 - December 1st 2023.
 
-To be continued...
+internal Beta test running currently!
