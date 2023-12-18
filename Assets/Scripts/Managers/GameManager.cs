@@ -182,7 +182,7 @@ public class GameManager : MonoBehaviour
         }
 
         LifeLostEvent.Raise();
-        LifeLostEvent.Raise(this.transform.position);
+        LifeLostEvent.Raise(shrineSR.transform.position);
 
         if (flashRoutine != null)
             StopCoroutine(flashRoutine);
