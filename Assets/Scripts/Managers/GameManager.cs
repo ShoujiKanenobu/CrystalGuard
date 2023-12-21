@@ -10,6 +10,9 @@ public enum GameState
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField]
+    private string prefsName;
+
     public float dotTickRate;
     public int startingLives;
     public static GameManager instance;
@@ -100,6 +103,7 @@ public class GameManager : MonoBehaviour
         TogglePause(false);
         VictoryScreen.SetActive(true);
         LazyPauseButtonFix.SetActive(false);
+        PlayerPrefs.SetInt(prefsName, 1);
     }
 
     public void RequestStateChangeUpCast(int i)

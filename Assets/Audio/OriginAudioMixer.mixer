@@ -95,7 +95,17 @@ AudioMixerController:
   m_SuspendThreshold: -80
   m_EnableSuspend: 1
   m_UpdateMode: 0
-  m_ExposedParameters: []
+  m_ExposedParameters:
+  - guid: a5493ea829c140f4ab5a24b0f7a1206a
+    name: BackgroundParam
+  - guid: c4deab07940b8444aacc63fbdeb79fac
+    name: EnemyParam
+  - guid: 83c30f589a1d5e54c9c9499a25de5ac9
+    name: MasterParam
+  - guid: fbd4e0747e2ddcd4180b57467eb7ef32
+    name: TowersParam
+  - guid: 833c5c9b0069d72489898e0d98af2e09
+    name: UIParam
   m_AudioMixerGroupViews:
   - guids:
     - dacd4116c686e6241b38c8bd82aa3e3e
@@ -155,6 +165,7 @@ AudioMixerSnapshotController:
   m_FloatValues:
     fbd4e0747e2ddcd4180b57467eb7ef32: 0.44032478
     c4deab07940b8444aacc63fbdeb79fac: -0.08374829
+    83c30f589a1d5e54c9c9499a25de5ac9: -0.27209902
     a5493ea829c140f4ab5a24b0f7a1206a: -4.9356413
   m_TransitionOverrides: {}
 --- !u!244 &3552589137334664961

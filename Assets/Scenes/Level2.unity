@@ -8836,7 +8836,7 @@ Camera:
   far clip plane: 100
   field of view: 60
   orthographic: 1
-  orthographic size: 5.3413267
+  orthographic size: 5.3425155
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -9176,6 +9176,10 @@ PrefabInstance:
       propertyPath: shrineSR
       value: 
       objectReference: {fileID: 1412042105}
+    - target: {fileID: 6556777775655439987, guid: bf5cf7646e0320545991b73dca82fe23, type: 3}
+      propertyPath: prefsName
+      value: lvl2
+      objectReference: {fileID: 0}
     - target: {fileID: 6686714002916969421, guid: bf5cf7646e0320545991b73dca82fe23, type: 3}
       propertyPath: previewObj
       value: 

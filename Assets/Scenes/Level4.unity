@@ -9213,6 +9213,10 @@ PrefabInstance:
       propertyPath: shrineSR
       value: 
       objectReference: {fileID: 1412042105}
+    - target: {fileID: 6556777775655439987, guid: bf5cf7646e0320545991b73dca82fe23, type: 3}
+      propertyPath: prefsName
+      value: lvl4
+      objectReference: {fileID: 0}
     - target: {fileID: 6686714002916969421, guid: bf5cf7646e0320545991b73dca82fe23, type: 3}
       propertyPath: previewObj
       value: 
