@@ -131,6 +131,13 @@ public class TowerSelectionController : MonoBehaviour
     public void PurchaseTower(int i)
     {
         previewObj.SetActive(false);
+
+        if(TowerBenchController.instance.isBenchFull())
+        {
+            GameManager.instance.FullBenchMessage();
+            return;
+        }
+
         if (!GoldSystem.instance.SpendGold(cost))
         {
             GameManager.instance.InsufficientGoldMessage();

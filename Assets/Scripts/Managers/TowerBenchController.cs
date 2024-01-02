@@ -35,6 +35,25 @@ public class TowerBenchController : MonoBehaviour
         }
     }
 
+    public bool isBenchFull()
+    {
+        int emptyIndex = -1;
+        int currentIndex = 0;
+        foreach (BenchItemController i in inv)
+        {
+            if (i.item == null)
+            {
+                emptyIndex = currentIndex;
+                break;
+            }
+            currentIndex++;
+        }
+
+        if (emptyIndex == -1)
+            return true;
+        return false;
+    }
+
     public void AddTowerToBench(WeightedItem<GameObject> item)
     {
         int emptyIndex = -1;

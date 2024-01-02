@@ -201,6 +201,9 @@ public abstract class TowerBase : MonoBehaviour, IBeginDragHandler, IDragHandler
 
     public virtual void OnBeginDrag(PointerEventData eventData)
     {
+        if (eventData.button == PointerEventData.InputButton.Right)
+            return;
+
         if (!isMoveable() || GameManager.instance.isGamePaused())
             return;
 
@@ -226,6 +229,9 @@ public abstract class TowerBase : MonoBehaviour, IBeginDragHandler, IDragHandler
 
     public void OnDrag(PointerEventData eventData)
     {
+        if (eventData.button == PointerEventData.InputButton.Right)
+            return;
+
         if (!isMoveable() || GameManager.instance.isGamePaused())
             return;
         GameObject previewObj = TowerBenchController.instance.previewObj;
@@ -236,8 +242,12 @@ public abstract class TowerBase : MonoBehaviour, IBeginDragHandler, IDragHandler
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        if (eventData.button == PointerEventData.InputButton.Right)
+            return;
+
         if (!isMoveable() || GameManager.instance.isGamePaused() || this.transform.position != new Vector3(999, 999, 0))
             return;
+
         GameObject previewObj = TowerBenchController.instance.previewObj;
 
         previewObj.SetActive(false);

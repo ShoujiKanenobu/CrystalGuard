@@ -56,6 +56,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject LazyPauseButtonFix;
 
+    public bool leftMousePressed;
+    public bool rightMousePressed;
 
     public void Awake()
     {
@@ -196,6 +198,7 @@ public class GameManager : MonoBehaviour
 
         if(Lives <= 0)
         {
+            LazyPauseButtonFix.SetActive(false);
             RequestStateChange(GameState.GameOver, false);
         }
     }

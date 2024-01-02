@@ -34,9 +34,12 @@ public class BenchItemController : MonoBehaviour, IBeginDragHandler, IDragHandle
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        if (eventData.button == PointerEventData.InputButton.Right)
+            return;
+
         if (item == null || GameManager.instance.isGamePaused())
             return;
-        
+
         TowerBase d = item.GetComponent<TowerBase>();
         previewObj.GetComponent<TowerRangeIndicator>().ShowRadius(d.data[0].range);
         previewObj.GetComponent<SpriteRenderer>().sprite = d.data[0].shopIcon;
@@ -46,8 +49,12 @@ public class BenchItemController : MonoBehaviour, IBeginDragHandler, IDragHandle
 
     public void OnDrag(PointerEventData eventData)
     {
+        if (eventData.button == PointerEventData.InputButton.Right)
+            return;
+
         if (item == null)
             return;
+
         Vector3 nextPos = MapManager.instance.MousePositionWorld;
         nextPos.z = 0;
         previewObj.transform.position = nextPos;
@@ -55,11 +62,17 @@ public class BenchItemController : MonoBehaviour, IBeginDragHandler, IDragHandle
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        previewObj.SetActive(false);
-        if (item == null || GameManager.instance.isGamePaused())
+        if (eventData.button == PointerEventData.InputButton.Right)
             return;
 
+        previewObj.SetActive(false);
+        if (item == null || GameManager.instance.isGamePaused())
+        {
+            return;
+        }
+                
         AudioSourceProvider.instance.PlayClipOnSource(dropSound);
+
 
         if (MapManager.instance.IsBuildableAtTile(MapManager.instance.MousePositionGrid))
         {
@@ -83,11 +96,13 @@ public class BenchItemController : MonoBehaviour, IBeginDragHandler, IDragHandle
                     ClearSlot();
             }
         }
-        
     }
 
     public void OnDrop(PointerEventData eventData)
     {
+        if (eventData.button == PointerEventData.InputButton.Right)
+            return;
+
         if (eventData.pointerDrag == this.gameObject || GameManager.instance.isGamePaused())
             return;
 

@@ -9,7 +9,7 @@ public class HoverTooltip : MonoBehaviour
     private bool IsActive = false;
 
     Camera cam;
-    Vector3 min = new Vector3(0, 0, 0);
+    Vector3 min = new Vector3(5, 5, 5);
     Vector3 max;
     RectTransform rect;
     [SerializeField]
@@ -43,7 +43,7 @@ public class HoverTooltip : MonoBehaviour
         }
         else
         {
-            transform.position = new Vector3(-99, -99, -99);
+            transform.position = new Vector3(-999, -999, -999);
         }
     }
 

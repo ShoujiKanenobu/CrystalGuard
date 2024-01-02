@@ -1506,6 +1506,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 8622624046136592394}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!1 &1666851485100869139
 GameObject:
   m_ObjectHideFlags: 0
@@ -1685,11 +1697,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b1c548a4b2322d4d85a1344965ca0ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DoubleLane: 0
   waveStartButton: {fileID: 7716052985855504669}
   waveText: {fileID: 7484149004027859576}
   enemySet: {fileID: 11400000, guid: 4402d6d24296517449cb45674d9852b1, type: 2}
   AutoPlayToggle: {fileID: 9163272046734373150}
   SpawnTilePoint: {x: -7, y: 0, z: 0}
+  SecondarySpawnTilePoint: {x: 0, y: 0, z: 0}
   Path:
   - {x: -2, y: 0, z: 0}
   - {x: -2, y: -2, z: 0}
@@ -1698,6 +1712,7 @@ MonoBehaviour:
   - {x: 3, y: -3, z: 0}
   - {x: 3, y: -2, z: 0}
   - {x: 6, y: -2, z: 0}
+  SecondPath: []
   enemyPrefab: {fileID: 899680644198547242, guid: a922e8b9c3d386446a7546ee39ee0951, type: 3}
   disableDelay: 0.01
   bufferZone: 0.2
@@ -9418,6 +9433,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 543d260595218514a9cb53dc9dc87f41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefsName: 
   dotTickRate: 1
   startingLives: 10
   infoText: {fileID: 4671597891364777102}
@@ -9435,6 +9451,8 @@ MonoBehaviour:
   glancingBlow: {fileID: 11400000, guid: e2c15d43b13c3aa42a7d78214fd5a186, type: 2}
   VictoryScreen: {fileID: 516246644968271299}
   LazyPauseButtonFix: {fileID: 8622624046136592394}
+  leftMousePressed: 0
+  rightMousePressed: 0
 --- !u!114 &6435973835621922918
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10553,7 +10571,7 @@ MonoBehaviour:
   cost: 3
   rerollCost: 1
   normalColor: {r: 0.46226418, g: 0.46226418, b: 0.46226418, a: 0.4}
-  freezeColor: {r: 0.28324133, g: 0.5874688, b: 0.6320754, a: 0.4}
+  freezeColor: {r: 0, g: 0.29184255, b: 0.6132076, a: 0.7529412}
   previewObj: {fileID: 0}
   infoText: {fileID: 9160171981947013153}
   resourceUI: {fileID: 7587916247011740515}
