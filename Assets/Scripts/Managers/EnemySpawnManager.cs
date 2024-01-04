@@ -110,6 +110,7 @@ public class EnemySpawnManager : MonoBehaviour
         AccountedForWave = true;
         loopMultiplier = 1;
         waveText.text = "Wave: " + (waveNumber + 1);
+        AutoPlayToggle.isOn = false;
         while (enemySet.Items.Count > 0)
         {
             enemySet.Items[0].SetActive(false);

@@ -114,6 +114,8 @@ public class BenchItemController : MonoBehaviour, IBeginDragHandler, IDragHandle
         {
             if (!eventData.pointerDrag.GetComponent<TowerBase>().isMoveable())
                 return;
+            eventData.pointerDrag.GetComponent<TowerBase>().buffs.Clear();
+            eventData.pointerDrag.GetComponent<TowerBase>().RecalculateBuffs();
 
             if (item == null)
             {
