@@ -35,7 +35,7 @@ public class PierceTowerController : TowerBase
             if (Time.time > nextAttack && target != null)
             {
                 Shoot();
-                float finalattackspeed = bulletData[level - 1].attackspeed - bonusAttackSpeed;
+                float finalattackspeed = bulletData[level - 1].attackspeed - bonusAttackSpeed - RelicBonusStatTracker.instance.AttackspeedIncrease;
                 finalattackspeed = Mathf.Max(finalattackspeed, 0.01f);
                 nextAttack = Time.time + finalattackspeed;
             }
@@ -43,7 +43,8 @@ public class PierceTowerController : TowerBase
     }
     public void FindTargetInRange()
     {
-        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, bulletData[level - 1].range + bonusRange);
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, bulletData[level - 1].range 
+            + bonusRange + RelicBonusStatTracker.instance.RangeIncrease);
 
         if (target != null)
         {
@@ -78,8 +79,8 @@ public class PierceTowerController : TowerBase
         if (pbc != null)
         {
             pbc.duration = bt.duration;
-            pbc.radius = bt.radius;
-            pbc.speed = bt.projSpeed;
+            pbc.radius = bt.radius + RelicBonusStatTracker.instance.AOEIncrease;
+            pbc.speed = bt.projSpeed + RelicBonusStatTracker.instance.ProjectileSpeedIncrease;
             pbc.damage = bt.damage + (int)bonusDamage;
             pbc.target = target.gameObject;
             if (bt.debuff != null)

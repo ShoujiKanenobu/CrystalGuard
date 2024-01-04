@@ -18,6 +18,6 @@ MonoBehaviour:
   damage: 0
   attackspeed: 0
   description: A tower that increases the attack speed of all other nearby towers
-    by .25
+    by 25
   buff: 1
   buffAmount: 0.025

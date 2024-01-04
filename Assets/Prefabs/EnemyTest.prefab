@@ -212,6 +212,8 @@ MonoBehaviour:
   speed: 1
   baseSpeed: 0
   distanceTraveled: 0
+  distanceRelic: {fileID: 11400000, guid: f34977a128e0549459834b25bfed5da0, type: 2}
+  relicDistanceTillDamage: 5
 --- !u!58 &3313337591351155869
 CircleCollider2D:
   m_ObjectHideFlags: 0

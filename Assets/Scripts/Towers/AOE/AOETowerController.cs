@@ -36,7 +36,7 @@ public class AOETowerController : TowerBase
             if (Time.time > nextAttack && target != null)
             {
                 Shoot();
-                float finalattackspeed = aoeData[level - 1].attackspeed - bonusAttackSpeed;
+                float finalattackspeed = aoeData[level - 1].attackspeed - bonusAttackSpeed - RelicBonusStatTracker.instance.AttackspeedIncrease;
                 finalattackspeed = Mathf.Max(finalattackspeed, 0.01f);
                 nextAttack = Time.time + finalattackspeed;
             }
@@ -44,7 +44,7 @@ public class AOETowerController : TowerBase
     }
     public void FindTargetInRange()
     {
-        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, aoeData[level - 1].range + bonusRange);
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, aoeData[level - 1].range + bonusRange + RelicBonusStatTracker.instance.RangeIncrease);
 
         if (target != null)
         {
@@ -77,9 +77,9 @@ public class AOETowerController : TowerBase
 
         AOEBulletController tempABC = temp.GetComponent<AOEBulletController>();
         tempABC.AOE = ad.explosion;
-        tempABC.radius = ad.radius;
+        tempABC.radius = ad.radius + RelicBonusStatTracker.instance.AOEIncrease;
         tempABC.duration = ad.duration;
-        tempABC.speed = ad.projSpeed;
+        tempABC.speed = ad.projSpeed + RelicBonusStatTracker.instance.ProjectileSpeedIncrease;
         tempABC.damage = ad.damage + (int)bonusDamage;
         tempABC.target = target.gameObject;
         tempABC.delay = ad.delay;

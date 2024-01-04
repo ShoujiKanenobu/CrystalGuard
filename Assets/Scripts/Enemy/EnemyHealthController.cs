@@ -31,7 +31,9 @@ public class EnemyHealthController : MonoBehaviour
     private GameObject cullEffect;
     public void Init(int HP, int livesDamage)
     {
-        if(sr == null)
+        HP = HP - (int)RelicBonusStatTracker.instance.EnemyHealthDecrease;
+
+        if (sr == null)
             sr = GetComponent<SpriteRenderer>();
         this.HP = HP;
         this.maxHP = HP;
@@ -58,7 +60,7 @@ public class EnemyHealthController : MonoBehaviour
         if (barUI.gameObject.activeSelf == false)
             barUI.gameObject.SetActive(true);
 
-        HP -= (int)(damage * DamageAmp);
+        HP -= (int)(damage * DamageAmp) + (int)RelicBonusStatTracker.instance.DamageIncrease;
 
         if (flashRoutine != null)
             StopCoroutine(flashRoutine);

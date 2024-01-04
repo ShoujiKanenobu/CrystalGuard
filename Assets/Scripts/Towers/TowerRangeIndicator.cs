@@ -15,6 +15,7 @@ public class TowerRangeIndicator : MonoBehaviour
 
     void DrawRangeIndicator(int steps, float radius)
     {
+        radius = radius + RelicBonusStatTracker.instance.RangeIncrease;
         //Code from: https://www.youtube.com/watch?v=DdAfwHYNFOE
 
         circleLR.positionCount = steps;

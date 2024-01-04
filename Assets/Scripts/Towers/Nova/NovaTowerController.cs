@@ -35,7 +35,7 @@ public class NovaTowerController : TowerBase
             if (Time.time > nextAttack && targets.Count != 0)
             {
                 Shoot();
-                float finalattackspeed = novaData[level - 1].attackspeed - bonusAttackSpeed;
+                float finalattackspeed = novaData[level - 1].attackspeed - bonusAttackSpeed - RelicBonusStatTracker.instance.AttackspeedIncrease;
                 finalattackspeed = Mathf.Max(finalattackspeed, 0.01f);
                 nextAttack = Time.time + finalattackspeed;
             }
@@ -51,7 +51,7 @@ public class NovaTowerController : TowerBase
         tempNC.rotationSpeed = nt.rotationSpeed;
         tempNC.damage = nt.damage + (int)bonusDamage;
         tempNC.expandRate = nt.expandSpeed;
-        tempNC.range = nt.range;
+        tempNC.range = nt.range + RelicBonusStatTracker.instance.RangeIncrease;
         if (nt.debuff != null)
             tempNC.debuff = nt.debuff;
     }
@@ -59,7 +59,7 @@ public class NovaTowerController : TowerBase
     public bool FindTargetsInRange()
     {
         targets.Clear();
-        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, novaData[level - 1].range);
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, novaData[level - 1].range + RelicBonusStatTracker.instance.RangeIncrease);
         if (hits.Length == 0)
             return false;
 

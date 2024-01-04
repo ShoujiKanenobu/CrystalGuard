@@ -7,6 +7,12 @@ public struct WeightedItem<T>
 {
     public T item;
     public int weight;
+    public WeightedItem(int w)
+    {
+        item = default(T);
+        weight = w;
+    }
+
 }
 
 [System.Serializable]
@@ -65,6 +71,6 @@ public class WeightedRandom<T> : ScriptableObject
             }
             roll -= x.weight;
         }
-        return default;
+        return new WeightedItem<T>(-1);
     }
 }

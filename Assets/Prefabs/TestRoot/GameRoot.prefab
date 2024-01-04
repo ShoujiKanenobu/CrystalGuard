@@ -1518,6 +1518,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 6753708510923442908}
+        m_TargetAssemblyTypeName: RelicBonusStatTracker, Assembly-CSharp
+        m_MethodName: ResetStats
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!1 &1666851485100869139
 GameObject:
   m_ObjectHideFlags: 0
@@ -4637,6 +4649,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 6753708510923442908}
+        m_TargetAssemblyTypeName: RelicBonusStatTracker, Assembly-CSharp
+        m_MethodName: ResetStats
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4126378772495601725
 GameObject:
   m_ObjectHideFlags: 0
@@ -6726,6 +6750,7 @@ GameObject:
   - component: {fileID: 7483781397161335343}
   - component: {fileID: 878366849022242827}
   - component: {fileID: 3829796290702173963}
+  - component: {fileID: 6753708510923442908}
   m_Layer: 0
   m_Name: RelicManager
   m_TagString: Untagged
@@ -6781,6 +6806,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   random: {fileID: 11400000, guid: 476434b271a061a43b42e81caa06bb8e, type: 2}
   panel: {fileID: 4126378772495601725}
+  rarityTitle: {fileID: 4342513926673521349}
   previewName: {fileID: 6530017306876989339}
   previewDescription: {fileID: 2873641916693823185}
   option1Text: {fileID: 3726941899738733105}
@@ -6832,6 +6858,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Event: {fileID: 11400000, guid: c2c4ec0c7c4bb654588eb1659b53ca54, type: 2}
+--- !u!114 &6753708510923442908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6033019395467783690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10114a47a35750042939e51ff7528e26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DamageIncrease: 0
+  RangeIncrease: 0
+  AttackspeedIncrease: 0
+  EnemySlow: 0
+  AOEIncrease: 0
+  ProjectileSpeedIncrease: 0
+  EnemyHealthDecrease: 0
 --- !u!1 &6173776900391258172
 GameObject:
   m_ObjectHideFlags: 0

@@ -35,7 +35,7 @@ public class BulletTowerController : TowerBase
             if (Time.time > nextAttack && target != null)
             {
                 Shoot();
-                float finalattackspeed = bulletData[level - 1].attackspeed - bonusAttackSpeed;
+                float finalattackspeed = bulletData[level - 1].attackspeed - bonusAttackSpeed - RelicBonusStatTracker.instance.AttackspeedIncrease;
                 finalattackspeed = Mathf.Max(finalattackspeed, 0.01f);
                 nextAttack = Time.time + finalattackspeed;
             }
@@ -43,7 +43,8 @@ public class BulletTowerController : TowerBase
     }
     public void FindTargetInRange()
     {
-        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, bulletData[level - 1].range + bonusRange);
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, bulletData[level - 1].range
+            + bonusRange + RelicBonusStatTracker.instance.RangeIncrease);
 
         if (target != null)
         {
@@ -77,7 +78,7 @@ public class BulletTowerController : TowerBase
         BulletController tempBC = temp.GetComponent<BulletController>();
         if (tempBC != null)
         {
-            tempBC.speed = bt.projSpeed;
+            tempBC.speed = bt.projSpeed  + RelicBonusStatTracker.instance.ProjectileSpeedIncrease;
             tempBC.damage = bt.damage + (int)bonusDamage;
             tempBC.target = target.gameObject;
             if (bt.debuff != null)

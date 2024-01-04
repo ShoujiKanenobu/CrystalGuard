@@ -20,12 +20,18 @@ public class EnemyMovementController : MonoBehaviour
     private Vector3 offset;
     private Vector3 lastPos;
 
-
+    [SerializeField]
+    private Relic distanceRelic;
+    private float relicTravelAmount;
+    [SerializeField]
+    private float relicDistanceTillDamage;
     public void Init(List<Vector3> Pathing, float speed)
     {
+        speed = speed - RelicBonusStatTracker.instance.EnemySlow;
         this.speed = speed;
         baseSpeed = speed;
         targetPositions = Pathing;
+        relicTravelAmount = 0;
     }
 
     private void OnEnable()
@@ -56,6 +62,17 @@ public class EnemyMovementController : MonoBehaviour
         Vector3 travelDist = transform.position - lastPos;
         distanceTraveled += travelDist.magnitude;
         lastPos = this.transform.position;
+
+        //Ground Thorns Relic Behaviour
+        if(RelicManager.instance.ContainsRelic(distanceRelic))
+        {
+            relicTravelAmount += travelDist.magnitude;
+            if (relicTravelAmount >= relicDistanceTillDamage)
+            {
+                healthController.TakeDamage(1 + Mathf.CeilToInt(speed));
+                relicTravelAmount = 0;
+            }
+        }
 
         if(Vector3.Distance(this.transform.position, targetPositions[currentTargetIndex]) < minDistFromTarget)
         {

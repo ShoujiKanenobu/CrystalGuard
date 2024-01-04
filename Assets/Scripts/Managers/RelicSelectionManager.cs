@@ -10,6 +10,8 @@ public class RelicSelectionManager : MonoBehaviour
 
     public GameObject panel;
 
+    public TextMeshProUGUI rarityTitle;
+
     public TextMeshProUGUI previewName;
     public TextMeshProUGUI previewDescription;
 
@@ -51,14 +53,49 @@ public class RelicSelectionManager : MonoBehaviour
     {
         ClearCurrentItems();
 
+        RelicRarity rarity = RollRandomRarity();
+
+        SetRarityText(rarity);
+
         List<Relic> blacklist = new List<Relic>(RelicManager.instance.obtainedRelics);
-        currentItems[0] = random.RollforUniqueItem(blacklist).item;
+        currentItems[0] = random.RarityRoll(blacklist, rarity).item;
         blacklist.Add(currentItems[0]);
-        currentItems[1] = random.RollforUniqueItem(blacklist).item;
+        currentItems[1] = random.RarityRoll(blacklist, rarity).item;
         blacklist.Add(currentItems[1]);
-        currentItems[2] = random.RollforUniqueItem(blacklist).item;
+        currentItems[2] = random.RarityRoll(blacklist, rarity).item;
 
         UpdateChoiceUI();
+    }
+
+    private void SetRarityText(RelicRarity r)
+    {
+        switch(r)
+        {
+            case RelicRarity.common:
+                rarityTitle.text = "Select a Common Power";
+                break;
+            case RelicRarity.uncommon:
+                rarityTitle.text = "Select a Uncommon Power";
+                break;
+            case RelicRarity.rare:
+                rarityTitle.text = "Select a Rare Power";
+                break;
+            case RelicRarity.legendary:
+                rarityTitle.text = "Select a LEGENDARY Power";
+                break;
+        }
+    }
+
+    private RelicRarity RollRandomRarity()
+    {
+        float x = Random.Range(0, 100);
+        if (x <= 50)
+            return RelicRarity.common;
+        if (x <= 75)
+            return RelicRarity.uncommon;
+        if (x <= 90)
+            return RelicRarity.rare;
+        return RelicRarity.legendary;
     }
 
     private bool InCurrentItems(Relic r)
