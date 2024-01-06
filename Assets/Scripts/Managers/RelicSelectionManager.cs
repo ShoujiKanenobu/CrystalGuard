@@ -8,6 +8,11 @@ public class RelicSelectionManager : MonoBehaviour
     [SerializeField]
     private RelicRandom random;
 
+    [SerializeField]
+    public WeightedItemListRelic itemsClean;
+
+    private List<WeightedItem<Relic>> availableItems;
+
     public GameObject panel;
 
     public TextMeshProUGUI rarityTitle;
@@ -30,8 +35,14 @@ public class RelicSelectionManager : MonoBehaviour
 
     public void Start()
     {
-        random.RecalculateWeights();
+        availableItems = new List<WeightedItem<Relic>>(itemsClean.items);
+        random.RecalculateWeights(availableItems);
         Init();
+    }
+
+    public void ResetAvailableItems()
+    {
+        availableItems = new List<WeightedItem<Relic>>(itemsClean.items);
     }
 
     private void Init()
@@ -56,13 +67,19 @@ public class RelicSelectionManager : MonoBehaviour
         RelicRarity rarity = RollRandomRarity();
 
         SetRarityText(rarity);
+        WeightedItem<Relic> tempHold;
 
-        List<Relic> blacklist = new List<Relic>(RelicManager.instance.obtainedRelics);
-        currentItems[0] = random.RarityRoll(blacklist, rarity).item;
-        blacklist.Add(currentItems[0]);
-        currentItems[1] = random.RarityRoll(blacklist, rarity).item;
-        blacklist.Add(currentItems[1]);
-        currentItems[2] = random.RarityRoll(blacklist, rarity).item;
+        tempHold = random.RarityRoll(availableItems, rarity);
+        currentItems[0] = tempHold.item;
+        availableItems.Remove(tempHold);
+
+        tempHold = random.RarityRoll(availableItems, rarity);
+        currentItems[1] = tempHold.item;
+        availableItems.Remove(tempHold);
+
+        tempHold = random.RarityRoll(availableItems, rarity);
+        currentItems[2] = tempHold.item;
+        availableItems.Remove(tempHold);
 
         UpdateChoiceUI();
     }

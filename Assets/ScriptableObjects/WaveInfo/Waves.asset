@@ -19,7 +19,7 @@ MonoBehaviour:
     spawnCount: 10
     livesDamage: 1
     reward: 10
-    awardRelic: 0
+    awardRelic: 1
   - timeBetweenSpawns: 0.5
     HP: 12
     speed: 1
@@ -47,7 +47,7 @@ MonoBehaviour:
     spawnCount: 15
     livesDamage: 1
     reward: 10
-    awardRelic: 0
+    awardRelic: 1
   - timeBetweenSpawns: 0.5
     HP: 90
     speed: 1.5
@@ -75,7 +75,7 @@ MonoBehaviour:
     spawnCount: 15
     livesDamage: 1
     reward: 10
-    awardRelic: 0
+    awardRelic: 1
   - timeBetweenSpawns: 0.5
     HP: 310
     speed: 1
@@ -103,7 +103,7 @@ MonoBehaviour:
     spawnCount: 18
     livesDamage: 1
     reward: 15
-    awardRelic: 0
+    awardRelic: 1
   - timeBetweenSpawns: 1.5
     HP: 970
     speed: 1

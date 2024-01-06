@@ -18,12 +18,10 @@ public struct WeightedItem<T>
 [System.Serializable]
 public class WeightedRandom<T> : ScriptableObject
 {
-    [SerializeField]
-    public List<WeightedItem<T>> items;
 
     private int totalWeight;
 
-    public void RecalculateWeights()
+    public void RecalculateWeights(List<WeightedItem<T>> items)
     {
         totalWeight = 0;
         foreach (WeightedItem<T> x in items)
@@ -32,7 +30,7 @@ public class WeightedRandom<T> : ScriptableObject
         }
     }
 
-    public WeightedItem<T> RollForItem()
+    public WeightedItem<T> RollForItem(List<WeightedItem<T>> items)
     {
         float roll = totalWeight * Random.value;
         foreach (WeightedItem<T> x in items)
@@ -46,24 +44,17 @@ public class WeightedRandom<T> : ScriptableObject
         return default;
     }
 
-    public WeightedItem<T> RollforUniqueItem(List<T> blacklist)
+    public WeightedItem<T> RollforUniqueItem(List<WeightedItem<T>> items)
     {
-        List<WeightedItem<T>> filtered = new List<WeightedItem<T>>(items);
-        for(int i = filtered.Count - 1; i >= 0; i--)
-        {
-            if (blacklist.Contains(filtered[i].item))
-                filtered.RemoveAt(i);
-        }
-
         int uniqueWeight = 0;
 
-        foreach (WeightedItem<T> x in filtered)
+        foreach (WeightedItem<T> x in items)
         {
             uniqueWeight += x.weight;
         }
 
         float roll = uniqueWeight * Random.value;
-        foreach (WeightedItem<T> x in filtered)
+        foreach (WeightedItem<T> x in items)
         {
             if (roll < x.weight)
             {

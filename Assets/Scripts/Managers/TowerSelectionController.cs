@@ -7,6 +7,9 @@ using System;
 
 public class TowerSelectionController : MonoBehaviour
 {
+    [SerializeField]
+    private WeightedItemListGO towersList;
+
     public int cost;
     public int rerollCost;
     public Color normalColor;
@@ -43,7 +46,7 @@ public class TowerSelectionController : MonoBehaviour
     void Start()
     {
         frozen = false;
-        random.RecalculateWeights();
+        random.RecalculateWeights(towersList.items);
         selfPanel.color = normalColor;
         lastSelection = -1;
         isPreview = false;
@@ -95,9 +98,9 @@ public class TowerSelectionController : MonoBehaviour
             return;
         }
 
-        currentItems[0] = random.RollForItem();
-        currentItems[1] = random.RollForItem();
-        currentItems[2] = random.RollForItem();
+        currentItems[0] = random.RollForItem(towersList.items);
+        currentItems[1] = random.RollForItem(towersList.items);
+        currentItems[2] = random.RollForItem(towersList.items);
         UpdateChoiceUI();
 
         ResetPreview();
@@ -148,7 +151,7 @@ public class TowerSelectionController : MonoBehaviour
 
         TowerBenchController.instance.AddTowerToBench(currentItems[i]);
 
-        currentItems[i] = random.RollForItem();
+        currentItems[i] = random.RollForItem(towersList.items);
         UpdateChoiceUI();
 
         GameManager.instance.RequestStateChange(0, false);

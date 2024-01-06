@@ -70,8 +70,6 @@ public class RelicManager : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
-
-        
     }
 
     public void OnRoundEnd()

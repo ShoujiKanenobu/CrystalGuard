@@ -1530,6 +1530,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 6033019395467783690}
+        m_TargetAssemblyTypeName: RelicBonusStatTracker, Assembly-CSharp
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!1 &1666851485100869139
 GameObject:
   m_ObjectHideFlags: 0
@@ -6805,6 +6817,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   random: {fileID: 11400000, guid: 476434b271a061a43b42e81caa06bb8e, type: 2}
+  itemsClean: {fileID: 11400000, guid: 605bb68fd1867674aa985b749cd04d3c, type: 2}
   panel: {fileID: 4126378772495601725}
   rarityTitle: {fileID: 4342513926673521349}
   previewName: {fileID: 6530017306876989339}
@@ -10613,6 +10626,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab322e0d189280743a149b529d64167b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  towersList: {fileID: 11400000, guid: ca94b2b47bbb58e41ae4888d32217e6c, type: 2}
   cost: 3
   rerollCost: 1
   normalColor: {r: 0.46226418, g: 0.46226418, b: 0.46226418, a: 0.4}
