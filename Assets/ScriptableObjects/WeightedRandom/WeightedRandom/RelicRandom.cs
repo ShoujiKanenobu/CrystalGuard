@@ -12,7 +12,6 @@ public class RelicRandom : WeightedRandom<Relic>
             if (r.item.rarity == rarity)
                 availableForRarity.Add(r);
         }
-        //This fix ignores rarity. Possible fix to make it only take +1 or -1 rarity
         if (availableForRarity.Count < 1)
         {
             foreach(WeightedItem<Relic> r in items)

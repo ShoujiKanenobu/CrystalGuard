@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Glancing Blow
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: af0ef5fa155b6894ca392fdd7051fe45, type: 3}
-  description: Prevent 1 life loss every round.
+  description: Prevent the first instance of life lossed every round.
   rarity: 1

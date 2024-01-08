@@ -37,7 +37,7 @@ public class RelicSelectionManager : MonoBehaviour
 
     private int lastSelection;
 
-    private Relic[] currentItems = new Relic[3];
+    private WeightedItem<Relic>[] currentItems = new WeightedItem<Relic>[3];
 
     public AudioPoolInfo sound;
 
@@ -63,9 +63,9 @@ public class RelicSelectionManager : MonoBehaviour
 
     private void ClearCurrentItems()
     {
-        currentItems[0] = null;
-        currentItems[1] = null;
-        currentItems[2] = null;
+        currentItems[0] = new WeightedItem<Relic>();
+        currentItems[1] = new WeightedItem<Relic>();
+        currentItems[2] = new WeightedItem<Relic>();
     }
 
     public void FillSlots()
@@ -77,18 +77,17 @@ public class RelicSelectionManager : MonoBehaviour
         SetRarityText(rarity);
         SetRarityGlow(rarity);
         WeightedItem<Relic> tempHold;
-
+        List<WeightedItem<Relic>> blacklist = new List<WeightedItem<Relic>>(availableItems);
         tempHold = random.RarityRoll(availableItems, rarity);
-        currentItems[0] = tempHold.item;
-        availableItems.Remove(tempHold);
+        currentItems[0] = tempHold;
+        blacklist.Remove(tempHold);
 
-        tempHold = random.RarityRoll(availableItems, rarity);
-        currentItems[1] = tempHold.item;
-        availableItems.Remove(tempHold);
+        tempHold = random.RarityRoll(blacklist, rarity);
+        currentItems[1] = tempHold;
+        blacklist.Remove(tempHold);
 
-        tempHold = random.RarityRoll(availableItems, rarity);
-        currentItems[2] = tempHold.item;
-        availableItems.Remove(tempHold);
+        tempHold = random.RarityRoll(blacklist, rarity);
+        currentItems[2] = tempHold;
 
         UpdateChoiceUI();
     }
@@ -141,7 +140,13 @@ public class RelicSelectionManager : MonoBehaviour
 
     private RelicRarity RollRandomRarity()
     {
-        float x = Random.Range(0, 100);
+        int topRoll = 75;
+        if(PlayerPrefs.GetInt("WonLastGame") == 1)
+        {
+            topRoll = 100;
+            PlayerPrefs.SetInt("WonLastGame", 0);
+        }
+        float x = Random.Range(0, topRoll);
         if (x <= 50)
             return RelicRarity.common;
         if (x <= 75)
@@ -153,19 +158,19 @@ public class RelicSelectionManager : MonoBehaviour
 
     private bool InCurrentItems(Relic r)
     {
-        if (currentItems[0] == r || currentItems[1] == r || currentItems[2] == r)
+        if (currentItems[0].item == r || currentItems[1].item == r || currentItems[2].item == r)
             return true;
         return false;
     }
 
     private void UpdateChoiceUI()
     {
-        option1Image.sprite = currentItems[0].sprite;
-        option2Image.sprite = currentItems[1].sprite;
-        option3Image.sprite = currentItems[2].sprite;
-        option1Text.text = currentItems[0].name;
-        option2Text.text = currentItems[1].name;
-        option3Text.text = currentItems[2].name;
+        option1Image.sprite = currentItems[0].item.sprite;
+        option2Image.sprite = currentItems[1].item.sprite;
+        option3Image.sprite = currentItems[2].item.sprite;
+        option1Text.text = currentItems[0].item.name;
+        option2Text.text = currentItems[1].item.name;
+        option3Text.text = currentItems[2].item.name;
     }
 
     public void HandlePreview(int i)
@@ -176,15 +181,16 @@ public class RelicSelectionManager : MonoBehaviour
         {
             lastSelection = i;
 
-            previewDescription.text = currentItems[i].description;
-            previewName.text = currentItems[i].name;
+            previewDescription.text = currentItems[i].item.description;
+            previewName.text = currentItems[i].item.name;
         }
     }
 
     private void PurchaseItem(int i)
     {
         AudioSourceProvider.instance.PlayClipOnSource(sound);
-        RelicManager.instance.AddRelic(currentItems[i]);
+        RelicManager.instance.AddRelic(currentItems[i].item);
+        availableItems.Remove(currentItems[i]);
         panel.SetActive(false);
         GameManager.instance.RequestStateChange(GameState.FreeHover, false);
     }

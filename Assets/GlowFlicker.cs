@@ -21,7 +21,7 @@ public class GlowFlicker : MonoBehaviour
             return;
 
         savedColor = img.color;
-        savedColor.a = (Mathf.Sin(Time.time * speed) + 1) / 2;
+        savedColor.a = ((Mathf.Sin(Time.time * speed) + 1) / 2) * 0.4f;
         img.color = savedColor;
     }
 }
