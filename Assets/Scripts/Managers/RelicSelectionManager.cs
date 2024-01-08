@@ -27,6 +27,14 @@ public class RelicSelectionManager : MonoBehaviour
     public Image option2Image;
     public Image option3Image;
 
+    public Color commonColor;
+    public Color uncommonColor;
+    public Color rareColor;
+    public Color legendaryColor;
+    public Image option1Glow;
+    public Image option2Glow;
+    public Image option3Glow;
+
     private int lastSelection;
 
     private Relic[] currentItems = new Relic[3];
@@ -67,6 +75,7 @@ public class RelicSelectionManager : MonoBehaviour
         RelicRarity rarity = RollRandomRarity();
 
         SetRarityText(rarity);
+        SetRarityGlow(rarity);
         WeightedItem<Relic> tempHold;
 
         tempHold = random.RarityRoll(availableItems, rarity);
@@ -99,6 +108,33 @@ public class RelicSelectionManager : MonoBehaviour
                 break;
             case RelicRarity.legendary:
                 rarityTitle.text = "Select a LEGENDARY Power";
+                break;
+        }
+    }
+
+    private void SetRarityGlow (RelicRarity r)
+    {
+        switch (r)
+        {
+            case RelicRarity.common:
+                option1Glow.color = commonColor;
+                option2Glow.color = commonColor;
+                option3Glow.color = commonColor;
+                break;
+            case RelicRarity.uncommon:
+                option1Glow.color = uncommonColor;
+                option2Glow.color = uncommonColor;
+                option3Glow.color = uncommonColor;
+                break;
+            case RelicRarity.rare:
+                option1Glow.color = rareColor;
+                option2Glow.color = rareColor;
+                option3Glow.color = rareColor;
+                break;
+            case RelicRarity.legendary:
+                option1Glow.color = legendaryColor;
+                option2Glow.color = legendaryColor;
+                option3Glow.color = legendaryColor;
                 break;
         }
     }
