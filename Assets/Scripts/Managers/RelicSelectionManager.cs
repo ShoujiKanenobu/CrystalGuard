@@ -36,7 +36,7 @@ public class RelicSelectionManager : MonoBehaviour
     public Image option3Glow;
 
     private int lastSelection;
-
+    private bool firstRoll;
     private WeightedItem<Relic>[] currentItems = new WeightedItem<Relic>[3];
 
     public AudioPoolInfo sound;
@@ -46,15 +46,18 @@ public class RelicSelectionManager : MonoBehaviour
         availableItems = new List<WeightedItem<Relic>>(itemsClean.items);
         random.RecalculateWeights(availableItems);
         Init();
+        firstRoll = true;
     }
 
     public void ResetAvailableItems()
     {
         availableItems = new List<WeightedItem<Relic>>(itemsClean.items);
+        firstRoll = true;
     }
 
     private void Init()
     {
+        
         FillSlots();
         lastSelection = -1;
         previewName.text = "";
@@ -75,7 +78,7 @@ public class RelicSelectionManager : MonoBehaviour
         RelicRarity rarity = RollRandomRarity();
 
         SetRarityText(rarity);
-        SetRarityGlow(rarity);
+        
         WeightedItem<Relic> tempHold;
         List<WeightedItem<Relic>> blacklist = new List<WeightedItem<Relic>>(availableItems);
         tempHold = random.RarityRoll(availableItems, rarity);
@@ -88,6 +91,10 @@ public class RelicSelectionManager : MonoBehaviour
 
         tempHold = random.RarityRoll(blacklist, rarity);
         currentItems[2] = tempHold;
+
+        SetRarityGlow(currentItems[0].item.rarity, option1Glow);
+        SetRarityGlow(currentItems[1].item.rarity, option2Glow);
+        SetRarityGlow(currentItems[2].item.rarity, option3Glow);
 
         UpdateChoiceUI();
     }
@@ -111,41 +118,42 @@ public class RelicSelectionManager : MonoBehaviour
         }
     }
 
-    private void SetRarityGlow (RelicRarity r)
+    private void SetRarityGlow (RelicRarity r, Image option)
     {
         switch (r)
         {
             case RelicRarity.common:
-                option1Glow.color = commonColor;
-                option2Glow.color = commonColor;
-                option3Glow.color = commonColor;
+                option.color = commonColor;
                 break;
             case RelicRarity.uncommon:
-                option1Glow.color = uncommonColor;
-                option2Glow.color = uncommonColor;
-                option3Glow.color = uncommonColor;
+                option.color = uncommonColor;
                 break;
             case RelicRarity.rare:
-                option1Glow.color = rareColor;
-                option2Glow.color = rareColor;
-                option3Glow.color = rareColor;
+                option.color = rareColor;
                 break;
             case RelicRarity.legendary:
-                option1Glow.color = legendaryColor;
-                option2Glow.color = legendaryColor;
-                option3Glow.color = legendaryColor;
+                option.color = legendaryColor;
                 break;
         }
     }
 
     private RelicRarity RollRandomRarity()
     {
-        int topRoll = 75;
-        if(PlayerPrefs.GetInt("WonLastGame") == 1)
+        int topRoll = 100;
+        
+        if(firstRoll)
         {
-            topRoll = 100;
-            PlayerPrefs.SetInt("WonLastGame", 0);
+            if (PlayerPrefs.GetInt("WonLastGame") != 1)
+            {
+                topRoll = 75;
+            }
+            else
+            {
+                PlayerPrefs.SetInt("WonLastGame", 0);
+            }
+            firstRoll = false;
         }
+
         float x = Random.Range(0, topRoll);
         if (x <= 50)
             return RelicRarity.common;
