@@ -22,6 +22,9 @@ public class RelicManager : MonoBehaviour
     private Relic TuneUpRelic;
 
     [SerializeField]
+    private Relic EchoRelic;
+
+    [SerializeField]
     public List<Relic> obtainedRelics  = new List<Relic>();
     void Awake()
     {
@@ -40,10 +43,17 @@ public class RelicManager : MonoBehaviour
         return obtainedRelics.Contains(r);
     }
 
+
     //This is so bad
     public bool ContainsTuneUp()
     {
         return ContainsRelic(TuneUpRelic);
+    }
+
+    //And yet I do it again
+    public bool ContainsEcho()
+    {
+        return ContainsRelic(EchoRelic);
     }
 
     public void AddRelic(Relic r)

@@ -103,6 +103,7 @@ public class GameManager : MonoBehaviour
     public void WavesComplete()
     {
         TogglePause(false);
+        PlayerPrefs.SetInt("WonLastGame", 1);
         VictoryScreen.SetActive(true);
         LazyPauseButtonFix.SetActive(false);
         PlayerPrefs.SetInt(prefsName, 1);

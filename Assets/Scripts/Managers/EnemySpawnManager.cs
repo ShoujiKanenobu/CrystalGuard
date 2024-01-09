@@ -87,7 +87,6 @@ public class EnemySpawnManager : MonoBehaviour
                 if (waveNumber == waveStats.waves.Count && GameManager.instance.hasLives())
                 {
                     GameManager.instance.WavesComplete();
-                    PlayerPrefs.SetInt("WonLastGame", 1);
                 }
                     
                 loopMultiplier += loopModifierStepAmount;

@@ -17,9 +17,12 @@ public class AOEController : MonoBehaviour
     private float hitboxEndTime;
     private float hitboxStartTime;
     private float deleteTime;
+
+    private bool isEcho;
     
     public void Init()
     {
+        isEcho = false;
         hitboxEndTime = Time.time + duration + delay;
         hitboxStartTime = Time.time + delay;
         deleteTime = Time.time + duration + delay + animFinishTime;
@@ -34,7 +37,26 @@ public class AOEController : MonoBehaviour
     public void Update()
     {
         if (deleteTime < Time.time)
+        {
+            
+            if(RelicManager.instance.ContainsEcho() && !isEcho)
+            {
+                GameObject temp = Instantiate(this.gameObject, this.transform.position, Quaternion.identity);
+
+                AOEController aoe = temp.GetComponent<AOEController>();
+                aoe.delay = delay;
+                aoe.damage = damage / 2;
+                aoe.duration = duration;
+                aoe.radius = radius;
+                aoe.animFinishTime = animFinishTime;
+                if (debuff != null)
+                    aoe.debuff = debuff;
+                aoe.Init();
+                aoe.isEcho = true;
+            }
             Destroy(this.gameObject);
+        }
+            
 
         if (hitboxStartTime > Time.time || hitboxEndTime < Time.time)
             return;

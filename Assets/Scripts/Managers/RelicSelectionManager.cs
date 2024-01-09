@@ -140,6 +140,7 @@ public class RelicSelectionManager : MonoBehaviour
     private RelicRarity RollRandomRarity()
     {
         int topRoll = 100;
+        int botRoll = 0;
         
         if(firstRoll)
         {
@@ -149,12 +150,13 @@ public class RelicSelectionManager : MonoBehaviour
             }
             else
             {
+                botRoll = 76;
                 PlayerPrefs.SetInt("WonLastGame", 0);
             }
             firstRoll = false;
         }
 
-        float x = Random.Range(0, topRoll);
+        float x = Random.Range(botRoll, topRoll);
         if (x <= 50)
             return RelicRarity.common;
         if (x <= 75)
