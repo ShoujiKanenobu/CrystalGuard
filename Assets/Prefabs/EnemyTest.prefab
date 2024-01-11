@@ -268,6 +268,7 @@ MonoBehaviour:
   darkheraldEvent: {fileID: 11400000, guid: 4ea580f93b065f345a6651304dace838, type: 2}
   darkheraldRelic: {fileID: 11400000, guid: 73a8825da54afe640a71077bf98c37d4, type: 2}
   EnemyDeathEvent: {fileID: 11400000, guid: 168b875266806364aa1830e8355142a8, type: 2}
+  poisonProlifRelic: {fileID: 11400000, guid: 8059c68084b131b4e80e2b1b4f49acf0, type: 2}
   cullingStrikeRelic: {fileID: 11400000, guid: f517c7ea4c82bd747be1e4b13b2fb40e, type: 2}
   cullEffect: {fileID: 1576947433937734, guid: b544d70bfcfb8af408fce007029f2d07, type: 3}
 --- !u!114 &6715142513452413503
@@ -283,6 +284,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   darkHeraldPop: {fileID: 1061481793025988, guid: 6a704c07afed23f4f9f7f9c8bc0061fa, type: 3}
+  poisonPop: {fileID: 1061481793025988, guid: ab9a662c62b16df4c99e468704aa09a5, type: 3}
   darkHeraldRelic: {fileID: 11400000, guid: 73a8825da54afe640a71077bf98c37d4, type: 2}
 --- !u!114 &6016918585035643229
 MonoBehaviour:

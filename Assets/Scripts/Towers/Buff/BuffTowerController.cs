@@ -42,6 +42,7 @@ public class BuffTowerController : TowerBase
             if (hit.TryGetComponent<TowerBase>(out TowerBase tower))
             {
                 tower.buffs.Clear();
+                tower.RecalculateBuffs();
             }
         }
 

@@ -27,6 +27,8 @@ public class EnemyStatusController : MonoBehaviour
     [SerializeField]
     private GameObject darkHeraldPop;
     [SerializeField]
+    private GameObject poisonPop;
+    [SerializeField]
     private Relic darkHeraldRelic;
 
     private EnemyHealthController healthController;
@@ -173,6 +175,18 @@ public class EnemyStatusController : MonoBehaviour
     private void ResetPoison()
     {
         poison = 0;
+    }
+    public void PoisonAgonyPop()
+    {
+        GameObject aoeGO = Instantiate(poisonPop, this.gameObject.transform.position, Quaternion.identity);
+
+        AOEController aoe = aoeGO.GetComponent<AOEController>();
+        aoe.animFinishTime = 0f;
+        aoe.delay = 0f;
+        aoe.radius = 0.5f;
+        aoe.duration = 0.25f;
+        aoe.damage = (int)poison * 2;
+        aoe.Init();
     }
     #endregion
     #region bleed

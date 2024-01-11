@@ -26,6 +26,9 @@ public class EnemyHealthController : MonoBehaviour
     private GameEvent EnemyDeathEvent;
 
     [SerializeField]
+    private Relic poisonProlifRelic;
+
+    [SerializeField]
     private Relic cullingStrikeRelic;
     [SerializeField]
     private GameObject cullEffect;
@@ -86,6 +89,10 @@ public class EnemyHealthController : MonoBehaviour
         if (RelicManager.instance.ContainsRelic(darkheraldRelic))
         {
             this.GetComponent<EnemyStatusController>().DarkHeraldPop();
+        }
+        if(RelicManager.instance.ContainsRelic(poisonProlifRelic))
+        {
+            this.GetComponent<EnemyStatusController>().PoisonAgonyPop();
         }
         EnemyDeathEvent.Raise(this.transform.position);
         EnemyDeathEvent.Raise();
