@@ -15,4 +15,4 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: a3e27f0b2a0cbf840a0ccab3dadd4374, type: 3}
   description: Gain 25 Gold. Lose 10 life. If you have 10 or less life remaining,
     go to 1 life.
-  rarity: 3
+  rarity: 2
