@@ -5,34 +5,19 @@ using UnityEngine.UI;
 public class LevelCompletionLoader : MonoBehaviour
 {
     [SerializeField]
-    private Color completeColor;
-
-    [SerializeField]
-    private Color incompleteColor;
-
+    private GameObject stamp;
     [SerializeField]
     private string pref;
 
-    [SerializeField]
-    private Image panelcolor;
-
     public void OnEnable()
     {
-        if (panelcolor == null)
-            return;
-
         if(PlayerPrefs.HasKey(pref))
         {
-            panelcolor.color = completeColor;
+            stamp.SetActive(true);
         }
         else
         {
-            panelcolor.color = incompleteColor;
+            stamp.SetActive(false);
         }
-    }
-
-    public void ResetCompletion()
-    {
-        PlayerPrefs.DeleteAll();
     }
 }
