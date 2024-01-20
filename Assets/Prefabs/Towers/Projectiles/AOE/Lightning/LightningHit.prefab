@@ -9779,13 +9779,15 @@ MonoBehaviour:
   duration: 0
   debuff: {fileID: 0}
   castSound:
-    clip: {fileID: 8300000, guid: 42009cfaaf0138b49a72349067023ee8, type: 3}
+    clip: {fileID: 8300000, guid: e25fd0fbd4e1a034e854ce415d8ec33c, type: 3}
     volume: 0.02
     mixGroup: {fileID: -5316668263460104751, guid: 409e6ad4f4d5fba428211d0432a058dd, type: 2}
   hitSound:
     clip: {fileID: 0}
     volume: 0
     mixGroup: {fileID: 0}
+  chainLightning: {fileID: 3678099601518544933, guid: 4ca679c5870ce6b48bb96c6a72a08fce, type: 3}
+  chainLightningRelic: {fileID: 11400000, guid: 0d26b8dc776d6df45958f24c25045dc8, type: 2}
 --- !u!1 &1969773048335070
 GameObject:
   m_ObjectHideFlags: 0

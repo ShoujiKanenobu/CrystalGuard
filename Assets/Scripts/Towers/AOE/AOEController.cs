@@ -12,6 +12,8 @@ public class AOEController : MonoBehaviour
     public DebuffInfo debuff;
     public AudioPoolInfo castSound;
     public AudioPoolInfo hitSound;
+    public GameObject chainLightning;
+    public Relic chainLightningRelic;
 
     private List<Collider2D> alreadyHit = new List<Collider2D>();
     private float hitboxEndTime;
@@ -76,6 +78,15 @@ public class AOEController : MonoBehaviour
                 if(hitSound.clip != null)
                     AudioSourceProvider.instance.PlayClipOnSource(hitSound);
                 alreadyHit.Add(hit);
+
+                if(chainLightningRelic != null)
+                {
+                    if (RelicManager.instance.ContainsRelic(chainLightningRelic))
+                    {
+                        ChainLightningController chain = Instantiate(chainLightning, transform.position, Quaternion.identity).GetComponent<ChainLightningController>();
+                        chain.Init(temp, damage);
+                    }
+                }
             }
         }
     }
