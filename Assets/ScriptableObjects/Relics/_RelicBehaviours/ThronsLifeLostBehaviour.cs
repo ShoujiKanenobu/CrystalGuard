@@ -9,6 +9,7 @@ public class ThornsLifeLostBehaviour : Relic
     public override void OnLifeLost(Vector3 position)
     {
         base.OnObtained();
-        Instantiate(ThornNova, position, Quaternion.identity);
+        GameObject t = Instantiate(ThornNova, position, Quaternion.identity);
+        t.GetComponent<NovaController>().damage = EnemySpawnManager.instance.GetWaveNumber() * 2;
     }
 }

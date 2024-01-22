@@ -61,6 +61,11 @@ public class EnemySpawnManager : MonoBehaviour
         loopMultiplier = 1;
     }
 
+    public int GetWaveNumber()
+    {
+        return waveNumber;
+    }
+
     void Update()
     {
         if (GameManager.instance.state == GameState.RelicBuying)
