@@ -1,4 +1,4 @@
-using System.Collections;
+ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,8 +12,7 @@ public class TowerSelectionController : MonoBehaviour
 
     public int cost;
     public int rerollCost;
-    public Color normalColor;
-    public Color freezeColor;
+    public GameObject FreezeElements;
 
     public GameObject previewObj;
     public GameObject infoText;
@@ -47,7 +46,7 @@ public class TowerSelectionController : MonoBehaviour
     {
         frozen = false;
         random.RecalculateWeights(towersList.items);
-        selfPanel.color = normalColor;
+        FreezeElements.SetActive(false);
         lastSelection = -1;
         isPreview = false;
     }
@@ -172,9 +171,9 @@ public class TowerSelectionController : MonoBehaviour
     {
         frozen = !frozen;
         if (frozen)
-            selfPanel.color = freezeColor;
+            FreezeElements.SetActive(true);
         else
-            selfPanel.color = normalColor;
+            FreezeElements.SetActive(false);
 
     }
 

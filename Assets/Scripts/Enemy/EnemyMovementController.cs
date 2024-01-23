@@ -69,7 +69,8 @@ public class EnemyMovementController : MonoBehaviour
             relicTravelAmount += travelDist.magnitude;
             if (relicTravelAmount >= relicDistanceTillDamage)
             {
-                healthController.TakeDamage(1 + Mathf.CeilToInt(speed));
+                
+                healthController.TakeDamage(Mathf.CeilToInt(Mathf.Pow(5, speed)));
                 relicTravelAmount = 0;
             }
         }
