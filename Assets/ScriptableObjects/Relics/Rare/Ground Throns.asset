@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Ground Throns
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 9b92547adc5f41749988a7ce80d0bf33, type: 3}
-  description: Enemies take 2 damage every 500 units. This damage scales with enemy
+  description: Enemies take 5 damage every 500 units. This damage scales with enemy
     movespeed.
   rarity: 2
