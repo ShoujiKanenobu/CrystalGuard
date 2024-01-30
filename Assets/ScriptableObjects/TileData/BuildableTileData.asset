@@ -20,4 +20,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ee0fe36988115f446a9b0dae2c02cc9c, type: 2}
   - {fileID: 11400000, guid: 3a95f962523de0049ab6c34ff722e8e5, type: 2}
   - {fileID: 11400000, guid: 2cb8136222ef4c041902ccc4ca11f593, type: 2}
+  - {fileID: 11400000, guid: 412db03f912b6a64f98f380529935353, type: 2}
+  - {fileID: 11400000, guid: 71ef440ad8b92c9459c050a375785bcb, type: 2}
   isBuildable: 1
