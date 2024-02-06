@@ -2,32 +2,36 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+
 public class ImageFlipper : MonoBehaviour
 {
-    public List<Sprite> images;
-    public Image targetImage;
+    public List<GameObject> targets;
     private int currentImage;
     
     // Start is called before the first frame update
     void Start()
     {
+        foreach (GameObject t in targets)
+            t.SetActive(false);
         currentImage = 0;
-        targetImage.sprite = images[currentImage];
+        targets[currentImage].SetActive(true);
     }
 
     public void CycleUp()
     {
+        targets[currentImage].SetActive(false);
         currentImage++;
-        if (currentImage >= images.Count)
+        if (currentImage >= targets.Count)
             currentImage = 0;
-        targetImage.sprite = images[currentImage];
+        targets[currentImage].SetActive(true);
     }
 
     public void CycleDown()
     {
+        targets[currentImage].SetActive(false);
         currentImage--;
         if (currentImage < 0)
-            currentImage = images.Count - 1;
-        targetImage.sprite = images[currentImage];
+            currentImage = targets.Count - 1;
+        targets[currentImage].SetActive(true);
     }
 }
